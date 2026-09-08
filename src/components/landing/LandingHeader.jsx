@@ -28,9 +28,9 @@ export default function LandingHeader() {
       >
         <div
           className={cn(
-            "mx-auto mt-2 max-w-[1120px] px-6 transition-all duration-300 lg:px-12",
+            "mx-auto mt-2 max-w-[1120px] border rounded-xl border-border px-6 transition-all duration-300 lg:px-12",
             isScrolled &&
-              "max-w-5xl rounded-2xl border border-border bg-background/70 backdrop-blur-lg lg:px-5",
+              "max-w-5xl rounded-2xl  border-border bg-background/70 backdrop-blur-lg lg:px-5",
           )}
         >
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
