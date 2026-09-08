@@ -92,7 +92,7 @@ export default function LoginScreen({ onLogin }) {
 
           <div className="flex items-center gap-4 text-gray-400">
             <a
-              href="https://github.com/byllzz/readmeforge"
+              href="https://github.com/bilalmlkdev/readmeforge"
               target="_blank"
               rel="noopener noreferrer"
               className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"

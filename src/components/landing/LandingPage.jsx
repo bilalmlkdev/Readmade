@@ -116,7 +116,7 @@ export default function LandingPage() {
               </motion.div>
               <motion.div variants={item}>
                 <a
-                  href="https://github.com/byllzz/readmeforge"
+                  href="https://github.com/bilalmlkdev/readmeforge"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border px-6 text-base font-medium text-foreground transition-colors hover:bg-muted"

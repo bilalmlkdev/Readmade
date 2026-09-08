@@ -1,26 +1,28 @@
-<p align="center">
+<div align="center">
+
   <a href="https://thereadmeforge.vercel.app/">
-    <img src="./src/assets//preview.png" alt="ReadmeForge Preview">
+    <img src="https://raw.githubusercontent.com/bilalmlkdev/readmeforge/main/src/assets/favicon.svg" alt="readmeforge logo" width="100%" height="120">
   </a>
+
+# Readmeforge
+
+ ReadmeForge is a visual, block-based README builder that lets developers create <br> polished GitHub documentation without manually writing Markdown.
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-black?style=for-the-badge)](https://thereadmeforge.vercel.app)
+[![GitHub Stars](https://img.shields.io/github/stars/bilalmlkdev/readmeforge?style=for-the-badge&logo=github&color=yellow)](https://github.com/bilalmlkdev/readmeforge.git)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
+
+</div>
+
+<p align="center">
+  <i>Created by <a href="https://bilalmlkdev.vercel.app" target="_blank">Bilal Malik</a></i><br>
+  <i>Follow on Github <a href="https://github.com/bilalmlkdev" target="_blank">bilalmlkdev</a></i>
 </p>
 
-<h1 align="left">ReadmeForge</h1>
-
-<p align="left">
- ReadmeForge is a visual, block-based README builder that lets developers create polished GitHub documentation without manually writing Markdown. Using 11 purpose-built content blocks (Title, Badges, API Docs, Screenshots, and more), you can drag, drop, reorder, and fill in content to build a perfect README.md.
-</p>
-
-<p align="left">
-  <img src="https://img.shields.io/badge/Status-Active-9B72FF?style=flat" />
-  <img src="https://img.shields.io/badge/Tailwind-v4-9B72FF?style=flat" />
-  <img src="https://img.shields.io/badge/License-MIT-9B72FF?style=flat" />
-  <img src="https://img.shields.io/badge/Deploy-Vercel-9B72FF?style=flat" />
-  <img src="https://img.shields.io/badge/React-Vite-9B26FF?style=flat"/>
-  <img src="https://img.shields.io/badge/JavaScript-ES6+-9B26FF?style=flat"/>
-  <img src="https://img.shields.io/badge/License-MIT-9B26FF?style=flat"/>
-</p>
 
 
+[![readmeforge Dashboard](https://raw.githubusercontent.com/bilalmlkdev/readmeforge/main/src/assets/preview.png)](https://thereadmeforge.vercel.app/)
+[![readmeforge Dashboard](https://raw.githubusercontent.com/bilalmlkdev/readmeforge/main/src/assets/dashboard.png)](https://thereadmeforge.vercel.app/)
 
 # About Readmeforge
 
@@ -145,21 +147,6 @@ ReadmeForge follows a simple **client-first architecture** where editing, previe
 - Fast client-side rendering
 
 
-
-# Built With
-
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=react,vite,tailwind,js,git,vercel,npm" />
-</p>
-
-### Core Technologies
-
-- **React 19** - Modern UI library
-- **Vite** - Lightning-fast build tool
-- **Tailwind CSS v4** - Utility-first styling
-- **JavaScript (ES6+)** - Application logic
-- **React Router** - Client-side routing
-
 ### Libraries & Packages
 
 - **@dnd-kit** - Accessible drag-and-drop interactions
@@ -206,7 +193,7 @@ Before running the project locally, ensure you have:
 ## Installation
 
 ```bash
-git clone https://github.com/byllzz/readmeforge.git
+git clone https://github.com/bilalmlkdev/readmeforge.git
 
 cd readmeforge
 
@@ -261,24 +248,6 @@ Open a Pull Request once your changes are ready.
 
 For larger features or architectural changes, opening an issue before implementation is recommended.
 
-
-# Author
-
-<img src="https://github.com/byllzz.png" width="90" alt="Bilal Malik"/>
-
-## Bilal Malik
-
-[![GitHub](https://img.shields.io/badge/GitHub-byllzz-9B72FF?style=flat&logo=github&logoColor=white)](https://github.com/byllzz)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bilal%20Malik-9B72FF?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/bilalmlkdev)
-[![X](https://img.shields.io/badge/Twiiter-@bilalmlkdev-9B72FF?style=flat&logo=x&logoColor=white)](https://x.com/bilalmlkdev)
-
-If you found this project useful, consider leaving a ⭐ on GitHub. It helps the project reach more developers and supports future improvements.
-
-<p align="right">
-  <a href="#readmeforge">⬆ Back to Top</a>
-</p>
-
-
 # License (MIT)
 
 This project is licensed under the **MIT License**.
@@ -305,6 +274,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ```
-
-© 2026 Readmeforge. Licensed under the MIT License.
-

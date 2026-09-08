@@ -1,6 +1,4 @@
 import { FaGithub } from "react-icons/fa";
-import logo from "../../assets/favicon.svg";
-
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border font-grandstander bg-background py-16">
@@ -33,18 +31,18 @@ export default function Footer() {
             <p className="text-base text-muted-foreground">
               Made by{" "}
               <a
-                href="https://github.com/byllzz"
+                href="https://github.com/bilalmlkdev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-foreground transition-colors duration-200 hover:text-primary"
               >
-                byllzz
+                bilalmlkdev
               </a>
             </p>
           </div>
 
           <a
-            href="https://github.com/byllzz/readmeforge"
+            href="https://github.com/bilalmlkdev/readmeforge"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
