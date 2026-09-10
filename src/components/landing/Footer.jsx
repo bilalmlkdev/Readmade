@@ -10,10 +10,10 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-center space-y-6">
           <div className="flex items-center gap-2">
             {/* <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-black">
-              <img src={logo} alt="ReadmeForge" className="h-5 w-5" />
+              <img src={logo} alt="Readmade" className="h-5 w-5" />
             </div> */}
             <span className="text-xl font-bold tracking-tight">
-              ReadmeForge
+              Readmade
             </span>
           </div>
 
@@ -25,7 +25,7 @@ export default function Footer() {
 
           <div className="flex flex-col items-center space-y-2">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} ReadmeForge. All rights
+              &copy; {new Date().getFullYear()} Readmade. All rights
               reserved.
             </p>
             <p className="text-base text-muted-foreground">
@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
 
           <a
-            href="https://github.com/bilalmlkdev/readmeforge"
+            href="https://github.com/bilalmlkdev/readmade"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"

@@ -24,7 +24,7 @@ export default function NotFound() {
         className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black text-white! text-[13.5px] font-semibold hover:bg-gray-800 transition-colors shadow-lg shadow-black/10"
       >
         <ArrowLeft size={15} />
-        Back to ReadmeForge
+        Back to Readmade
       </Link>
     </div>
   );

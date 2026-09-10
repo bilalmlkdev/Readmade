@@ -61,15 +61,15 @@ export default function LoginScreen({ onLogin }) {
         <div className="mt-14 pt-6 border-t border-gray-200">
           <div className="flex flex-col items-start gap-2 mb-3">
             <div className="w-8 h-8 bg-black flex items-center justify-center rounded-md">
-              <img src={logo} alt="Readmeforge Logo" />
+              <img src={logo} alt="Readmade logo" />
             </div>
             <span className="text-[15px] font-medium text-black">
-              ReadmeForge
+              Readmade
             </span>
           </div>
 
           <p className="text-[14px] text-gray-500 leading-relaxed mb-3">
-            ReadmeForge - the simplest way to build beautiful READMEs.
+            Readmade is the calm place to shape a README worth opening.
           </p>
 
           <p className="text-[14px] text-gray-400 mb-5">
@@ -92,7 +92,7 @@ export default function LoginScreen({ onLogin }) {
 
           <div className="flex items-center gap-4 text-gray-400">
             <a
-              href="https://github.com/bilalmlkdev/readmeforge"
+              href="https://github.com/bilalmlkdev/readmade"
               target="_blank"
               rel="noopener noreferrer"
               className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"

@@ -11,7 +11,7 @@ const BLOCK_CATEGORIES = {
   Custom: [BLOCK_TYPES.CUSTOM],
 };
 
-const PALETTE_STATE_KEY = "readmeforge_palette_minimized";
+const PALETTE_STATE_KEY = "readmade_palette_minimized";
 
 function CollapseIcon() {
   return (

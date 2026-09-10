@@ -11,13 +11,13 @@ const DEFAULT_BLOCKS = [
   "installation",
   "usage",
 ];
-const ACTIVE_USER_ID_KEY = "readmeforge_active_user_id"; // <-- fixed name
+const ACTIVE_USER_ID_KEY = "readmade_active_user_id";
 
 let _dupeCounter = 0;
 
 function workspaceKey() {
   const userId = localStorage.getItem(ACTIVE_USER_ID_KEY);
-  return userId ? `readmeforge:${userId}:blocks` : "readmeforge:blocks";
+  return userId ? `readmade:${userId}:blocks` : "readmade:blocks";
 }
 
 const useReadme = create(
@@ -71,7 +71,7 @@ const useReadme = create(
       },
     }),
     {
-      name: "readmeforge-workspace",
+      name: "readmade-workspace",
       storage: createJSONStorage(() => ({
         getItem: () => localStorage.getItem(workspaceKey()),
         setItem: (name, value) => localStorage.setItem(workspaceKey(), value),

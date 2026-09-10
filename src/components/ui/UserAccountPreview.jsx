@@ -4,7 +4,7 @@ import { FaGithub } from "react-icons/fa";
 
 function getAvatarUrl(seed) {
   return `https://api.dicebear.com/7.x/notionists/svg?seed=${encodeURIComponent(
-    seed || "readmeforge",
+    seed || "readmade",
   )}&backgroundColor=f5f4ef`;
 }
 
@@ -116,7 +116,7 @@ export default function UserAccountPreview({
 
               <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
                 <a
-                  href="https://github.com/byllzz/readmeforge"
+                  href="https://github.com/bilalmlkdev/readmade"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
@@ -157,7 +157,7 @@ export default function UserAccountPreview({
       </div>
       <div className="flex items-center gap-1">
         <a
-          href="https://github.com/byllzz/readmeforge"
+          href="https://github.com/bilalmlkdev/readmade"
           target="_blank"
           rel="noopener noreferrer"
           className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"

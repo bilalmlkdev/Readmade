@@ -7,11 +7,11 @@ import LoadingSpinner from "./components/ui/LoadingSpinner";
 import NotFound from "./components/pages/NotFound";
 import useReadme from "./store/useReadme.js";
 
-const USER_ID_KEY = "readmeforge_user_id";
-const USER_NAME_KEY = "readmeforge_user_name";
-const ACTIVE_USER_ID_KEY = "readmeforge_active_user_id"; // <-- fixed name
-const USER_EMAIL_KEY = "readmeforge_user_email";
-const LOGGED_IN_KEY = "readmeforge_logged_in";
+const USER_ID_KEY = "readmade_user_id";
+const USER_NAME_KEY = "readmade_user_name";
+const ACTIVE_USER_ID_KEY = "readmade_active_user_id";
+const USER_EMAIL_KEY = "readmade_user_email";
+const LOGGED_IN_KEY = "readmade_logged_in";
 const DEFAULT_EMAIL = "demo@gmail.com";
 
 function generateUserId() {
@@ -48,7 +48,7 @@ function isLoggedIn() {
 
 function wipeIdentity() {
   const uid = localStorage.getItem(USER_ID_KEY);
-  if (uid) localStorage.removeItem(`readmeforge:${uid}:blocks`);
+  if (uid) localStorage.removeItem(`readmade:${uid}:blocks`);
   localStorage.removeItem(USER_ID_KEY);
   localStorage.removeItem(USER_NAME_KEY);
   localStorage.removeItem(USER_EMAIL_KEY);

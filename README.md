@@ -1,276 +1,77 @@
-<div align="center">
+# Readmade
 
-  <a href="https://thereadmeforge.vercel.app/">
-    <img src="https://raw.githubusercontent.com/bilalmlkdev/readmeforge/main/src/assets/favicon.svg" alt="readmeforge logo" width="100%" height="120">
-  </a>
+**The README editor that helps your project make sense before anyone runs it.**
 
-# Readmeforge
+Readmade is a local-first workspace for building the documentation your repository deserves. Start with a handful of useful sections, arrange the story visually, and watch the GitHub-ready Markdown take shape as you work. When it reads right, copy it or download it—then ship it with your project.
 
- ReadmeForge is a visual, block-based README builder that lets developers create <br> polished GitHub documentation without manually writing Markdown.
+## Why Readmade
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-black?style=for-the-badge)](https://thereadmeforge.vercel.app)
-[![GitHub Stars](https://img.shields.io/github/stars/bilalmlkdev/readmeforge?style=for-the-badge&logo=github&color=yellow)](https://github.com/bilalmlkdev/readmeforge.git)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
+A README is often the first real conversation someone has with a project. It should explain what matters, show how to begin, and make the next step obvious. Readmade keeps that work focused: no Markdown syntax to wrestle, no account to create, and no dashboard full of distractions.
 
-</div>
+Your workspace lives in the browser. You can experiment freely, return to it later, and export plain Markdown that belongs in your repository—not locked inside a platform.
 
-<p align="center">
-  <i>Created by <a href="https://bilalmlkdev.vercel.app" target="_blank">Bilal Malik</a></i><br>
-  <i>Follow on Github <a href="https://github.com/bilalmlkdev" target="_blank">bilalmlkdev</a></i>
-</p>
+## What you can make
 
+- Compose a README from title, badges, description, features, installation, usage, screenshots, API, contribution, license, and custom Markdown blocks.
+- Reorder, duplicate, expand, and remove sections without breaking the document’s structure.
+- Review a live GitHub-style preview or switch to the generated source at any time.
+- Add screenshots by dropping files, pasting from the clipboard, or providing a URL; Readmade compresses uploads before sending them through its image proxy.
+- Copy the result or download a ready-to-commit `README.md`.
+- Keep separate browser-local workspaces by email, without sign-up or verification.
 
+## The Readmade workflow
 
-[![readmeforge Dashboard](https://raw.githubusercontent.com/bilalmlkdev/readmeforge/main/src/assets/preview.png)](https://thereadmeforge.vercel.app/)
-[![readmeforge Dashboard](https://raw.githubusercontent.com/bilalmlkdev/readmeforge/main/src/assets/dashboard.png)](https://thereadmeforge.vercel.app/)
+1. Open a workspace using any email address.
+2. Choose the blocks that fit the project and fill in the details.
+3. Put the sections in the order a new contributor or user needs them.
+4. Use the preview to read the page as they will.
+5. Export clean Markdown and commit it to the repository.
 
-# About Readmeforge
+## Run Readmade locally
 
-**ReadmeForge** is an open-source **visual README builder** that helps developers create polished GitHub documentation without manually writing Markdown. Using reusable content blocks, you can build, rearrange, preview, and export professional README files entirely from your browser.
-
-Everything updates in **real-time**, allowing you to switch between a live GitHub preview and raw Markdown whenever needed. Images are automatically compressed and uploaded through a lightweight serverless proxy, keeping exported README files clean and portable.
-
-**No sign-up, no tracking.** Your data is saved **locally in your browser**, keyed by a unique user ID derived from the email you enter-giving you multiple isolated workspaces for different projects.
-
-
-
-# Highlights
-
-- Build README files visually with reusable blocks
-- Live GitHub-style Markdown preview
-- Syntax-highlighted code editor
-- Built-in screenshot management
-- One-click Markdown export
-- Local-first workspace storage
-- Fully responsive interface
-- Privacy-focused with no accounts
-
-
-# Features
-
-## 1. Editor
-
-- **11 documentation blocks** covering everything from project titles to API docs.
-- **Drag & drop reordering** powered by `@dnd-kit`.
-- **Duplicate, remove & rearrange** blocks effortlessly.
-- **Collapsible sidebar** for a distraction-free workspace.
-
-## 2. Preview
-
-- **Live Markdown rendering** powered by `marked`.
-- **Syntax-highlighted code view** using Prism.
-- **Instant Preview ↔ Code switching** with synchronized updates.
-
-## 3. Export
-
-- **Copy Markdown** directly to your clipboard.
-- **Download a production-ready `README.md`.**
-- **Real-time statistics** including word count, file size, and image count.
-
-## 4. Media
-
-- **Drag & drop**, **clipboard paste**, or **URL imports** for screenshots.
-- **Automatic image compression** before upload.
-- **Hosted image URLs** instead of Base64.
-- **Alt text, captions, reorder, and replace** support.
-
-## 5. Storage
-
-- **Email-based workspaces** with isolated projects.
-- **Persistent local storage** using Zustand.
-- **Serverless image hosting** via a Vercel proxy.
-- **No backend or user accounts.**
-
-## 6. Experience
-
-- **Interactive onboarding** for first-time users.
-- **Responsive layout** across desktop and mobile.
-- **Keyboard shortcuts** for faster navigation.
-- **Minimal, distraction-free interface.**
-
-
-
-# Block Types
-
-| Block | Icon | Description |
-|---|---|---|
-| Title | Heading | Project name & tagline |
-| Badges | ShieldCheck | shields.io badges with live preview |
-| Description | AlignLeft | Long-form project overview |
-| Features | Star | Bulleted feature list |
-| Installation | Download | Package manager selector + commands |
-| Usage | Play | Language selector + code editor |
-| Screenshots | Image | Upload, URL, captions, reorder |
-| API Docs | Braces | Function signature, description, params |
-| Contributing | GitPullRequest | Intro text + numbered steps |
-| License | Scale | License type, year, author |
-| Custom | Code | Free-form markdown textarea |
-
-
-
-# How It Works / Usage
-
-1. **Create a workspace** – Enter any email on the login screen. Your workspace ID is generated instantly-no verification needed.
-2. **Add documentation blocks** – Browse the **Blocks** panel on the left and click any block to add it to your README.
-3. **Arrange them** – Drag blocks to reorder them in the center panel. Humanity really looked at sticky notes and thought, “what if software.”
-4. **Fill each block** – Click a block header to expand its editor and enter your project information.
-5. **Preview in real-time** – The right panel shows a live preview of your README. Switch to **Code View** to see raw Markdown.
-6. **Export** – Use the **Copy** and **Download** buttons in the toolbar to export your README.
-7. **Upload screenshots** – Drag & drop or use the file picker. The app compresses them and hosts them externally, keeping your markdown clean.
-8. **Replay the tour** – Click **"How it works"** (top of the center panel) to replay the onboarding walkthrough. Because apparently we now need tutorials for tutorials.
-9. **Mobile editing** – On small screens, use the bottom navbar to access **Blocks** and **Palette** drawers. Press `Escape` to close them.
-
-
-
-# How Data Is Stored
-
-| Setting | Description |
-|---|---|
-| Workspace key | `readmeforge:{userId}:blocks` in `localStorage` |
-| Active user ID | Stored in `localStorage` under `readmeforge_active_user_id` (UUID generated from your email) |
-| User email & name | Stored in `localStorage` for identity preview |
-| Images | Uploaded to an external host via Vercel proxy; returned as clean `https://` URLs |
-| Onboarding | `localStorage` – shown once per session (`readmeforge:onboarded`) |
-| Clear data | Clear all `localStorage` keys or switch to a different email on the login screen |
-
-
-
-# Architecture
-
-ReadmeForge follows a simple **client-first architecture** where editing, previewing, and exporting documentation happen inside the browser.
-
-- Block-based editing system
-- Live Markdown rendering
-- LocalStorage persistence
-- Serverless image uploads
-- Zero backend database
-- Fast client-side rendering
-
-
-### Libraries & Packages
-
-- **@dnd-kit** - Accessible drag-and-drop interactions
-- **Zustand** - Lightweight global state management
-- **Marked** - Markdown parsing and rendering
-- **DOMPurify** - Secure HTML sanitization
-- **React Syntax Highlighter** - Prism-powered code highlighting
-- **Lucide React** - Modern icon library
-- **React Icons** - Additional icon collections
-- **React Joyride** - Interactive onboarding tours
-
-### Deployment
-
-- **Vercel** - Hosting & Serverless Functions
-
-
-# Project Structure
-
-```text
-readmeforge/
-├── api/                 # Serverless functions for image uploads
-├── public/              # Static assets, icons, and metadata
-├── src/
-│   ├── components/      # Reusable blocks, editor, preview, pages & UI
-│   ├── lib/             # Markdown generation and shared utilities
-│   ├── store/           # Zustand state management with persistence
-│   ├── App.jsx          # Application routing (Auth → Dashboard)
-│   ├── Home.jsx         # Main three-panel editor interface
-│   ├── main.jsx         # Entry point
-│   └── index.css        # Tailwind + custom preview styles
-├── package.json
-├── vite.config.js
-└── README.md
-```
-
-# Getting Started
-
-Before running the project locally, ensure you have:
-
-- Node.js (Latest LTS)
-- npm
-- A modern web browser
-
-## Installation
+Readmade is a Vite + React application. You’ll need a current Node.js LTS release and npm.
 
 ```bash
-git clone https://github.com/bilalmlkdev/readmeforge.git
-
-cd readmeforge
-
+git clone https://github.com/bilalmlkdev/readmade.git
+cd readmade
 npm install
-
 npm run dev
 ```
 
-Open the local development URL shown in your terminal.
+Vite will print the local URL after the development server starts.
 
-### Production Build
+To create a production build:
 
 ```bash
 npm run build
-```
-
-Preview the production build locally.
-
-```bash
 npm run preview
 ```
 
+## How it is built
 
+The editor is intentionally client-first. React renders the workspace, Zustand persists the blocks in `localStorage`, and the preview is generated from the same Markdown Readmade exports. Images are the exception: uploads pass through a small Vercel serverless endpoint so exported documents contain portable URLs rather than embedded image data.
 
-# Contributing
+The main pieces are:
 
-Contributions of all sizes are welcome.
+- `src/components/blocks` — editable documentation sections
+- `src/components/editor` — the block palette and sortable canvas
+- `src/components/preview` — Markdown and rendered-document views
+- `src/store` — workspace state and browser persistence
+- `api/upload.js` — image upload proxy
 
-You can help by:
+## Privacy and storage
 
-- Adding new documentation blocks
-- Improving Markdown generation
-- Fixing bugs
-- Enhancing accessibility
-- Optimizing performance
-- Improving the editor experience
-- Building new features
+Readmade does not require an account. Workspace identity and content are stored locally in the browser under the `readmade` namespace. Clearing browser storage, resetting the workspace, or logging out removes that local data. Uploaded screenshots are hosted externally so the Markdown can reference ordinary HTTPS image URLs.
 
-## Development Workflow
+## Contributing
+
+If you see a way to make project documentation easier to write or easier to read, we’d love the help. Open an issue for a substantial change, or send a focused pull request with a clear description and a passing build.
 
 ```bash
-# Fork the repository
-
-git checkout -b feat/your-feature
-
-git commit -m "feat: add your feature"
-
-git push origin feat/your-feature
+npm run lint
+npm run build
 ```
 
-Open a Pull Request once your changes are ready.
+## License
 
-For larger features or architectural changes, opening an issue before implementation is recommended.
-
-# License (MIT)
-
-This project is licensed under the **MIT License**.
-
-```text
-
-MIT License
-
-Copyright (c) 2026 Bilal Malik
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software.The above copyright notice and this permission notice shall
-be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-```
+Readmade is available under the [MIT License](LICENSE).

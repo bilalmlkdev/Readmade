@@ -86,7 +86,7 @@ const DEFAULTS = {
     ],
   },
   description: {
-    text: "**ReadmeForge** is the fastest way to craft a stunning GitHub‑ready README. Drag‑and‑drop blocks, live preview, and one‑click export – no markdown skills required. Built for developers who care about their project’s first impression.",
+    text: "**Readmade** gives your project a clearer front door. Compose the story with flexible blocks, see every change in a live preview, and export clean Markdown when it is ready to ship.",
   },
   features: {
     items: [

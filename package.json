@@ -1,13 +1,13 @@
 {
-  "name": "readmeforge",
+  "name": "readmade",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bilalmlkdev/readmeforge.git"
+    "url": "https://github.com/bilalmlkdev/readmade.git"
   },
-  "homepage": "https://thereadmeforge.vercel.app",
+  "homepage": "https://readmade.vercel.app",
   "author": "Bilal Malik",
   "scripts": {
     "dev": "vite",

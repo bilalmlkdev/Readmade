@@ -90,7 +90,7 @@ const OnboardingTour = forwardRef(({ onComplete }, ref) => {
   
   useImperativeHandle(ref, () => ({
     restart: () => {
-      localStorage.removeItem("readmeforge:onboarded");
+      localStorage.removeItem("readmade:onboarded");
       setRun(false); // Stop any lingering tour state
       // Restart after a tiny delay to reset Joyride's internal engine
       setTimeout(() => setRun(true), 100);
@@ -99,11 +99,11 @@ const OnboardingTour = forwardRef(({ onComplete }, ref) => {
 
   useEffect(() => {
     // Changed to localStorage so it permanently remembers the user did the tour
-    const hasSeen = localStorage.getItem("readmeforge:onboarded");
+    const hasSeen = localStorage.getItem("readmade:onboarded");
     if (!hasSeen) {
       const timer = setTimeout(() => {
         setRun(true);
-        localStorage.setItem("readmeforge:onboarded", "true");
+        localStorage.setItem("readmade:onboarded", "true");
       }, 500);
       return () => clearTimeout(timer);
     }

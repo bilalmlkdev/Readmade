@@ -116,7 +116,7 @@ export default function LandingPage() {
               </motion.div>
               <motion.div variants={item}>
                 <a
-                  href="https://github.com/bilalmlkdev/readmeforge"
+                  href="https://github.com/bilalmlkdev/readmade"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border px-6 text-base font-medium text-foreground transition-colors hover:bg-muted"
@@ -141,7 +141,7 @@ export default function LandingPage() {
                   <img
                     className="relative aspect-[15/8] w-full rounded-2xl border border-border/25 object-cotain object-top"
                     src={previewImg}
-                    alt="ReadmeForge editor showing the block list, drag-to-reorder panel, and live markdown preview"
+                    alt="Readmade editor showing the block list, drag-to-reorder panel, and live markdown preview"
                   />
                 </div>
               </motion.div>

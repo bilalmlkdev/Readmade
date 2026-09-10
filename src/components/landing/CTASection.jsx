@@ -71,7 +71,7 @@ export default function CTASection() {
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <a
-                href="https://github.com/bilalmlkdev/readmeforge"
+                href="https://github.com/bilalmlkdev/readmade"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-12 min-w-40 items-center justify-center gap-2 rounded-lg border border-border bg-background px-8 text-base font-medium text-foreground transition-colors hover:bg-muted/50"
