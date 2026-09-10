@@ -86,7 +86,7 @@ const DEFAULTS = {
     ],
   },
   description: {
-    text: "**Readmade** gives your project a clearer front door. Compose the story with flexible blocks, see every change in a live preview, and export clean Markdown when it is ready to ship.",
+    text: "**Readmade** is the fastest way to craft a stunning GitHub‑ready README. Drag‑and‑drop blocks, live preview, and one‑click export – no markdown skills required. Built for developers who care about their project’s first impression.",
   },
   features: {
     items: [
@@ -114,7 +114,7 @@ const DEFAULTS = {
       {
         name: "myFunction(arg)",
         description: "What it does",
-        params: "arg - string, the input value",
+        params: "arg — string, the input value",
       },
     ],
   },

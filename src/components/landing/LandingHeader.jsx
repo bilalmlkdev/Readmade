@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "../../lib/utils";
+import logo from "../../assets/favicon.svg";
 
 const menuItems = [
   { name: "Features", href: "#about" },
@@ -35,9 +36,9 @@ export default function LandingHeader() {
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full justify-between lg:w-auto">
               <Link to="/" className="flex items-center gap-2">
-                {/* <div className="flex h-7 w-7 items-center justify-center rounded-md bg-black">
+                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-white border border-border">
                   <img src={logo} alt="Readmade" className="h-4 w-4" />
-                </div> */}
+                </div>
                 <span className="text-xl font-bold tracking-tight text-foreground">
                   Readmade
                 </span>

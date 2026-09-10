@@ -1,4 +1,5 @@
 import { FaGithub } from "react-icons/fa";
+import logo from "../../assets/favicon.svg";
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border font-grandstander bg-background py-16">
@@ -9,9 +10,9 @@ export default function Footer() {
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center justify-center space-y-6">
           <div className="flex items-center gap-2">
-            {/* <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white border border-border">
               <img src={logo} alt="Readmade" className="h-5 w-5" />
-            </div> */}
+            </div>
             <span className="text-xl font-bold tracking-tight">
               Readmade
             </span>

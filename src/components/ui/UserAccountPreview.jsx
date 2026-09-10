@@ -40,7 +40,7 @@ function Avatar({ seed, fallbackInitial, fallbackColor, size }) {
 
 /**
  * Account preview + identity switcher. The "restart tour" button used to
- * live here - it's been moved to the center panel's top bar (next to
+ * live here — it's been moved to the center panel's top bar (next to
  * Reset) so both workspace-level actions sit together in one place.
  */
 export default function UserAccountPreview({

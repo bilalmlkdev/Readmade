@@ -60,8 +60,8 @@ export default function LoginScreen({ onLogin }) {
         {/* Brand Footer */}
         <div className="mt-14 pt-6 border-t border-gray-200">
           <div className="flex flex-col items-start gap-2 mb-3">
-            <div className="w-8 h-8 bg-black flex items-center justify-center rounded-md">
-              <img src={logo} alt="Readmade logo" />
+            <div className="w-8 h-8 bg-white border border-gray-200 flex items-center justify-center rounded-md">
+              <img src={logo} alt="Readmade logo" className="w-5 h-5" />
             </div>
             <span className="text-[15px] font-medium text-black">
               Readmade
@@ -69,7 +69,7 @@ export default function LoginScreen({ onLogin }) {
           </div>
 
           <p className="text-[14px] text-gray-500 leading-relaxed mb-3">
-            Readmade is the calm place to shape a README worth opening.
+            Readmade — the simplest way to build beautiful READMEs.
           </p>
 
           <p className="text-[14px] text-gray-400 mb-5">

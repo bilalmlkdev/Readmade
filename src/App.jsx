@@ -14,6 +14,74 @@ const USER_EMAIL_KEY = "readmade_user_email";
 const LOGGED_IN_KEY = "readmade_logged_in";
 const DEFAULT_EMAIL = "demo@gmail.com";
 
+// One-time migration for existing users: this project was previously
+// called ReadmeForge (and briefly Brikk), using `readmeforge_*` /
+// `readmeforge:*` (or `brikk_*` / `brikk:*`) keys. Copy any old data over
+// to the new `readmade_*` / `readmade:*` keys the first time the app loads
+// under the new name, so no one's workspace or login silently disappears.
+// Safe to run every load: it's a no-op once the new keys exist.
+function migrateLegacyStorage() {
+  const legacyPrefixes = ["readmeforge", "brikk"];
+
+  const legacySuffixMap = {
+    user_id: USER_ID_KEY,
+    user_name: USER_NAME_KEY,
+    active_user_id: ACTIVE_USER_ID_KEY,
+    user_email: USER_EMAIL_KEY,
+    logged_in: LOGGED_IN_KEY,
+  };
+  Object.entries(legacySuffixMap).forEach(([suffix, newKey]) => {
+    if (localStorage.getItem(newKey) !== null) return;
+    for (const prefix of legacyPrefixes) {
+      const oldValue = localStorage.getItem(`${prefix}_${suffix}`);
+      if (oldValue !== null) {
+        localStorage.setItem(newKey, oldValue);
+        break;
+      }
+    }
+  });
+
+  // Per-user blocks workspace: `{prefix}:{uid}:blocks` -> `readmade:{uid}:blocks`
+  for (const prefix of legacyPrefixes) {
+    const legacyUid = localStorage.getItem(`${prefix}_user_id`);
+    if (!legacyUid) continue;
+    const oldBlocksKey = `${prefix}:${legacyUid}:blocks`;
+    const newBlocksKey = `readmade:${legacyUid}:blocks`;
+    const oldBlocks = localStorage.getItem(oldBlocksKey);
+    if (oldBlocks !== null && localStorage.getItem(newBlocksKey) === null) {
+      localStorage.setItem(newBlocksKey, oldBlocks);
+    }
+  }
+
+  // Legacy default-workspace key with no user id
+  for (const prefix of legacyPrefixes) {
+    if (
+      localStorage.getItem(`${prefix}:blocks`) !== null &&
+      localStorage.getItem("readmade:blocks") === null
+    ) {
+      localStorage.setItem(
+        "readmade:blocks",
+        localStorage.getItem(`${prefix}:blocks`),
+      );
+      break;
+    }
+  }
+
+  for (const prefix of legacyPrefixes) {
+    if (
+      localStorage.getItem(`${prefix}:onboarded`) !== null &&
+      localStorage.getItem("readmade:onboarded") === null
+    ) {
+      localStorage.setItem(
+        "readmade:onboarded",
+        localStorage.getItem(`${prefix}:onboarded`),
+      );
+      break;
+    }
+  }
+}
+migrateLegacyStorage();
+
 function generateUserId() {
   if (window.crypto && window.crypto.randomUUID)
     return window.crypto.randomUUID();
