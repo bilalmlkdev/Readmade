@@ -25,7 +25,7 @@ export default function UsageBlock({ content, onChange }) {
         </div>
       </div>
 
-      {/* Code textarea — syntax‑style */}
+      {/* Code textarea - syntax‑style */}
       <div className="space-y-1.5">
         <label className="block text-[10px] text-gray-500  uppercase tracking-wider overflow-hidden">
           Code

@@ -2,13 +2,13 @@
 
 **The README editor that helps your project make sense before anyone runs it.**
 
-Readmade is a local-first workspace for building the documentation your repository deserves. Start with a handful of useful sections, arrange the story visually, and watch the GitHub-ready Markdown take shape as you work. When it reads right, copy it or download it—then ship it with your project.
+Readmade is a local-first workspace for building the documentation your repository deserves. Start with a handful of useful sections, arrange the story visually, and watch the GitHub-ready Markdown take shape as you work. When it reads right, copy it or download it-then ship it with your project.
 
 ## Why Readmade
 
 A README is often the first real conversation someone has with a project. It should explain what matters, show how to begin, and make the next step obvious. Readmade keeps that work focused: no Markdown syntax to wrestle, no account to create, and no dashboard full of distractions.
 
-Your workspace lives in the browser. You can experiment freely, return to it later, and export plain Markdown that belongs in your repository—not locked inside a platform.
+Your workspace lives in the browser. You can experiment freely, return to it later, and export plain Markdown that belongs in your repository-not locked inside a platform.
 
 ## What you can make
 
@@ -53,11 +53,11 @@ The editor is intentionally client-first. React renders the workspace, Zustand p
 
 The main pieces are:
 
-- `src/components/blocks` — editable documentation sections
-- `src/components/editor` — the block palette and sortable canvas
-- `src/components/preview` — Markdown and rendered-document views
-- `src/store` — workspace state and browser persistence
-- `api/upload.js` — image upload proxy
+- `src/components/blocks` - editable documentation sections
+- `src/components/editor` - the block palette and sortable canvas
+- `src/components/preview` - Markdown and rendered-document views
+- `src/store` - workspace state and browser persistence
+- `api/upload.js` - image upload proxy
 
 ## Privacy and storage
 

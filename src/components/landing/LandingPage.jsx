@@ -93,7 +93,7 @@ export default function LandingPage() {
               transition={{ duration: 0.9, delay: 0.35, ease: "easeOut" }}
               className="mx-auto mt-6 max-w-[700px] text-balance text-lg text-muted-foreground md:text-xl"
             >
-              Drag-and-drop blocks, live preview, and one-click export — no
+              Drag-and-drop blocks, live preview, and one-click export - no
               markdown skills required. Built for developers who care about
               their project's first impression.
             </motion.p>

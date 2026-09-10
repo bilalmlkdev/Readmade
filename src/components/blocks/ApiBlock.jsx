@@ -58,7 +58,7 @@ export default function ApiBlock({ content, onChange }) {
                          placeholder:text-gray-400! transition-colors"
               value={entry.params}
               onChange={(e) => update(i, 'params', e.target.value)}
-              placeholder="param — type, description"
+              placeholder="param - type, description"
             />
           </div>
         </div>

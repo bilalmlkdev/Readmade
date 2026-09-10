@@ -17,7 +17,7 @@ const STEPS = [
       <div>
         <h3 className="text-lg font-semibold mb-2">🧱 Choose blocks</h3>
         <p className="text-sm text-gray-600">
-          Pick from 11 ready‑made blocks — Title, Badges, Features, and more.
+          Pick from 11 ready‑made blocks - Title, Badges, Features, and more.
           Each block is a section of your README.
         </p>
       </div>

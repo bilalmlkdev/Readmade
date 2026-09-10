@@ -173,8 +173,8 @@ export default function ScreenshotsBlock({ content, onChange }) {
     } catch (err) {
       setUploadError(
         err?.message?.includes('configured')
-          ? 'Image hosting isn\u2019t set up for this deployment yet — ask the site owner to add an IMGBB_API_KEY.'
-          : 'Upload failed. Your image was not saved — try again or paste a URL instead.',
+          ? 'Image hosting isn\u2019t set up for this deployment yet - ask the site owner to add an IMGBB_API_KEY.'
+          : 'Upload failed. Your image was not saved - try again or paste a URL instead.',
       );
       setLocalPreviews(prev => {
         const next = new Map(prev);
@@ -490,7 +490,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
       </button>
 
       <div className="text-[10px] text-gray-400 text-center px-2 py-1 bg-gray-50 rounded border border-gray-100 space-y-1">
-        <div>💡 Uploaded images are hosted automatically — no base64 ever lands in your README</div>
+        <div>💡 Uploaded images are hosted automatically - no base64 ever lands in your README</div>
         <div className="text-[9px] text-gray-400">📋 You can also paste images (Ctrl+V) or drag & drop files</div>
       </div>
     </div>

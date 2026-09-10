@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 /**
  * Pure, controlled loading overlay. No localStorage / "have I shown this
- * before" logic lives here anymore — the parent decides *when* to render
+ * before" logic lives here anymore - the parent decides *when* to render
  * it, this component just shows a spinner for `duration` ms and then
  * calls onComplete. That's what makes it fast and predictable everywhere
  * it's used (first login, logout, etc) instead of the old ~2s stall.

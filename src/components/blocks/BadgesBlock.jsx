@@ -38,7 +38,7 @@ export default function BadgesBlock({ content, onChange }) {
             />
           </div>
 
-          {/* Badge URL — code‑style */}
+          {/* Badge URL - code‑style */}
           <div className="space-y-1">
             <label className="text-[10px]  text-gray-500 uppercase tracking-wider">Badge URL</label>
             <input
@@ -80,7 +80,7 @@ export default function BadgesBlock({ content, onChange }) {
                 ) : (
                   <img src={b.url} alt={b.label || 'badge'} className="h-5" />
                 )}
-                <span className="text-[10px]  text-gray-400">— {b.label || 'badge'}</span>
+                <span className="text-[10px]  text-gray-400">- {b.label || 'badge'}</span>
               </div>
             </div>
           )}

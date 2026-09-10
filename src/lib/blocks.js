@@ -114,7 +114,7 @@ const DEFAULTS = {
       {
         name: "myFunction(arg)",
         description: "What it does",
-        params: "arg — string, the input value",
+        params: "arg - string, the input value",
       },
     ],
   },

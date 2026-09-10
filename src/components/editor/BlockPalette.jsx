@@ -76,7 +76,7 @@ function BlockList({ addBlock }) {
 
 /**
  * Reset and "restart tour" now live in the center panel's top bar
- * (see Home.jsx) instead of here — this sidebar is purely block
+ * (see Home.jsx) instead of here - this sidebar is purely block
  * browsing + account identity now.
  */
 export default function BlockPalette({ userName, userEmail, onLogout }) {

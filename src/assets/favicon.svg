@@ -1,9 +1,15 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="SVGRepo_bgCarrier" stroke-width="0">
-<rect x="-2.4" y="-2.4" width="28.80" height="28.80" rx="6.912000000000001" fill="#000000" strokewidth="0"/>
-</g>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <path d="M12 2.59009V13.6101L2.65 20.1501C1.8 19.1401 1.75 17.6101 2.7 15.9001L5.82 10.2901L8.76 5.00009C9.65 3.40009 10.82 2.59009 12 2.59009Z" fill="#ffffff"/> <path opacity="0.6" d="M21.3504 20.1501C20.7004 20.9401 19.5704 21.4101 18.0604 21.4101H5.94039C4.43039 21.4101 3.30039 20.9401 2.65039 20.1501L12.0004 13.6101L21.3504 20.1501Z" fill="#ffffff"/> <path opacity="0.4" d="M21.35 20.1501L12 13.6101V2.59009C13.18 2.59009 14.35 3.40009 15.24 5.00009L18.18 10.2901L21.3 15.9001C22.25 17.6101 22.2 19.1401 21.35 20.1501Z" fill="#ffffff"/> </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Readmade</title>
+  <defs>
+    <linearGradient id="readmade-fill" x1="11" y1="9" x2="53" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="8" fill="#0F172A"/>
+  <path d="M15 12H33.5L48 26.5V52H15V12Z" fill="url(#readmade-fill)"/>
+  <path d="M33.5 12V26.5H48" fill="#93C5FD"/>
+  <path d="M33.5 12V26.5H48" stroke="#BFDBFE" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M23 22H34.25C39.08 22 42 24.71 42 28.72C42 31.45 40.57 33.6 38.02 34.72L43 43H36.35L32 35.56H29V43H23V22ZM29 27V31.02H33.74C35.3 31.02 36.2 30.29 36.2 29.01C36.2 27.73 35.3 27 33.74 27H29Z" fill="white"/>
+  <path d="M23 47H40" stroke="#BFDBFE" stroke-width="3" stroke-linecap="square"/>
+</svg>

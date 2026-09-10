@@ -63,8 +63,8 @@ function blockToMd(type, c) {
 
           // Safety net: base64 data: URLs should never reach this point
           // (uploads are hosted via /api/upload and stored as real https
-          // links), but if one ever slips through — a failed upload that
-          // got saved, or an old workspace from before this fix — never
+          // links), but if one ever slips through - a failed upload that
+          // got saved, or an old workspace from before this fix - never
           // write the raw base64 into the exported markdown. Swap in a
           // clear placeholder instead so the README stays small and the
           // person knows to re-upload that image.

@@ -27,7 +27,7 @@ export default function ResetConfirmationModal({
         <p className="text-gray-500 text-[13px] leading-relaxed mb-6">
           This clears every block and setting for{" "}
           <span className="font-medium text-gray-800">{userName}</span>. You'll
-          start over with a fresh README — this can't be undone.
+          start over with a fresh README - this can't be undone.
         </p>
 
         <div className="flex gap-2">

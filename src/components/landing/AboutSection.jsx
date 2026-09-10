@@ -58,7 +58,7 @@ const features = [
   },
   {
     title: "Ready-Made Sections",
-    description: "Installation, usage, contributing, license — pre-built.",
+    description: "Installation, usage, contributing, license - pre-built.",
     icon: FileText,
     className: "md:col-span-1",
     size: "small",
@@ -194,7 +194,7 @@ export default function AboutSection() {
             transition={{ delay: 0.2 }}
             className="mx-auto mt-4 max-w-xl text-muted-foreground"
           >
-            A visual block editor, live preview, and one-click export — no
+            A visual block editor, live preview, and one-click export - no
             markdown skills required, no clutter, no sign-up.
           </motion.p>
         </div>
