@@ -99,16 +99,16 @@ export default function SortableBlockList() {
                   className="flex items-center gap-1.5 px-2 py-1 rounded-md border transition-all duration-200"
                   style={{
                     background: isDragging
-                      ? "rgba(251,191,36,0.1)"
+                      ? "rgba(17,17,17,0.05)"
                       : "transparent",
                     borderColor: isDragging
-                      ? "rgba(251,191,36,0.3)"
+                      ? "rgba(17,17,17,0.15)"
                       : "transparent",
                     opacity: isDragging ? 1 : 0,
                   }}
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                  <span className="text-[10px] sm:text-[12px] text-amber-600">
+                  <div className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                  <span className="text-[10px] sm:text-[12px] text-black">
                     reordering
                   </span>
                 </div>

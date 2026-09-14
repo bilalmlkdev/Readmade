@@ -122,7 +122,7 @@ export default function BlockItem({ block }) {
             removeBlock(block.id);
           }}
           aria-label="Remove block"
-          className="text-gray-300 hover:text-red-400 p-1 rounded transition-colors"
+          className="text-gray-300 hover:text-black p-1 rounded transition-colors"
           title="Remove block"
         >
           <Trash size={15} />

@@ -129,7 +129,7 @@ const OnboardingTour = forwardRef(({ onComplete }, ref) => {
       disableCloseOnEsc
       styles={{
         options: {
-          primaryColor: "#3b82f6",
+          primaryColor: "#111111",
           backgroundColor: "#ffffff",
           textColor: "#1f2937",
           arrowColor: "#ffffff",

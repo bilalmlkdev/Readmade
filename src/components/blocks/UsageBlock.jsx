@@ -16,7 +16,7 @@ export default function UsageBlock({ content, onChange }) {
               aria-pressed={content.language === l}
               className={`px-2.5 py-1.5 text-xs  rounded-lg border! transition-all duration-200 ${
                 content.language === l
-                  ? 'border-emerald-400! text-emerald-600! bg-emerald-50! shadow-sm'
+                  ? 'border-black! text-white! bg-black! shadow-sm'
                   : 'border-gray-200! text-gray-500! hover:border-gray-300! hover:text-gray-700! hover:bg-gray-50!'
               }`}
             >
@@ -42,7 +42,7 @@ export default function UsageBlock({ content, onChange }) {
           </div>
           <textarea
             className="w-full bg-gray-50! border! border-gray-200! rounded-lg pl-10 pr-3 py-2 text-gray-800  text-sm
-                       focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/20!
+                       focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400/30!   
                        placeholder:text-gray-400! transition-colors resize-none leading-[1.625]"
             rows={8}
             value={content.code}

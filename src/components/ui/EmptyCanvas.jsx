@@ -17,7 +17,7 @@ export default function EmptyCanvas() {
           </p>
         </div>
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-200">
-          <div className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="w-1 h-1 rounded-full bg-black animate-pulse" />
           <span className="text-[10px] text-gray-500">
             click a block to begin
           </span>

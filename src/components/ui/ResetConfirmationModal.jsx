@@ -74,8 +74,8 @@ export default function ResetConfirmationModal({
         aria-describedby="reset-modal-description"
         className="bg-white rounded-2xl shadow-2xl shadow-black/20 border border-black/[0.06] max-w-[380px] w-full mx-4 p-6 animate-in zoom-in-95 slide-in-from-bottom-2 duration-200 outline-none"
       >
-        <div className="w-11 h-11 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center mb-4">
-          <AlertTriangle className="w-5 h-5 text-red-500" />
+        <div className="w-11 h-11 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center mb-4">
+          <AlertTriangle className="w-5 h-5 text-black" />
         </div>
 
         <h3 id="reset-modal-title" className="text-[17px] font-semibold text-gray-900 mb-1.5 tracking-tight">
@@ -95,7 +95,7 @@ export default function ResetConfirmationModal({
           </button>
           <button
             onClick={onConfirm}
-            className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white! bg-red-600! hover:bg-red-700! rounded-xl transition-colors shadow-sm shadow-red-600/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
+            className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white! bg-black! hover:bg-gray-800! rounded-xl transition-colors shadow-sm shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
           >
             Reset
           </button>

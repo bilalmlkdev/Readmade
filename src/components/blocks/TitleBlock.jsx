@@ -8,7 +8,7 @@ export default function TitleBlock({ content, onChange }) {
         </label>
         <input
           className="w-full bg-white border! border-gray-200! rounded-lg px-3 py-2.5 text-gray-800! text-lg font-semibold
-                     focus:outline-none focus:border-purple-400! focus:ring-1 focus:ring-purple-400/20!
+                     focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                      placeholder:text-gray-300! transition-colors"
           value={content.name || ''}
           onChange={(e) => onChange({ name: e.target.value })}
@@ -23,7 +23,7 @@ export default function TitleBlock({ content, onChange }) {
         </label>
         <input
           className="w-full bg-white border! border-gray-200! rounded-lg px-3 py-2 text-gray-600! text-sm
-                     focus:outline-none focus:border-purple-400! focus:ring-1 focus:ring-purple-400/20!
+                     focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                      placeholder:text-gray-400! transition-colors"
           value={content.tagline || ''}
           onChange={(e) => onChange({ tagline: e.target.value })}

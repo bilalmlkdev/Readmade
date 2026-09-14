@@ -14,7 +14,7 @@ export default function ContributingBlock({ content, onChange }) {
         </label>
         <textarea
           className="w-full bg-white! border! border-gray-200! rounded-lg px-3 py-2 text-gray-700! text-sm
-                     focus:outline-none focus:border-pink-400! focus:ring-1 focus:ring-pink-400/20!
+                     focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                      placeholder:text-gray-400! transition-colors resize-none"
           rows={2}
           value={content.text || ''}
@@ -31,12 +31,12 @@ export default function ContributingBlock({ content, onChange }) {
         <div className="space-y-2">
           {steps.map((step, i) => (
             <div key={i} className="flex items-center gap-2">
-              <span className="text-pink-500 text-sm  font-bold w-5 shrink-0">
+              <span className="text-gray-500 text-sm  font-bold w-5 shrink-0">
                 {i + 1}.
               </span>
               <input
                 className="flex-1 bg-white! border! border-gray-200! rounded-lg px-3 py-2 text-gray-700! text-sm
-                           focus:outline-none focus:border-pink-400! focus:ring-1 focus:ring-pink-400/20!
+                           focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                            placeholder:text-gray-400! transition-colors"
                 value={step}
                 onChange={(e) => updateStep(i, e.target.value)}
@@ -44,7 +44,7 @@ export default function ContributingBlock({ content, onChange }) {
               />
               <button
                 onClick={() => removeStep(i)}
-                className="text-gray-300 hover:text-red-500 text-lg leading-none p-1 rounded transition-colors"
+                className="text-gray-300 hover:text-black text-lg leading-none p-1 rounded transition-colors"
                 title="Remove step"
               >
                 ×
@@ -53,8 +53,8 @@ export default function ContributingBlock({ content, onChange }) {
           ))}
           <button
             onClick={addStep}
-            className="w-full border-2! border-dashed! border-gray-200! hover:border-pink-400! bg-gray-50! hover:bg-gray-100!
-                       text-gray-500! hover:text-pink-600! text-sm  py-2.5 rounded-lg transition-all duration-200"
+            className="w-full border-2! border-dashed! border-gray-200! hover:border-gray-400! bg-gray-50! hover:bg-gray-100!
+                       text-gray-500! hover:text-black! text-sm  py-2.5 rounded-lg transition-all duration-200"
           >
             + add step
           </button>

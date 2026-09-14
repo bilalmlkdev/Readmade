@@ -9,10 +9,10 @@ export default function FeaturesBlock({ content, onChange }) {
     <div className="space-y-2">
       {items.map((item, i) => (
         <div key={i} className="flex items-center gap-2">
-          <span className="text-amber-500 text-sm font-bold w-4 shrink-0 select-none">◆</span>
+          <span className="text-gray-400 text-sm font-bold w-4 shrink-0 select-none">◆</span>
           <input
             className="flex-1 bg-white! border! border-gray-200! rounded-lg px-3 py-2 text-gray-700! text-sm
-                       focus:outline-none focus:border-amber-400! focus:ring-1 focus:ring-amber-400/20!
+                       focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                        placeholder:text-gray-400! transition-colors"
             value={item}
             onChange={(e) => update(i, e.target.value)}
@@ -20,7 +20,7 @@ export default function FeaturesBlock({ content, onChange }) {
           />
           <button
             onClick={() => remove(i)}
-            className="text-gray-300 hover:text-red-500 text-lg leading-none p-1 rounded transition-colors"
+            className="text-gray-300 hover:text-black text-lg leading-none p-1 rounded transition-colors"
             title="Remove feature"
           >
             ×
@@ -29,8 +29,8 @@ export default function FeaturesBlock({ content, onChange }) {
       ))}
       <button
         onClick={add}
-        className="w-full border-2! border-dashed border-gray-200! hover:border-amber-400! bg-gray-50! hover:bg-gray-100!
-                   text-gray-500! hover:text-amber-600! text-sm  py-2.5 rounded-lg transition-all duration-200"
+        className="w-full border-2! border-dashed border-gray-200! hover:border-gray-400! bg-gray-50! hover:bg-gray-100!
+                   text-gray-500! hover:text-black! text-sm  py-2.5 rounded-lg transition-all duration-200"
       >
         + add feature
       </button>

@@ -62,7 +62,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between px-1">
         <div className="flex items-center gap-2">
-          <div className="w-1 h-4 bg-amber-400 rounded-full" />
+          <div className="w-1 h-4 bg-gray-400 rounded-full" />
           <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
             Screenshots Gallery
           </span>
@@ -81,8 +81,8 @@ export default function ScreenshotsBlock({ content, onChange }) {
           </div>
           <button
             onClick={add}
-            className="px-4 py-2 rounded-lg bg-amber-500! text-white! text-xs
-                       hover:bg-amber-600! transition-colors"
+            className="px-4 py-2 rounded-lg bg-black! text-white! text-xs
+                       hover:bg-gray-800! transition-colors"
           >
             + Add screenshot
           </button>
@@ -161,11 +161,11 @@ export default function ScreenshotsBlock({ content, onChange }) {
                           <circle cx="15" cy="16" r="1" />
                         </svg>
                       </div>
-                      <span className="text-[11px] font-semibold text-amber-500 bg-amber-50 px-2 py-0.5 rounded">
+                      <span className="text-[11px] font-semibold text-black bg-gray-100 px-2 py-0.5 rounded">
                         #{i + 1}
                       </span>
                       {imageSrc && (
-                        <span className="text-[10px] text-emerald-500 bg-emerald-50 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] text-black bg-gray-100 px-1.5 py-0.5 rounded">
                           ✓ linked
                         </span>
                       )}
@@ -176,7 +176,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                         onClick={() => moveUp(i)}
                         disabled={i === 0}
                         className={`p-1 rounded transition-colors ${
-                          i === 0 ? 'text-gray-300! cursor-not-allowed' : 'text-gray-500! hover:text-amber-500! hover:bg-gray-100!'
+                          i === 0 ? 'text-gray-300! cursor-not-allowed' : 'text-gray-500! hover:text-black! hover:bg-gray-100!'
                         }`}
                         title="Move up"
                         aria-label="Move screenshot up"
@@ -189,7 +189,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                         onClick={() => moveDown(i)}
                         disabled={i === items.length - 1}
                         className={`p-1 rounded transition-colors ${
-                          i === items.length - 1 ? 'text-gray-300! cursor-not-allowed' : 'text-gray-500 hover:text-amber-500! hover:bg-gray-100!'
+                          i === items.length - 1 ? 'text-gray-300! cursor-not-allowed' : 'text-gray-500 hover:text-black! hover:bg-gray-100!'
                         }`}
                         title="Move down"
                         aria-label="Move screenshot down"
@@ -200,7 +200,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                       </button>
                       <button
                         onClick={() => remove(i)}
-                        className="p-1 rounded text-gray-500! hover:text-red-500! hover:bg-red-50! transition-colors"
+                        className="p-1 rounded text-gray-500! hover:text-black! hover:bg-gray-100! transition-colors"
                         title="Remove"
                         aria-label="Remove screenshot"
                       >
@@ -215,7 +215,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                   <div className="space-y-1">
                     <label className="text-[10px] text-gray-500 uppercase tracking-wider">Image URL</label>
                     <input
-                      className="w-full bg-white! border! border-gray-200! rounded px-3 py-2 text-gray-800! text-sm focus:outline-none focus:border-amber-400! transition-colors placeholder:text-gray-300"
+                      className="w-full bg-white! border! border-gray-200! rounded px-3 py-2 text-gray-800! text-sm focus:outline-none focus:border-gray-400! transition-colors placeholder:text-gray-300"
                       value={item.url || ''}
                       onChange={(e) => update(i, 'url', e.target.value)}
                       placeholder="https://images.example.com/screenshot.png"
@@ -225,7 +225,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                   <div className="space-y-1">
                     <label className="text-[10px] text-gray-500 uppercase tracking-wider">Alt Text</label>
                     <input
-                      className="w-full bg-white! border! border-gray-200! rounded px-3 py-2 text-gray-800! text-sm focus:outline-none focus:border-amber-400! transition-colors placeholder:text-gray-300"
+                      className="w-full bg-white! border! border-gray-200! rounded px-3 py-2 text-gray-800! text-sm focus:outline-none focus:border-gray-400! transition-colors placeholder:text-gray-300"
                       value={item.alt || ''}
                       onChange={(e) => update(i, 'alt', e.target.value)}
                       placeholder="Describe the screenshot for accessibility"
@@ -235,7 +235,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                   <div className="space-y-1">
                     <label className="text-[10px] text-gray-500 uppercase tracking-wider">Caption (Optional)</label>
                     <textarea
-                      className="w-full bg-white! border! border-gray-200! rounded px-3 py-2 text-gray-800! text-sm focus:outline-none focus:border-amber-400! transition-colors placeholder:text-gray-300 resize-none"
+                      className="w-full bg-white! border! border-gray-200! rounded px-3 py-2 text-gray-800! text-sm focus:outline-none focus:border-gray-400! transition-colors placeholder:text-gray-300 resize-none"
                       value={item.caption || ''}
                       onChange={(e) => update(i, 'caption', e.target.value)}
                       placeholder="Add a descriptive caption..."
@@ -251,7 +251,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
 
       <button
         onClick={add}
-        className="w-full border-2! border-dashed border-gray-200! hover:border-amber-400! bg-gray-50! hover:bg-gray-100! text-gray-500! hover:text-amber-600! text-sm py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 group"
+        className="w-full border-2! border-dashed border-gray-200! hover:border-gray-400! bg-gray-50! hover:bg-gray-100! text-gray-500! hover:text-black! text-sm py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 group"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:rotate-90 transition-transform duration-200">
           <line x1="12" y1="5" x2="12" y2="19" />

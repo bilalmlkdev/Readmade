@@ -19,7 +19,7 @@ export default function BadgesBlock({ content, onChange }) {
             </span>
             <button
               onClick={() => remove(i)}
-              className="text-gray-400 hover:text-red-500 text-xs transition-colors "
+              className="text-gray-400 hover:text-black text-xs transition-colors "
             >
              remove badge
             </button>
@@ -30,7 +30,7 @@ export default function BadgesBlock({ content, onChange }) {
             <label className="text-[10px]  text-gray-500 uppercase tracking-wider">Label</label>
             <input
               className="w-full bg-white! border! border-gray-200! rounded px-3 py-2 text-gray-700! text-sm
-                         focus:outline-none focus:border-cyan-400! focus:ring-1 focus:ring-cyan-400/20!
+                         focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                          placeholder:text-gray-400! transition-colors"
               value={b.label}
               onChange={(e) => update(i, 'label', e.target.value)}
@@ -43,7 +43,7 @@ export default function BadgesBlock({ content, onChange }) {
             <label className="text-[10px]  text-gray-500 uppercase tracking-wider">Badge URL</label>
             <input
               className="w-full bg-gray-50 border! border-gray-200! rounded px-3 py-2 text-gray-600! text-sm
-                         focus:outline-none focus:border-cyan-400! focus:ring-1 focus:ring-cyan-400/20!
+                         focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                          placeholder:text-gray-400! transition-colors"
               value={b.url}
               onChange={(e) => update(i, 'url', e.target.value)}
@@ -58,7 +58,7 @@ export default function BadgesBlock({ content, onChange }) {
             </label>
             <input
               className="w-full bg-white! border! border-gray-200! rounded px-3 py-2 text-gray-600! text-sm
-                         focus:outline-none focus:border-cyan-400! focus:ring-1 focus:ring-cyan-400/20!
+                         focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                          placeholder:text-gray-400! transition-colors"
               value={b.link}
               onChange={(e) => update(i, 'link', e.target.value)}
@@ -89,8 +89,8 @@ export default function BadgesBlock({ content, onChange }) {
 
       <button
         onClick={add}
-        className="w-full border-2! border-dashed! border-gray-200! hover:border-cyan-400! bg-gray-50! hover:bg-gray-100!
-                   text-gray-500! hover:text-cyan-600! text-sm  py-2.5 rounded-lg transition-all duration-200"
+        className="w-full border-2! border-dashed! border-gray-200! hover:border-gray-400! bg-gray-50! hover:bg-gray-100!
+                   text-gray-500! hover:text-black! text-sm  py-2.5 rounded-lg transition-all duration-200"
       >
         + add badge
       </button>

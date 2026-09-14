@@ -28,17 +28,17 @@ export const BLOCK_TYPES = {
 
 //  'description' field - icon + label + color only
 export const BLOCK_META = {
-  [BLOCK_TYPES.TITLE]: { label: "Title", color: "#7c6dfa" },
-  [BLOCK_TYPES.BADGES]: { label: "Badges", color: "#4ade80" },
-  [BLOCK_TYPES.DESCRIPTION]: { label: "Description", color: "#ff9f57" },
-  [BLOCK_TYPES.FEATURES]: { label: "Features", color: "#fbbf24" },
-  [BLOCK_TYPES.INSTALLATION]: { label: "Installation", color: "#38bdf8" },
-  [BLOCK_TYPES.USAGE]: { label: "Usage", color: "#57ffc8" },
-  [BLOCK_TYPES.SCREENSHOTS]: { label: "Screenshots", color: "#ffd557" },
-  [BLOCK_TYPES.API]: { label: "API Docs", color: "#57a0ff" },
-  [BLOCK_TYPES.CONTRIBUTING]: { label: "Contributing", color: "#ff57a0" },
-  [BLOCK_TYPES.LICENSE]: { label: "License", color: "#a0a098" },
-  [BLOCK_TYPES.CUSTOM]: { label: "Custom", color: "#f97316" },
+  [BLOCK_TYPES.TITLE]: { label: "Title", color: "#111111" },
+  [BLOCK_TYPES.BADGES]: { label: "Badges", color: "#111111" },
+  [BLOCK_TYPES.DESCRIPTION]: { label: "Description", color: "#111111" },
+  [BLOCK_TYPES.FEATURES]: { label: "Features", color: "#111111" },
+  [BLOCK_TYPES.INSTALLATION]: { label: "Installation", color: "#111111" },
+  [BLOCK_TYPES.USAGE]: { label: "Usage", color: "#111111" },
+  [BLOCK_TYPES.SCREENSHOTS]: { label: "Screenshots", color: "#111111" },
+  [BLOCK_TYPES.API]: { label: "API Docs", color: "#111111" },
+  [BLOCK_TYPES.CONTRIBUTING]: { label: "Contributing", color: "#111111" },
+  [BLOCK_TYPES.LICENSE]: { label: "License", color: "#111111" },
+  [BLOCK_TYPES.CUSTOM]: { label: "Custom", color: "#111111" },
 };
 
 // Map block types to their Lucide icon components

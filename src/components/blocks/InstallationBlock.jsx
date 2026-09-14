@@ -16,7 +16,7 @@ export default function InstallationBlock({ content, onChange }) {
               aria-pressed={content.manager === m}
               className={`px-3 py-1.5 text-xs  rounded-lg border! transition-all duration-200 ${
                 content.manager === m
-                  ? 'border-red-400! text-red-600! bg-red-50! shadow-sm'
+                  ? 'border-black! text-white! bg-black! shadow-sm'
                   : 'border-gray-200! text-gray-500! hover:border-gray-300! hover:text-gray-700! hover:bg-gray-50!'
               }`}
             >
@@ -37,7 +37,7 @@ export default function InstallationBlock({ content, onChange }) {
           </span>
           <input
             className="w-full bg-gray-50 border! border-gray-200! rounded-lg pl-7 pr-3 py-2 text-gray-800!  text-sm
-                       focus:outline-none focus:border-red-400! focus:ring-1 focus:ring-red-400/20!
+                       focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                        placeholder:text-gray-400! transition-colors"
             value={content.package}
             onChange={e => onChange({ package: e.target.value })}
@@ -53,7 +53,7 @@ export default function InstallationBlock({ content, onChange }) {
         </label>
         <textarea
           className="w-full bg-gray-50 border! border-gray-200! rounded-lg px-3 py-2 text-gray-600!  text-sm
-                     focus:outline-none focus:border-red-400! focus:ring-1 focus:ring-red-400/20!
+                     focus:outline-none focus:border-gray-400! focus:ring-1 focus:ring-gray-400/30!
                      placeholder:text-gray-400! transition-colors resize-none"
           rows={2}
           value={content.extra}

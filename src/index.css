@@ -7,30 +7,33 @@
 }
 
 :root {
-  --bg: #ffffff;
+  /* --bg: #ffffff; */
+  --bg: #FCFCFC;
   --surface: #f7f7f5;
   --border: #e5e5e2;
   --border-strong: rgba(0, 0, 0, 0.14);
   --text: #111111;
   --text-muted: #6b7280;
   --font-main: "Inter", sans-serif;
-  --accent: #3b82f6;
-  --accent-bg: #eff6ff;
+  --accent: #111111;
+  --accent-bg: #f5f5f4;
   --radius: 6px;
 
   --background: #ffffff;
   --foreground: #111111;
   --card: #ffffff;
   --card-foreground: #111111;
-  --primary: #3b82f6;
+  --primary: #111111;
   --primary-foreground: #ffffff;
   --muted: #f7f7f5;
   --muted-foreground: #6b7280;
-  --accent-2: #eff6ff;
-  --accent-2-foreground: #3b82f6;
+  --accent-2: #f5f5f4;
+  --accent-2-foreground: #111111;
 }
 
 @theme inline {
+  --font-display: "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -42,7 +45,17 @@
   --color-accent: var(--accent-2);
   --color-accent-foreground: var(--accent-2-foreground);
   --color-border: var(--border);
-  --font-grandstander: "Grandstander";
+}
+
+.landing-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 90rem;
+  padding-inline: 1.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -113,7 +126,7 @@ body,
 }
 
 .markdown-preview h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 19px;
   font-weight: 700;
   color: #000;
@@ -126,8 +139,8 @@ body,
 .markdown-preview h3 {
   font-size: 15px;
   font-weight: 600;
-  color: #b8860b;
-  font-family: 'JetBrains Mono', monospace;
+  color: #111111;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   margin: 12px 0 6px;
 }
 
@@ -158,23 +171,23 @@ body,
 }
 
 .markdown-preview blockquote {
-  border-left: 2px solid #fbbf24;
+  border-left: 2px solid #d4d4d4;
   padding-left: 14px;
   color: #555;
   font-style: italic;
   margin: 10px 0;
-  background: #fefce8;
+  background: #fafafa;
   border-radius: 0 6px 6px 0;
 }
 
 .markdown-preview code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 12px;
   background: #f3f4f6;
   border: 1px solid #e5e7eb;
   border-radius: 4px;
   padding: 1px 5px;
-  color: #d97706;
+  color: #1e293b;
 }
 
 .markdown-preview pre {
@@ -295,17 +308,12 @@ body,
   font-size: 12px;
 }
 
-.code-view-wrapper td:last-child,
-.code-view-wrapper td:last-child code {
-  white-space: pre-wrap !important;
-  word-break: break-all !important;
-  overflow-wrap: anywhere !important;
-  color: #1a1a1a !important;
+.code-view-wrapper {
+  background: #ffffff;
 }
 
 .code-view-wrapper pre {
   max-width: 100% !important;
-  overflow-wrap: anywhere !important;
   background: #ffffff !important;
 }
 
