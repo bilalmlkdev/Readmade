@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "./Home";
-import LandingPage from "./components/landing/LandingPage";
 import NotFound from "./components/pages/NotFound";
 import LoadingSpinner from "./components/ui/LoadingSpinner";
+
+const Home = lazy(() => import("./Home"));
+const LandingPage = lazy(() => import("./components/landing/LandingPage"));
 
 const BLOCKS_KEY = "readmade:blocks";
 
@@ -53,11 +54,13 @@ function AppRoutes() {
 
   return (
     <>
-      <Routes location={location}>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/app" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes location={location}>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/app" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
       {transitioning && (
         <LoadingSpinner onComplete={() => setTransitioning(false)} />
       )}

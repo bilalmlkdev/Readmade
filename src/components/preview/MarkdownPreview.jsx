@@ -12,8 +12,11 @@ import {
   FileWarning,
   CopySlash,
 } from "lucide-react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import markdownLang from "react-syntax-highlighter/dist/esm/languages/prism/markdown";
 import { duotoneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+SyntaxHighlighter.registerLanguage("markdown", markdownLang);
 import EmptyCanvas from "../ui/EmptyCanvas.jsx";
 
 marked.setOptions({ breaks: true, gfm: true });

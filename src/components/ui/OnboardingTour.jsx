@@ -6,9 +6,7 @@ import {
   useRef,
 } from "react";
 
-import * as JoyrideModule from "react-joyride";
-const Joyride = JoyrideModule.default || JoyrideModule.Joyride;
-const { STATUS } = JoyrideModule;
+import { Joyride, STATUS } from "react-joyride";
 
 const STEPS = [
   {

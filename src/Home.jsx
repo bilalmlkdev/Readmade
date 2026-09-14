@@ -1,11 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import BlockPalette from "./components/editor/BlockPalette.jsx";
 import SortableBlockList from "./components/editor/SortableBlockList.jsx";
-import MarkdownPreview from "./components/preview/MarkdownPreview.jsx";
-import OnboardingTour from "./components/ui/OnboardingTour.jsx";
 import ResetConfirmationModal from "./components/ui/ResetConfirmationModal.jsx";
 import { HelpCircle, Layers, LayoutGrid, RefreshCw, X } from "lucide-react";
 import useReadme from "./store/useReadme.js";
+
+const MarkdownPreview = lazy(() => import("./components/preview/MarkdownPreview"));
+const OnboardingTour = lazy(() => import("./components/ui/OnboardingTour"));
+
+function PreviewFallback() {
+  return (
+    <div className="flex-1 flex items-center justify-center min-h-[300px] text-[12px] text-gray-400">
+      Loading preview…
+    </div>
+  );
+}
 
 function MobileDrawer({ open, onClose, title, children }) {
   const [everOpened, setEverOpened] = useState(false);
@@ -218,7 +227,9 @@ export default function Home() {
 
         <div className="flex-1 flex flex-col min-h-0 overflow-hidden bg-white pb-16 md:pb-0 markdown-preview-container">
           <div className="flex-1 overflow-y-auto">
-            <MarkdownPreview />
+            <Suspense fallback={<PreviewFallback />}>
+              <MarkdownPreview />
+            </Suspense>
           </div>
         </div>
       </div>
@@ -267,7 +278,9 @@ export default function Home() {
         onCancel={() => setShowResetConfirm(false)}
       />
 
-      <OnboardingTour ref={tourRef} />
+      <Suspense fallback={null}>
+        <OnboardingTour ref={tourRef} />
+      </Suspense>
     </div>
   );
 }
