@@ -198,6 +198,7 @@ export default function MarkdownPreview() {
                     setActiveTab(tab.id);
                   }}
                   type="button"
+                  aria-pressed={activeTab === tab.id}
                   className={`
                     flex items-center gap-1.5 px-[10px] py-[6px] rounded-[9px]
                      transition-all duration-200

@@ -13,6 +13,7 @@ export default function InstallationBlock({ content, onChange }) {
             <button
               key={m}
               onClick={() => onChange({ manager: m })}
+              aria-pressed={content.manager === m}
               className={`px-3 py-1.5 text-xs  rounded-lg border! transition-all duration-200 ${
                 content.manager === m
                   ? 'border-red-400! text-red-600! bg-red-50! shadow-sm'

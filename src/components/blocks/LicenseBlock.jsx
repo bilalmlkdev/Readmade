@@ -13,6 +13,7 @@ export default function LicenseBlock({ content, onChange }) {
             <button
               key={l}
               onClick={() => onChange({ type: l })}
+              aria-pressed={content.type === l}
               className={`px-2.5 py-1.5 text-xs  rounded-lg border! transition-all duration-200 ${
                 content.type === l
                   ? 'border-gray-500! text-gray-700! bg-gray-100! shadow-sm'

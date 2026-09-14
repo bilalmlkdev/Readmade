@@ -2,8 +2,10 @@ import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import BlockPalette from "./components/editor/BlockPalette.jsx";
 import SortableBlockList from "./components/editor/SortableBlockList.jsx";
 import ResetConfirmationModal from "./components/ui/ResetConfirmationModal.jsx";
+import ErrorBoundary from "./components/ui/ErrorBoundary.jsx";
 import { HelpCircle, Layers, LayoutGrid, RefreshCw, X } from "lucide-react";
 import useReadme from "./store/useReadme.js";
+import { useDocumentTitle } from "./lib/utils.js";
 
 const MarkdownPreview = lazy(() => import("./components/preview/MarkdownPreview"));
 const OnboardingTour = lazy(() => import("./components/ui/OnboardingTour"));
@@ -156,6 +158,7 @@ function CenterBarHeader({ onReset, onRestartTour }) {
 export default function Home() {
   const { blocks, clearAllData, resetToInitialTemplate } = useReadme();
   const tourRef = useRef();
+  useDocumentTitle("Readmade - Build your README");
 
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [blocksOpen, setBlocksOpen] = useState(false);
@@ -227,9 +230,11 @@ export default function Home() {
 
         <div className="flex-1 flex flex-col min-h-0 overflow-hidden bg-white pb-16 md:pb-0 markdown-preview-container">
           <div className="flex-1 overflow-y-auto">
-            <Suspense fallback={<PreviewFallback />}>
-              <MarkdownPreview />
-            </Suspense>
+            <ErrorBoundary>
+              <Suspense fallback={<PreviewFallback />}>
+                <MarkdownPreview />
+              </Suspense>
+            </ErrorBoundary>
           </div>
         </div>
       </div>

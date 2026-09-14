@@ -13,6 +13,7 @@ export default function UsageBlock({ content, onChange }) {
             <button
               key={l}
               onClick={() => onChange({ language: l })}
+              aria-pressed={content.language === l}
               className={`px-2.5 py-1.5 text-xs  rounded-lg border! transition-all duration-200 ${
                 content.language === l
                   ? 'border-emerald-400! text-emerald-600! bg-emerald-50! shadow-sm'
@@ -32,8 +33,9 @@ export default function UsageBlock({ content, onChange }) {
         </label>
         <div className="relative">
           {/* Line numbers gutter (decorative) */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gray-100 border-r! border-gray-200! scale-97 relativ
-                          flex flex-col items-end pr-2 pt-2 text-[10px]  text-gray-300! select-none pointer-events-none bottom-1">
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gray-100 border-r! border-gray-200!
+                    flex flex-col items-end pr-2 pt-2 text-[10px]  text-gray-300! select-none pointer-events-none"
+                aria-hidden="true">
             {Array.from({ length: 8 }, (_, i) => (
               <span key={i} className="leading-[1.625]">{i + 1}</span>
             ))}

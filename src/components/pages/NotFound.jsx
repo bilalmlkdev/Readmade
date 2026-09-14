@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { FileQuestion, ArrowLeft } from "lucide-react";
+import { useDocumentTitle } from "../../lib/utils.js";
 
 export default function NotFound() {
+  useDocumentTitle("404 - Page not found | Readmade");
+
   return (
     <div className="min-h-screen w-full bg-white text-black flex flex-col items-center justify-center px-6 text-center">
       <div className="w-16 h-16 rounded-2xl bg-[#f5f4ef] border border-black/[0.06] flex items-center justify-center mb-6">

@@ -337,6 +337,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                         onClick={() => window.open(imageSrc, '_blank')}
                         className="p-1.5 bg-white/80! hover:bg-white! rounded shadow-sm transition-colors"
                         title="Open in new tab"
+                        aria-label="Open screenshot in new tab"
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600">
                           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -348,6 +349,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                         onClick={() => triggerFileInput(i)}
                         className="p-1.5 bg-white/80! hover:bg-white! rounded shadow-sm transition-colors"
                         title="Replace image"
+                        aria-label="Replace screenshot image"
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600">
                           <path d="M23 4v6h-6" />
@@ -397,6 +399,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                           i === 0 ? 'text-gray-300! cursor-not-allowed' : 'text-gray-500! hover:text-amber-500! hover:bg-gray-100!'
                         }`}
                         title="Move up"
+                        aria-label="Move screenshot up"
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <polyline points="18 15 12 9 6 15" />
@@ -409,6 +412,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                           i === items.length - 1 ? 'text-gray-300! cursor-not-allowed' : 'text-gray-500 hover:text-amber-500! hover:bg-gray-100!'
                         }`}
                         title="Move down"
+                        aria-label="Move screenshot down"
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <polyline points="6 9 12 15 18 9" />
@@ -418,6 +422,7 @@ export default function ScreenshotsBlock({ content, onChange }) {
                         onClick={() => remove(i)}
                         className="p-1 rounded text-gray-500! hover:text-red-500! hover:bg-red-50! transition-colors"
                         title="Remove"
+                        aria-label="Remove screenshot"
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <line x1="18" y1="6" x2="6" y2="18" />
