@@ -64,7 +64,7 @@ export default function CTASection() {
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
-                to="/login"
+                to="/app"
                 className="group inline-flex h-12 min-w-40 items-center justify-center gap-2 rounded-lg bg-primary px-8 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 Get Started

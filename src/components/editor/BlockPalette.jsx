@@ -79,7 +79,7 @@ function BlockList({ addBlock }) {
  * (see Home.jsx) instead of here — this sidebar is purely block
  * browsing + account identity now.
  */
-export default function BlockPalette({ userName, userEmail, onLogout }) {
+export default function BlockPalette() {
   const addBlock = useReadme((s) => s.addBlock);
 
   const [isMinimized, setIsMinimized] = useState(() => {
@@ -137,12 +137,7 @@ export default function BlockPalette({ userName, userEmail, onLogout }) {
           </div>
 
           <div className="pt-2 pb-2">
-            <UserAccountPreview
-              userName={userName}
-              userEmail={userEmail}
-              onLogout={onLogout}
-              minimized={true}
-            />
+            <UserAccountPreview minimized={true} />
           </div>
         </div>
       ) : (
@@ -163,11 +158,7 @@ export default function BlockPalette({ userName, userEmail, onLogout }) {
             </p>
           </div>
           <BlockList addBlock={addBlock} />
-          <UserAccountPreview
-            userName={userName}
-            userEmail={userEmail}
-            onLogout={onLogout}
-          />
+          <UserAccountPreview />
         </>
       )}
     </aside>

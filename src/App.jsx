@@ -1,200 +1,70 @@
 import { useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./Home";
 import LandingPage from "./components/landing/LandingPage";
-import LoginScreen from "./components/pages/LoginScreen";
-import LoadingSpinner from "./components/ui/LoadingSpinner";
 import NotFound from "./components/pages/NotFound";
-import useReadme from "./store/useReadme.js";
+import LoadingSpinner from "./components/ui/LoadingSpinner";
 
-const USER_ID_KEY = "readmade_user_id";
-const USER_NAME_KEY = "readmade_user_name";
-const ACTIVE_USER_ID_KEY = "readmade_active_user_id";
-const USER_EMAIL_KEY = "readmade_user_email";
-const LOGGED_IN_KEY = "readmade_logged_in";
-const DEFAULT_EMAIL = "demo@gmail.com";
+const BLOCKS_KEY = "readmade:blocks";
 
 // One-time migration for existing users: this project was previously
-// called ReadmeForge (and briefly Brikk), using `readmeforge_*` /
-// `readmeforge:*` (or `brikk_*` / `brikk:*`) keys. Copy any old data over
-// to the new `readmade_*` / `readmade:*` keys the first time the app loads
-// under the new name, so no one's workspace or login silently disappears.
-// Safe to run every load: it's a no-op once the new keys exist.
+// called ReadmeForge (and briefly Brikk). Copy over any saved blocks
+// under the old app name to the new key the first time the app loads
+// under the new name, so no one's workspace silently disappears. Safe to
+// run every load: it's a no-op once the new key exists.
 function migrateLegacyStorage() {
-  const legacyPrefixes = ["readmeforge", "brikk"];
-
-  const legacySuffixMap = {
-    user_id: USER_ID_KEY,
-    user_name: USER_NAME_KEY,
-    active_user_id: ACTIVE_USER_ID_KEY,
-    user_email: USER_EMAIL_KEY,
-    logged_in: LOGGED_IN_KEY,
-  };
-  Object.entries(legacySuffixMap).forEach(([suffix, newKey]) => {
-    if (localStorage.getItem(newKey) !== null) return;
-    for (const prefix of legacyPrefixes) {
-      const oldValue = localStorage.getItem(`${prefix}_${suffix}`);
-      if (oldValue !== null) {
-        localStorage.setItem(newKey, oldValue);
-        break;
-      }
-    }
-  });
-
-  // Per-user blocks workspace: `{prefix}:{uid}:blocks` -> `readmade:{uid}:blocks`
-  for (const prefix of legacyPrefixes) {
-    const legacyUid = localStorage.getItem(`${prefix}_user_id`);
-    if (!legacyUid) continue;
-    const oldBlocksKey = `${prefix}:${legacyUid}:blocks`;
-    const newBlocksKey = `readmade:${legacyUid}:blocks`;
-    const oldBlocks = localStorage.getItem(oldBlocksKey);
-    if (oldBlocks !== null && localStorage.getItem(newBlocksKey) === null) {
-      localStorage.setItem(newBlocksKey, oldBlocks);
-    }
-  }
-
-  // Legacy default-workspace key with no user id
-  for (const prefix of legacyPrefixes) {
-    if (
-      localStorage.getItem(`${prefix}:blocks`) !== null &&
-      localStorage.getItem("readmade:blocks") === null
-    ) {
-      localStorage.setItem(
-        "readmade:blocks",
-        localStorage.getItem(`${prefix}:blocks`),
-      );
-      break;
-    }
-  }
-
-  for (const prefix of legacyPrefixes) {
-    if (
-      localStorage.getItem(`${prefix}:onboarded`) !== null &&
-      localStorage.getItem("readmade:onboarded") === null
-    ) {
-      localStorage.setItem(
-        "readmade:onboarded",
-        localStorage.getItem(`${prefix}:onboarded`),
-      );
-      break;
+  if (localStorage.getItem(BLOCKS_KEY) !== null) return;
+  for (const prefix of ["readmeforge", "brikk"]) {
+    const oldValue = localStorage.getItem(`${prefix}:blocks`);
+    if (oldValue !== null) {
+      localStorage.setItem(BLOCKS_KEY, oldValue);
+      return;
     }
   }
 }
 migrateLegacyStorage();
 
-function generateUserId() {
-  if (window.crypto && window.crypto.randomUUID)
-    return window.crypto.randomUUID();
-  return Math.random().toString(36).substring(2) + Date.now().toString(36);
-}
+// Shows the loading spinner as a brief overlay whenever navigating
+// directly between the landing page and the app (either direction).
+//
+// This deliberately sets state *during render* rather than in a
+// useEffect - that's the documented React pattern for "adjust state
+// when a value changes" (see react.dev/learn/you-might-not-need-an-effect
+// #adjusting-some-state-when-a-prop-changes). A useEffect only runs
+// *after* the browser has already committed and painted the new route,
+// which is exactly why the previous version flashed the new page first
+// and only covered it with the spinner a frame later. Setting state
+// synchronously in the render body makes React redo that render with
+// the overlay already included before anything reaches the screen - no
+// flash, because the browser never gets a chance to paint the
+// in-between state.
+function AppRoutes() {
+  const location = useLocation();
+  const [prevPath, setPrevPath] = useState(location.pathname);
+  const [transitioning, setTransitioning] = useState(false);
 
-function nameFromEmail(email) {
-  const local = (email || "").split("@")[0] || "Guest";
-  return local.charAt(0).toUpperCase() + local.slice(1);
-}
-
-function resolveIdentity(email) {
-  let storedId = localStorage.getItem(USER_ID_KEY);
-  if (!storedId) {
-    storedId = generateUserId();
-    localStorage.setItem(USER_ID_KEY, storedId);
-  }
-  const resolvedEmail =
-    email || localStorage.getItem(USER_EMAIL_KEY) || DEFAULT_EMAIL;
-  const resolvedName = nameFromEmail(resolvedEmail);
-  localStorage.setItem(USER_EMAIL_KEY, resolvedEmail);
-  localStorage.setItem(USER_NAME_KEY, resolvedName);
-  if (localStorage.getItem(ACTIVE_USER_ID_KEY) !== storedId) {
-    localStorage.setItem(ACTIVE_USER_ID_KEY, storedId);
-  }
-  return { userId: storedId, userName: resolvedName, userEmail: resolvedEmail };
-}
-
-function isLoggedIn() {
-  return localStorage.getItem(LOGGED_IN_KEY) === "true";
-}
-
-function wipeIdentity() {
-  const uid = localStorage.getItem(USER_ID_KEY);
-  if (uid) localStorage.removeItem(`readmade:${uid}:blocks`);
-  localStorage.removeItem(USER_ID_KEY);
-  localStorage.removeItem(USER_NAME_KEY);
-  localStorage.removeItem(USER_EMAIL_KEY);
-  localStorage.removeItem(ACTIVE_USER_ID_KEY);
-  localStorage.removeItem(LOGGED_IN_KEY);
-  useReadme.getState().clearAllData();
-  useReadme.getState().resetToInitialTemplate();
-}
-
-function AuthFlow() {
-  const navigate = useNavigate();
-  const [step, setStep] = useState("login");
-  const [pendingEmail, setPendingEmail] = useState(null);
-
-  if (isLoggedIn()) return <Navigate to="/dashboard" replace />;
-
-  if (step === "toDashboard") {
-    return (
-      <LoadingSpinner
-        onComplete={() => {
-          resolveIdentity(pendingEmail);
-          localStorage.setItem(LOGGED_IN_KEY, "true");
-          navigate("/dashboard", { replace: true });
-        }}
-      />
-    );
-  }
-
-  if (step === "login") {
-    return (
-      <LoginScreen
-        onLogin={(email) => {
-          setPendingEmail(email);
-          setStep("toDashboard");
-        }}
-        onBack={() => {}}
-      />
-    );
-  }
-
-  return null;
-}
-
-function Dashboard() {
-  const navigate = useNavigate();
-  const [loggingOut, setLoggingOut] = useState(false);
-  const [identity] = useState(() => (isLoggedIn() ? resolveIdentity() : null));
-
-  if (!isLoggedIn()) return <Navigate to="/" replace />;
-
-  if (loggingOut) {
-    return (
-      <LoadingSpinner
-        onComplete={() => {
-          wipeIdentity();
-          navigate("/", { replace: true });
-        }}
-      />
-    );
+  if (location.pathname !== prevPath) {
+    const isLandingAppSwap =
+      (prevPath === "/" && location.pathname === "/app") ||
+      (prevPath === "/app" && location.pathname === "/");
+    if (isLandingAppSwap) setTransitioning(true);
+    setPrevPath(location.pathname);
   }
 
   return (
-    <Home
-      userId={identity.userId}
-      userName={identity.userName}
-      userEmail={identity.userEmail}
-      onLogout={() => setLoggingOut(true)}
-    />
+    <>
+      <Routes location={location}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/app" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {transitioning && (
+        <LoadingSpinner onComplete={() => setTransitioning(false)} />
+      )}
+    </>
   );
 }
 
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<AuthFlow />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
+  return <AppRoutes />;
 }

@@ -1,7 +1,6 @@
 import { AlertTriangle } from "lucide-react";
 
 export default function ResetConfirmationModal({
-  userName,
   isOpen,
   onConfirm,
   onCancel,
@@ -25,9 +24,8 @@ export default function ResetConfirmationModal({
           Reset workspace?
         </h3>
         <p className="text-gray-500 text-[13px] leading-relaxed mb-6">
-          This clears every block and setting for{" "}
-          <span className="font-medium text-gray-800">{userName}</span>. You'll
-          start over with a fresh README - this can't be undone.
+          This clears every block and setting. You'll start over with a fresh
+          README - this can't be undone.
         </p>
 
         <div className="flex gap-2">

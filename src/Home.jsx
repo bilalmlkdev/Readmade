@@ -144,7 +144,7 @@ function CenterBarHeader({ onReset, onRestartTour }) {
   );
 }
 
-export default function Home({ userId, userName, userEmail, onLogout }) {
+export default function Home() {
   const { blocks, clearAllData, resetToInitialTemplate } = useReadme();
   const tourRef = useRef();
 
@@ -199,12 +199,7 @@ export default function Home({ userId, userName, userEmail, onLogout }) {
     <div className="flex flex-col h-screen bg-white">
       <div className="flex flex-1 min-h-0">
         <div className="hidden md:flex border-r border-gray-200">
-          <BlockPalette
-            userId={userId}
-            userName={userName}
-            userEmail={userEmail}
-            onLogout={onLogout}
-          />
+          <BlockPalette />
         </div>
 
         <main className="hidden md:flex w-[41rem] shrink-0 flex-col min-h-0 bg-white">
@@ -248,12 +243,7 @@ export default function Home({ userId, userName, userEmail, onLogout }) {
             overflowY: "auto",
           }}
         >
-          <BlockPalette
-            userId={userId}
-            userName={userName}
-            userEmail={userEmail}
-            onLogout={onLogout}
-          />
+          <BlockPalette />
         </div>
       </MobileDrawer>
 
@@ -272,7 +262,6 @@ export default function Home({ userId, userName, userEmail, onLogout }) {
       </MobileDrawer>
 
       <ResetConfirmationModal
-        userName={userName}
         isOpen={showResetConfirm}
         onConfirm={handleResetConfirmed}
         onCancel={() => setShowResetConfirm(false)}

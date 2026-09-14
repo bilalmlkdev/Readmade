@@ -11,14 +11,12 @@ const DEFAULT_BLOCKS = [
   "installation",
   "usage",
 ];
-const ACTIVE_USER_ID_KEY = "readmade_active_user_id";
+// A single fixed workspace key, now that there's no login/identity system
+// to scope storage per user. Every visitor to this browser shares the one
+// workspace, same as how the app behaves today with no one logged in.
+const BLOCKS_KEY = "readmade:blocks";
 
 let _dupeCounter = 0;
-
-function workspaceKey() {
-  const userId = localStorage.getItem(ACTIVE_USER_ID_KEY);
-  return userId ? `readmade:${userId}:blocks` : "readmade:blocks";
-}
 
 const useReadme = create(
   persist(
@@ -73,9 +71,9 @@ const useReadme = create(
     {
       name: "readmade-workspace",
       storage: createJSONStorage(() => ({
-        getItem: () => localStorage.getItem(workspaceKey()),
-        setItem: (name, value) => localStorage.setItem(workspaceKey(), value),
-        removeItem: () => localStorage.removeItem(workspaceKey()),
+        getItem: () => localStorage.getItem(BLOCKS_KEY),
+        setItem: (name, value) => localStorage.setItem(BLOCKS_KEY, value),
+        removeItem: () => localStorage.removeItem(BLOCKS_KEY),
       })),
       partialize: (state) => ({
         blocks: state.blocks,

@@ -103,7 +103,7 @@ export default function LandingHeader() {
 
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Link
-                  to="/login"
+                  to="/app"
                   className={cn(
                     "inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90",
                     isScrolled && "lg:hidden",
@@ -112,7 +112,7 @@ export default function LandingHeader() {
                   Get Started
                 </Link>
                 <Link
-                  to="/login"
+                  to="/app"
                   className={cn(
                     "inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90",
                     isScrolled ? "lg:inline-flex" : "hidden",

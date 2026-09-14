@@ -107,7 +107,7 @@ export default function LandingPage() {
             >
               <motion.div variants={item}>
                 <Link
-                  to="/login"
+                  to="/app"
                   className="group inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-6 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                 >
                   Start for free
