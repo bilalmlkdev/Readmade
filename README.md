@@ -15,7 +15,7 @@ Your workspace lives in the browser. You can experiment freely, return to it lat
 - Compose a README from title, badges, description, features, installation, usage, screenshots, API, contribution, license, and custom Markdown blocks.
 - Reorder, duplicate, expand, and remove sections without breaking the document’s structure.
 - Review a live GitHub-style preview or switch to the generated source at any time.
-- Add screenshots by dropping files, pasting from the clipboard, or providing a URL; Readmade compresses uploads before sending them through its image proxy.
+- Add screenshots by providing a direct image URL, with live preview, captions, and a reorderable gallery.
 - Copy the result or download a ready-to-commit `README.md`.
 - Keep separate browser-local workspaces by email, without sign-up or verification.
 
@@ -49,7 +49,7 @@ npm run preview
 
 ## How it is built
 
-The editor is intentionally client-first. React renders the workspace, Zustand persists the blocks in `localStorage`, and the preview is generated from the same Markdown Readmade exports. Images are the exception: uploads pass through a small Vercel serverless endpoint so exported documents contain portable URLs rather than embedded image data.
+The editor is intentionally client-first. React renders the workspace, Zustand persists the blocks in `localStorage`, and the preview is generated from the same Markdown Readmade exports. Everything is local - even screenshots are just ordinary image URLs stored in your workspace.
 
 The main pieces are:
 
@@ -57,11 +57,10 @@ The main pieces are:
 - `src/components/editor` - the block palette and sortable canvas
 - `src/components/preview` - Markdown and rendered-document views
 - `src/store` - workspace state and browser persistence
-- `api/upload.js` - image upload proxy
 
 ## Privacy and storage
 
-Readmade does not require an account. Workspace identity and content are stored locally in the browser under the `readmade` namespace. Clearing browser storage, resetting the workspace, or logging out removes that local data. Uploaded screenshots are hosted externally so the Markdown can reference ordinary HTTPS image URLs.
+Readmade does not require an account. Workspace identity and content are stored locally in the browser under the `readmade` namespace. Clearing browser storage, resetting the workspace, or logging out removes that local data. Screenshots are linked by URL, so the exported Markdown contains ordinary HTTPS image URLs rather than embedded image data.
 
 ## Contributing
 

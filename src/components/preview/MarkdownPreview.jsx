@@ -260,7 +260,7 @@ export default function MarkdownPreview() {
                       Screenshots block has no valid URLs yet
                     </p>
                     <p className="text-[10px] text mt-0.5">
-                      Click the block and add an image URL or upload a file.
+                      Click the block and add a direct image URL.
                     </p>
                   </div>
                 </div>

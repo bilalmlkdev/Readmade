@@ -61,13 +61,12 @@ function blockToMd(type, c) {
           const alt = i.alt || "Screenshot";
           const url = i.url.trim();
 
-          // Safety net: base64 data: URLs should never reach this point
-          // (uploads are hosted via /api/upload and stored as real https
-          // links), but if one ever slips through - a failed upload that
-          // got saved, or an old workspace from before this fix - never
-          // write the raw base64 into the exported markdown. Swap in a
-          // clear placeholder instead so the README stays small and the
-          // person knows to re-upload that image.
+          // Safety net: base64 data: URLs should not appear anymore now that
+          // the screenshots block only accepts direct image URLs. But a stray
+          // base64 value could still exist in a workspace saved before that
+          // change - never write the raw base64 into the exported markdown.
+          // Swap in a clear placeholder instead so the README stays small and
+          // the person knows to re-enter that image URL.
           if (url.startsWith("data:")) {
             const caption = i.caption ? `\n\n*${i.caption}*` : "";
             return `![${alt}](REPLACE_WITH_HOSTED_IMAGE_URL)${caption}`;
