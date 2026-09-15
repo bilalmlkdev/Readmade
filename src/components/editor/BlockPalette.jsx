@@ -3,6 +3,7 @@ import useReadme from "../../store/useReadme.js";
 import UserAccountPreview from "../ui/UserAccountPreview.jsx";
 import Tooltip from "../ui/Tooltip.jsx";
 import logo from "/logo.svg";
+import { LayoutTemplate } from "lucide-react";
 
 const ALL_BLOCKS = [
   BLOCK_TYPES.TITLE,
@@ -18,7 +19,7 @@ const ALL_BLOCKS = [
   BLOCK_TYPES.CUSTOM,
 ];
 
-export default function BlockPalette({ onReset }) {
+export default function BlockPalette({ onReset, onOpenTemplates }) {
   const addBlock = useReadme((s) => s.addBlock);
 
   return (
@@ -53,6 +54,18 @@ export default function BlockPalette({ onReset }) {
 
       {/* Divider */}
       <div className="w-5 h-px bg-gray-200 mt-2 mb-2" />
+
+      {/* Templates icon */}
+      {onOpenTemplates && (
+        <Tooltip content="Templates" side="right">
+          <button
+            onClick={onOpenTemplates}
+            className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all duration-150 mb-2"
+          >
+            <LayoutTemplate size={18} />
+          </button>
+        </Tooltip>
+      )}
 
       {/* Reset icon */}
       <Tooltip content="Reset workspace" side="right">

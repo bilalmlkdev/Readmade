@@ -1,6 +1,6 @@
 export default function CommunitySection() {
   return (
-    <section className="px-5 py-24 lg:px-15 bg-[#FAFAFA] text-[#1a1a1a]">
+    <section className="px-15 py-24 bg-[#FAFAFA]">
       <div className="mx-auto max-w-full">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">

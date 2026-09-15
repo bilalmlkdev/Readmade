@@ -5,8 +5,10 @@ import FeaturesSection from "./FeaturesSection";
 import ScreenshotSection from "./ScreenshotSection";
 import CommunitySection from "./CommunitySection";
 import ToolkitSection from "./ToolkitSection";
+import TemplatesSection from "./TemplatesSection";
 import MissionSection from "./MissionSection";
 import GetStartedSection from "./GetStartedSection";
+import PricingSection from "./PricingSection";
 import Footer from "./Footer";
 
 export default function LandingPage() {
@@ -18,10 +20,12 @@ export default function LandingPage() {
         <StatsSection />
         <FeaturesSection />
         <ScreenshotSection />
+        <TemplatesSection />
         <CommunitySection />
         <ToolkitSection />
         <MissionSection />
         <GetStartedSection />
+        <PricingSection />
       </main>
       <Footer />
     </div>

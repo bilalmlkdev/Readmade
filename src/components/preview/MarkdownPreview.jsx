@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import useReadme from "../../store/useReadme.js";
@@ -33,10 +33,14 @@ function parseMarkdown(raw) {
   };
   marked.use({ renderer, mangle: false, headerIds: false });
   const result = marked.parse(raw);
-  if (result && typeof result.then === "function") {
-    return result.then((res) => DOMPurify.sanitize(res));
-  }
-  return DOMPurify.sanitize(result);
+  // marked.parse() returns a string when parsing is synchronous (the
+  // normal case here) and a Promise only if an async extension is in
+  // use. The caller always calls .then() on this, so always hand back
+  // a real Promise - wrapping a plain string in Promise.resolve() is a
+  // no-op for the async case and fixes the "X.then is not a function"
+  // crash for the sync case (which is what tripped the preview's
+  // ErrorBoundary every time blocks changed, e.g. adding a block).
+  return Promise.resolve(result).then((res) => DOMPurify.sanitize(res));
 }
 
 export default function MarkdownPreview() {
@@ -60,12 +64,17 @@ export default function MarkdownPreview() {
     if (!raw?.trim() || activeTab !== "preview") return;
 
     let cancelled = false;
-    parseMarkdown(raw).then((result) => {
-      if (!cancelled) setHtml(result);
-    }).catch((err) => {
-      if (!cancelled) setHtml(`<div class="md-error">Error: ${err.message}</div>`);
-    });
-    return () => { cancelled = true; };
+    parseMarkdown(raw)
+      .then((result) => {
+        if (!cancelled) setHtml(result);
+      })
+      .catch((err) => {
+        if (!cancelled)
+          setHtml(`<div class="md-error">Error: ${err.message}</div>`);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [raw, activeTab]);
 
   const effectiveHtml = useMemo(() => {
@@ -73,7 +82,7 @@ export default function MarkdownPreview() {
     return html;
   }, [raw, activeTab, html]);
 
-  const copyMarkdown = async () => {
+  const copyMarkdown = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(raw);
       setCopied(true);
@@ -81,9 +90,9 @@ export default function MarkdownPreview() {
     } catch {
       /* clipboard unavailable */
     }
-  };
+  }, [raw]);
 
-  const downloadReadme = () => {
+  const downloadReadme = useCallback(() => {
     const a = Object.assign(document.createElement("a"), {
       href: URL.createObjectURL(new Blob([raw], { type: "text/markdown" })),
       download: "README.md",
@@ -93,7 +102,18 @@ export default function MarkdownPreview() {
     document.body.removeChild(a);
     setDownloading(true);
     setTimeout(() => setDownloading(false), 2000);
-  };
+  }, [raw]);
+
+  useEffect(() => {
+    function handleDownload() { downloadReadme(); }
+    function handleCopy() { copyMarkdown(); }
+    window.addEventListener("readmade:download", handleDownload);
+    window.addEventListener("readmade:copy", handleCopy);
+    return () => {
+      window.removeEventListener("readmade:download", handleDownload);
+      window.removeEventListener("readmade:copy", handleCopy);
+    };
+  }, [copyMarkdown, downloadReadme]);
 
   const screenshotsBlock = blocks.find((b) => b.type === "screenshots");
   const validScreenshots =
@@ -109,6 +129,8 @@ export default function MarkdownPreview() {
         downloading={downloading}
         onCopy={copyMarkdown}
         onDownload={downloadReadme}
+        raw={raw}
+        blocks={blocks}
       />
       <PreviewContent
         blocks={blocks}

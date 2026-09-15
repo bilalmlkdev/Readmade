@@ -1,6 +1,6 @@
 export default function StatsSection() {
   return (
-    <section className="px-6 pt-10 pb-8 lg:px-15 lg:pt-12 bg-[#FAFAFA] text-[#1a1a1a]">
+    <section className="px-15 pt-12 pb-10 lg:pt-14 bg-[#FAFAFA]">
       <div className="mx-auto max-w-full">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
@@ -37,26 +37,26 @@ export default function StatsSection() {
           </div>
         </div>
 
-        <div className="mt-10 lg:mt-12">
+        <div className="mt-12 lg:mt-14">
           <div className="mb-5 section-label">The numbers</div>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
             <div>
-              <div className="text-3xl font-light tracking-tight whitespace-nowrap lg:text-4xl">
+              <div className="text-3xl font-light tracking-tight text-black whitespace-nowrap lg:text-4xl">
                 11
               </div>
-              <div className="mt-3 text-sm opacity-50">block types</div>
+              <div className="mt-3 text-sm text-gray-500">block types</div>
             </div>
             <div>
-              <div className="text-3xl font-light tracking-tight whitespace-nowrap lg:text-4xl">
+              <div className="text-3xl font-light tracking-tight text-black whitespace-nowrap lg:text-4xl">
                 0
               </div>
-              <div className="mt-3 text-sm opacity-50">sign-ups required</div>
+              <div className="mt-3 text-sm text-gray-500">sign-ups required</div>
             </div>
             <div>
-              <div className="text-3xl font-light tracking-tight whitespace-nowrap lg:text-4xl">
+              <div className="text-3xl font-light tracking-tight text-black whitespace-nowrap lg:text-4xl">
                 100%
               </div>
-              <div className="mt-3 text-sm opacity-50">local-first data</div>
+              <div className="mt-3 text-sm text-gray-500">local-first data</div>
             </div>
           </div>
         </div>

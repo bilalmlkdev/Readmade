@@ -26,7 +26,6 @@ export const BLOCK_TYPES = {
   CUSTOM: "custom",
 };
 
-//  'description' field - icon + label + color only
 export const BLOCK_META = {
   [BLOCK_TYPES.TITLE]: { label: "Title", color: "#111111" },
   [BLOCK_TYPES.BADGES]: { label: "Badges", color: "#111111" },
@@ -41,7 +40,6 @@ export const BLOCK_META = {
   [BLOCK_TYPES.CUSTOM]: { label: "Custom", color: "#111111" },
 };
 
-// Map block types to their Lucide icon components
 export const BLOCK_ICONS = {
   [BLOCK_TYPES.TITLE]: Heading,
   [BLOCK_TYPES.BADGES]: ShieldCheck,
@@ -58,13 +56,13 @@ export const BLOCK_ICONS = {
 
 const DEFAULTS = {
   title: {
-    name: "My Awesome Project",
-    tagline: "A magical tool for building beautiful READMEs in minutes",
+    name: "Project Name",
+    tagline: "A short description of what this project does",
   },
   badges: {
     badges: [
       {
-        label: "Build Status",
+        label: "Build",
         url: "https://img.shields.io/badge/build-passing-brightgreen",
         link: "#",
       },
@@ -78,33 +76,28 @@ const DEFAULTS = {
         url: "https://img.shields.io/badge/license-MIT-green",
         link: "#",
       },
-      {
-        label: "PRs Welcome",
-        url: "https://img.shields.io/badge/PRs-welcome-brightgreen",
-        link: "#",
-      },
     ],
   },
   description: {
-    text: "**Readmade** is the fastest way to craft a stunning GitHub‑ready README. Drag‑and‑drop blocks, live preview, and one‑click export – no markdown skills required. Built for developers who care about their project’s first impression.",
+    text: "A brief overview of your project. Explain what it does, why it exists, and who it's for. Keep it concise — one or two paragraphs is ideal.",
   },
   features: {
     items: [
-      "Visual block editor — no markdown headaches",
-      "Live preview as you build",
-      "One-click copy or download as README.md",
-      "Clean, minimal interface",
-      "Works completely offline — your data stays local",
+      "Feature one — what it does",
+      "Feature two — what it does",
+      "Feature three — what it does",
+      "Feature four — what it does",
+      "Feature five — what it does",
     ],
   },
   installation: {
     manager: "npm",
-    package: "my-awesome-project",
-    extra: "cp .env.example .env\nnpx setup",
+    package: "your-package-name",
+    extra: "",
   },
   usage: {
     language: "js",
-    code: "import { createReadme } from 'my-awesome-project'\n\nconst readme = await createReadme({\n  title: 'My Project',\n  features: ['fast', 'beautiful']\n})\nconsole.log(readme)",
+    code: "import { yourPackage } from 'your-package-name'\n\nconst result = yourPackage({\n  option: 'value',\n})\n\nconsole.log(result)",
   },
   screenshots: {
     items: [],
@@ -112,19 +105,19 @@ const DEFAULTS = {
   api: {
     entries: [
       {
-        name: "myFunction(arg)",
-        description: "What it does",
-        params: "arg — string, the input value",
+        name: "functionName(options)",
+        description: "Describe what this function does and when to use it.",
+        params: "options — object with configuration",
       },
     ],
   },
   contributing: {
-    text: "Contributions are welcome! Please open an issue or submit a pull request.",
+    text: "Contributions are welcome. Please open an issue first to discuss what you would like to change.",
     steps: [
-      "Fork the project",
-      "Create your feature branch (`git checkout -b feature/AmazingFeature`)",
-      "Commit your changes",
-      "Push to the branch",
+      "Fork the repository",
+      "Create your branch (`git checkout -b feature/amazing-feature`)",
+      "Commit your changes (`git commit -m 'Add amazing feature'`)",
+      "Push to the branch (`git push origin feature/amazing-feature`)",
       "Open a Pull Request",
     ],
   },
@@ -134,15 +127,18 @@ const DEFAULTS = {
     author: "Your Name",
   },
   custom: {
-    markdown: "## Custom Section\n\nWrite any **markdown** content here...",
+    markdown: "## Custom Section\n\nWrite any **markdown** content here.",
   },
 };
 
 let _id = 1;
-export function createBlock(type) {
+export function createBlock(type, contentOverride) {
+  const defaults = JSON.parse(JSON.stringify(DEFAULTS[type] || {}));
   return {
     id: `block_${_id++}_${Date.now()}`,
     type,
-    content: JSON.parse(JSON.stringify(DEFAULTS[type] || {})),
+    content: contentOverride
+      ? { ...defaults, ...contentOverride }
+      : defaults,
   };
 }

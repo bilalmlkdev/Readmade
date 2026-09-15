@@ -18,14 +18,14 @@ export const BLOCKS_KEY = "readmade:blocks";
 
 let _dupeCounter = 0;
 
-const useReadme = create(
+export const useReadme = create(
   persist(
     (set, get) => ({
       blocks: DEFAULT_BLOCKS.map(createBlock),
       activeBlockId: null,
 
-      addBlock: (type) =>
-        set((s) => ({ blocks: [...s.blocks, createBlock(type)] })),
+      addBlock: (type, contentOverride) =>
+        set((s) => ({ blocks: [...s.blocks, createBlock(type, contentOverride)] })),
 
       removeBlock: (id) =>
         set((s) => ({

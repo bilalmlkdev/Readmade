@@ -2,50 +2,13 @@ import { FileWarning } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import EmptyPreview from "../ui/EmptyPreview.jsx";
 
-import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
-import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
-import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
-import tsx from "react-syntax-highlighter/dist/esm/languages/prism/tsx";
-import py from "react-syntax-highlighter/dist/esm/languages/prism/python";
-import bash from "react-syntax-highlighter/dist/esm/languages/prism/bash";
-import json from "react-syntax-highlighter/dist/esm/languages/prism/json";
-import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
-import html from "react-syntax-highlighter/dist/esm/languages/prism/markup";
-import go from "react-syntax-highlighter/dist/esm/languages/prism/go";
-import rust from "react-syntax-highlighter/dist/esm/languages/prism/rust";
-import php from "react-syntax-highlighter/dist/esm/languages/prism/php";
-import ruby from "react-syntax-highlighter/dist/esm/languages/prism/ruby";
-import yaml from "react-syntax-highlighter/dist/esm/languages/prism/yaml";
-import md from "react-syntax-highlighter/dist/esm/languages/prism/markdown";
-import docker from "react-syntax-highlighter/dist/esm/languages/prism/docker";
-import sql from "react-syntax-highlighter/dist/esm/languages/prism/sql";
-import shell from "react-syntax-highlighter/dist/esm/languages/prism/shell-session";
-
-SyntaxHighlighter.registerLanguage("javascript", js);
-SyntaxHighlighter.registerLanguage("js", js);
-SyntaxHighlighter.registerLanguage("typescript", ts);
-SyntaxHighlighter.registerLanguage("ts", ts);
-SyntaxHighlighter.registerLanguage("jsx", jsx);
-SyntaxHighlighter.registerLanguage("tsx", tsx);
-SyntaxHighlighter.registerLanguage("python", py);
-SyntaxHighlighter.registerLanguage("py", py);
-SyntaxHighlighter.registerLanguage("bash", bash);
-SyntaxHighlighter.registerLanguage("shell", bash);
-SyntaxHighlighter.registerLanguage("json", json);
-SyntaxHighlighter.registerLanguage("css", css);
-SyntaxHighlighter.registerLanguage("html", html);
-SyntaxHighlighter.registerLanguage("markup", html);
-SyntaxHighlighter.registerLanguage("go", go);
-SyntaxHighlighter.registerLanguage("rust", rust);
-SyntaxHighlighter.registerLanguage("php", php);
-SyntaxHighlighter.registerLanguage("ruby", ruby);
-SyntaxHighlighter.registerLanguage("yaml", yaml);
-SyntaxHighlighter.registerLanguage("yml", yaml);
-SyntaxHighlighter.registerLanguage("markdown", md);
-SyntaxHighlighter.registerLanguage("docker", docker);
-SyntaxHighlighter.registerLanguage("dockerfile", docker);
-SyntaxHighlighter.registerLanguage("sql", sql);
-SyntaxHighlighter.registerLanguage("shell-session", shell);
+// react-syntax-highlighter's `Prism` export already bundles every
+// refractor/prism language (via `refractor/all`) and ships as a plain
+// component, not an object with a `registerLanguage` static method.
+// Calling `.registerLanguage` on it throws at module-eval time - which
+// crashed the lazy-loaded preview chunk and tripped the ErrorBoundary.
+// No manual registration is needed; `language="js"`, `"bash"`, etc. all
+// work out of the box.
 
 const vsCodeTheme = {
   'pre[class*="language-"]': {
@@ -54,7 +17,8 @@ const vsCodeTheme = {
     padding: "16px 20px",
     fontSize: "13px",
     lineHeight: "1.65",
-    fontFamily: "'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace",
+    fontFamily:
+      "'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace",
     color: "#1e1e1e",
     tabSize: 2,
     overflow: "auto",
@@ -62,7 +26,8 @@ const vsCodeTheme = {
   'code[class*="language-"]': {
     background: "none",
     fontSize: "13px",
-    fontFamily: "'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace",
+    fontFamily:
+      "'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace",
     color: "#1e1e1e",
   },
   comment: { color: "#008000", fontStyle: "italic" },
@@ -181,7 +146,10 @@ export default function PreviewContent({
             ))}
 
           {activeTab === "code" && (
-            <div className="h-full overflow-auto" style={{ scrollbarWidth: "thin" }}>
+            <div
+              className="h-full overflow-auto"
+              style={{ scrollbarWidth: "thin" }}
+            >
               {!hasContent ? (
                 <EmptyPreview activeTab="code" />
               ) : (
@@ -189,7 +157,7 @@ export default function PreviewContent({
                   language="markdown"
                   style={vsCodeTheme}
                   showLineNumbers={true}
-                  wrapLines={false}
+                  wrapLines={true}
                   lineNumberStyle={lineNumberStyle}
                   customStyle={{
                     background: "#ffffff",
@@ -200,6 +168,8 @@ export default function PreviewContent({
                     fontSize: "13px",
                     lineHeight: "1.65",
                     fontFamily: "'SF Mono', Menlo, Consolas, monospace",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word",
                   }}
                   codeTagProps={{
                     style: {
@@ -207,6 +177,8 @@ export default function PreviewContent({
                       fontSize: "13px",
                       color: "#1e1e1e",
                       display: "block",
+                      whiteSpace: "pre-wrap",
+                      wordBreak: "break-word",
                     },
                   }}
                 >

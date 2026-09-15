@@ -11,30 +11,43 @@
   ████╗ ████║██╔══██╗██║     ██║██║ ██╔╝
   ██╔████╔██║███████║██║     ██║█████╔╝
   ██║╚██╔╝██║██╔══██║██║     ██║██╔═██╗
-  ██║ ╚═╝ ██║██║  ██║███████╗██║██║  ██╗
-  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝
+  ██║ ██═ ██║██║  ██║███████╗██║██║  ██╗
+  ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝
   What are you doing here?! you sneaky developer...
   -->
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <!--  Primary SEO  -->
   <title>Readmade - Build Stunning GitHub READMEs in Minutes</title>
   <meta name="description"
-    content="Create beautiful, professional READMEs with a visual drag‐and‐drop editor. Live preview, markdown export, and no sign‐up required. Your data stays local." />
+    content="Create beautiful, professional READMEs with a visual drag-and-drop editor. Live preview, markdown export, and no sign-up required. Your data stays local." />
   <meta name="keywords"
-    content="readme builder, markdown generator, github readme, visual readme editor, open source readme tool, readme creator, readmade" />
-  <meta name="author" content="Readmade" />
+    content="readme builder, markdown generator, github readme, visual readme editor, open source readme tool, readme creator, readmade, markdown editor, documentation generator" />
+  <meta name="author" content="Bilal Malik" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://readmade.vercel.app/" />
 
   <!--  Theme color  -->
-  <meta name="theme-color" content="#111111" />
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
 
   <!--  PWA Manifest  -->
   <link rel="manifest" href="/manifest.json" />
+
+  <!--  Apple PWA / iOS  -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Readmade" />
+  <link rel="apple-touch-icon" href="/logo.svg" />
+  <link rel="apple-touch-startup-image" href="/logo.svg" />
+
+  <!--  Microsoft PWA  -->
+  <meta name="msapplication-TileColor" content="#111111" />
+  <meta name="msapplication-TileImage" content="/logo.svg" />
+  <meta name="msapplication-config" content="/browserconfig.xml" />
 
   <!--  Open Graph  -->
   <meta property="og:type" content="website" />
@@ -45,14 +58,20 @@
   <meta property="og:url" content="https://readmade.vercel.app/" />
   <meta property="og:image"
     content="https://raw.githubusercontent.com/bilalmlkdev/readmade/main/src/assets/dashboard.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Readmade - Visual README Builder" />
 
   <!--  Twitter Card  -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@bilalmlkdev" />
+  <meta name="twitter:creator" content="@bilalmlkdev" />
   <meta name="twitter:title" content="Readmade - Build Stunning GitHub READMEs in Minutes" />
   <meta name="twitter:description"
     content="Visual drag-and-drop README builder with live preview, markdown export, and no sign-up required." />
   <meta name="twitter:image"
     content="https://raw.githubusercontent.com/bilalmlkdev/readmade/main/src/assets/dashboard.png" />
+  <meta name="twitter:image:alt" content="Readmade - Visual README Builder" />
 
   <!--  Structured data  -->
   <script type="application/ld+json">
@@ -64,20 +83,40 @@
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Any",
       "description": "Visual drag-and-drop README builder for GitHub projects. Live preview, one-click markdown export, no sign-up required.",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Bilal Malik", "url": "https://github.com/bilalmlkdev" },
+      "publisher": { "@type": "Organization", "name": "Readmade" },
+      "featureList": [
+        "Visual drag-and-drop block editor",
+        "Live markdown preview",
+        "One-click export (Markdown, HTML, Text)",
+        "Keyboard shortcuts",
+        "Template gallery",
+        "Offline support (PWA)",
+        "Auto-save to localStorage"
+      ]
     }
   </script>
 
-  <!--  Favicon  -->
+  <!--  Favicon & Icons  -->
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-  <link rel="shortcut icon" href="/logo.svg" type="image/x-icon">
+  <link rel="alternate icon" href="/logo.svg" />
+  <link rel="shortcut icon" href="/logo.svg" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/logo.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/logo.svg" />
+  <link rel="mask-icon" href="/logo.svg" color="#111111" />
 
-  <!--
-    Critical inline CSS: paints the correct background instantly, before the
+  <!--  DNS Prefetch / Preconnect  -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://api.dicebear.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!--  Critical inline CSS: paints the correct background instantly, before the
     JS bundle or external CSS has loaded. This is what actually kills the
     white-flash-on-reload - nothing in React/localStorage can fix a flash
-    that happens before React mounts.
-  -->
+    that happens before React mounts.  -->
   <style>
     html,
     body,
@@ -87,11 +126,16 @@
       background: #FAFAFA;
       color: #1a1a1a;
     }
+
+    @media (prefers-color-scheme: dark) {
+      html, body, #root {
+        background: #1a1a1a;
+        color: #FAFAFA;
+      }
+    }
   </style>
 
   <!--  Font Preconnects & Fonts  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@100..900&display=swap" />
 </head>
@@ -105,6 +149,14 @@
         navigator.serviceWorker.register("/sw.js").catch(() => {});
       });
     }
+
+    // Listen for install prompt
+    let deferredPrompt;
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Optionally show custom install button
+    });
   </script>
 </body>
 

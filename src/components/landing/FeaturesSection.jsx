@@ -1,6 +1,6 @@
 export default function FeaturesSection() {
   return (
-    <section className="px-5 py-24 lg:px-15 bg-[#FAFAFA] text-[#1a1a1a]">
+    <section className="px-15 py-24 bg-[#FAFAFA]">
       <div className="mx-auto max-w-full">
         <h3 className="m-0 max-w-2xl section-heading">
           A home for every project's story.
@@ -9,7 +9,7 @@ export default function FeaturesSection() {
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,0.5fr)] lg:gap-20">
           <div>
             <div className="mb-4 section-label">Built for developers</div>
-            <p className="m-0 text-base leading-snug font-light lg:text-lg opacity-60">
+            <p className="m-0 text-[15px] leading-relaxed text-gray-500 lg:text-base">
               Every block, every preview, every export in one place. Drag and
               drop to reorder. Choose from 11 block types — title, badges,
               description, features, installation, usage, screenshots, API,
@@ -30,7 +30,7 @@ export default function FeaturesSection() {
           </div>
           <div>
             <div className="mb-4 section-label">Built for speed</div>
-            <p className="m-0 text-base leading-snug font-light lg:text-lg opacity-60">
+            <p className="m-0 text-[15px] leading-relaxed text-gray-500 lg:text-base">
               From idea to polished README in minutes. No Markdown syntax to
               memorize. The live preview shows exactly what GitHub will render —
               badges, images, code blocks, tables, all of it. Copy to clipboard

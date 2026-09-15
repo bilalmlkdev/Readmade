@@ -1,34 +1,37 @@
 import { Link } from "react-router-dom";
-import { FileQuestion, ArrowLeft } from "lucide-react";
 import { useDocumentTitle } from "../../lib/utils.js";
 
 export default function NotFound() {
   useDocumentTitle("404 - Page not found | Readmade");
 
   return (
-    <div className="min-h-screen w-full bg-white text-black flex flex-col items-center justify-center px-6 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-[#f5f4ef] border border-black/[0.06] flex items-center justify-center mb-6">
-        <FileQuestion size={28} className="text-gray-400" />
-      </div>
-
-      <p className="text-[13px] font-semibold tracking-widest text-gray-400 uppercase mb-2">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center px-6 text-center" style={{ background: "var(--bg)" }}>
+      <p className="text-[120px] md:text-[180px] font-light tracking-tighter text-gray-200 leading-none select-none">
         404
       </p>
-      <h1 className="text-[26px] md:text-[32px] font-bold tracking-tight">
-        This page doesn't exist
+
+      <h1 className="mt-[-20px] md:mt-[-30px] text-[28px] md:text-[36px] font-normal tracking-tight text-black">
+        Page not found
       </h1>
-      <p className="mt-3 text-[14px] text-gray-500 max-w-sm leading-relaxed">
-        The page you're looking for was moved, renamed, or never existed in the
-        first place.
+
+      <p className="mt-4 text-[15px] text-gray-500 max-w-sm leading-relaxed">
+        The page you're looking for was moved, renamed, or never existed.
       </p>
 
-      <Link
-        to="/"
-        className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black text-white text-[13.5px] font-semibold hover:bg-gray-800 transition-colors shadow-lg shadow-black/10"
-      >
-        <ArrowLeft size={15} />
-        Back to Readmade
-      </Link>
+      <div className="mt-10 flex flex-col sm:flex-row items-center gap-3">
+        <Link
+          to="/"
+          className="inline-flex items-center px-6 py-3 bg-black text-white text-[14px] font-medium hover:bg-black/90 transition-colors"
+        >
+          Back to Readmade
+        </Link>
+        <Link
+          to="/app"
+          className="inline-flex items-center px-6 py-3 text-[14px] font-medium text-gray-500 hover:text-black transition-colors"
+        >
+          Open App
+        </Link>
+      </div>
     </div>
   );
 }
