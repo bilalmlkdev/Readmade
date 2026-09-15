@@ -12,12 +12,12 @@ export default function MobileNavbar({
         <button
           onClick={onBlocksClick}
           className={`flex flex-col items-center justify-center gap-0.5 w-full h-full transition-colors
-            ${activeTab === "blocks" ? "text-gray-900" : "text-gray-400 hover:text-gray-600"}`}
+            ${activeTab === "arranger" ? "text-black" : "text-gray-400 hover:text-gray-600"}`}
         >
           <div className="relative">
-            <Layers size={18} strokeWidth={activeTab === "blocks" ? 2 : 1.5} />
+            <Layers size={18} strokeWidth={activeTab === "arranger" ? 2 : 1.5} />
             {blocksCount > 0 && (
-              <span className="absolute -top-1 -right-2.5 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-gray-900 text-white text-[9px] font-semibold leading-none">
+              <span className="absolute -top-1 -right-2.5 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-black text-white text-[9px] font-semibold leading-none">
                 {blocksCount}
               </span>
             )}
@@ -28,7 +28,7 @@ export default function MobileNavbar({
         <button
           onClick={onPaletteClick}
           className={`flex flex-col items-center justify-center gap-0.5 w-full h-full transition-colors
-            ${activeTab === "palette" ? "text-gray-900" : "text-gray-400 hover:text-gray-600"}`}
+            ${activeTab === "palette" ? "text-black" : "text-gray-400 hover:text-gray-600"}`}
         >
           <LayoutGrid size={18} strokeWidth={activeTab === "palette" ? 2 : 1.5} />
           <span className="text-[10px] font-medium">Palette</span>

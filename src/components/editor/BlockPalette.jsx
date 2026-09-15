@@ -1,91 +1,204 @@
-import { BLOCK_META, BLOCK_TYPES, BLOCK_ICONS } from "../../lib/blocks.js";
+import { useState, useRef, useEffect } from "react";
 import useReadme from "../../store/useReadme.js";
 import UserAccountPreview from "../ui/UserAccountPreview.jsx";
-import Tooltip from "../ui/Tooltip.jsx";
-import logo from "/logo.svg";
-import { LayoutTemplate } from "lucide-react";
+import { BLOCK_TYPES, BLOCK_META, BLOCK_ICONS } from "../../lib/blocks.js";
+import {
+  Plus,
+  FolderClosed,
+  Palette,
+  Command,
+} from "lucide-react";
 
-const ALL_BLOCKS = [
-  BLOCK_TYPES.TITLE,
-  BLOCK_TYPES.BADGES,
-  BLOCK_TYPES.DESCRIPTION,
-  BLOCK_TYPES.FEATURES,
-  BLOCK_TYPES.INSTALLATION,
-  BLOCK_TYPES.USAGE,
-  BLOCK_TYPES.SCREENSHOTS,
-  BLOCK_TYPES.API,
-  BLOCK_TYPES.CONTRIBUTING,
-  BLOCK_TYPES.LICENSE,
-  BLOCK_TYPES.CUSTOM,
-];
+const ALL_BLOCKS = Object.values(BLOCK_TYPES).map((type) => ({
+  type,
+  label: BLOCK_META[type].label,
+  icon: BLOCK_ICONS[type],
+}));
 
-export default function BlockPalette({ onReset, onOpenTemplates }) {
-  const addBlock = useReadme((s) => s.addBlock);
+export default function BlockPalette({ onOpenTemplates }) {
+  const { history, loadFromHistory, clearAllData, addBlock } = useReadme();
+  const [showCommandMenu, setShowCommandMenu] = useState(false);
+  const commandRef = useRef(null);
+
+  useEffect(() => {
+    if (!showCommandMenu) return;
+    const handleClick = (e) => {
+      if (commandRef.current && !commandRef.current.contains(e.target)) setShowCommandMenu(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [showCommandMenu]);
+
+  const handleNew = () => {
+    clearAllData();
+  };
+
+  const formatTime = (iso) => {
+    const date = new Date(iso);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+    if (diffMins < 1) return "Just now";
+    if (diffMins < 60) return `${diffMins}m ago`;
+    if (diffHours < 24) return `${diffHours}h ago`;
+    return `${diffDays}d ago`;
+  };
 
   return (
-    <div className="w-[56px] flex-shrink-0 flex flex-col items-center bg-white border-r border-gray-200 py-3 h-full" data-block-palette data-tour="sidebar">
-      {/* Logo */}
-      <Tooltip content="Readmade" side="right">
-        <a href="/" className="flex items-center justify-center w-8 h-8 mb-3">
-          <img src={logo} alt="Readmade" className="w-8 h-8" />
+    <div
+      className="w-[340px] flex flex-col bg-white h-full border-r border-gray-200"
+      data-tour="sidebar"
+    >
+      {/* Wordmark */}
+      <div className="px-3 pt-2 pb-2 shrink-0">
+        <a href="/" className="flex items-center">
+          <span
+            className="text-[22px] text-black tracking-tight"
+            style={{
+              fontFamily: "'Instrument Serif', ui-serif, Georgia, serif",
+            }}
+          >
+            Readmade
+          </span>
         </a>
-      </Tooltip>
-
-      {/* Divider */}
-      <div className="w-5 h-px bg-gray-200 mb-2" />
-
-      {/* Block icons */}
-      <div className="flex-1 flex flex-col items-center gap-0.5 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
-        {ALL_BLOCKS.map((type) => {
-          const meta = BLOCK_META[type];
-          const IconComponent = BLOCK_ICONS[type];
-          return (
-            <Tooltip key={type} content={`Add ${meta.label}`} side="right">
-              <button
-                onClick={() => addBlock(type)}
-                className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all duration-150"
-              >
-                {IconComponent && <IconComponent size={18} />}
-              </button>
-            </Tooltip>
-          );
-        })}
       </div>
 
-      {/* Divider */}
-      <div className="w-5 h-px bg-gray-200 mt-2 mb-2" />
-
-      {/* Templates icon */}
-      {onOpenTemplates && (
-        <Tooltip content="Templates" side="right">
-          <button
-            onClick={onOpenTemplates}
-            className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all duration-150 mb-2"
-          >
-            <LayoutTemplate size={18} />
-          </button>
-        </Tooltip>
-      )}
-
-      {/* Reset icon */}
-      <Tooltip content="Reset workspace" side="right">
+      {/* New button */}
+      <div className=" shrink-0">
         <button
-          onClick={onReset}
-          className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all duration-150 mb-2"
+          onClick={handleNew}
+          className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[13.5px] font-medium text-gray-800"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-            <path d="M3 3v5h5" />
-          </svg>
+          <span className="h-6 w-6 rounded-full bg-gray-400 flex items-center justify-center">
+            <Plus size={18} />
+          </span>
+          New
         </button>
-      </Tooltip>
+      </div>
 
-      {/* User Avatar */}
-      <Tooltip content="Account" side="right">
-        <div>
-          <UserAccountPreview minimized={true} />
+      {/* All Blocks */}
+      <div className="px-1 shrink-0">
+        <div className="px-2 py-1">
+          <span className="text-[11.5px] font-medium text-gray-400">
+            All Blocks
+          </span>
         </div>
-      </Tooltip>
+        <div className="space-y-0.5">
+          {ALL_BLOCKS.map((block) => {
+            const Icon = block.icon;
+            return (
+              <button
+                key={block.type}
+                onClick={() => addBlock(block.type)}
+                className="w-full flex items-center gap-2.5 px-3 py-[7px] text-[13.5px] text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <Icon size={16} className="shrink-0" />
+                <span className="flex-1 text-left truncate">{block.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* History */}
+      <div className="flex-1 flex flex-col min-h-0">
+        <div className="px-3 pt-3 pb-1 shrink-0">
+          <span className="text-[11.5px] font-medium text-gray-400">
+            History
+          </span>
+        </div>
+
+        <div
+          className="flex-1 overflow-y-auto px-1 pb-2"
+          style={{ scrollbarWidth: "thin" }}
+        >
+          {history.length > 0 ? (
+            <div className="space-y-0.5">
+              {history.map((entry) => (
+                <div
+                  key={entry.id}
+                  className="group flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
+                  onClick={() => loadFromHistory(entry.id)}
+                >
+                  <FolderClosed size={16} className="text-gray-400 shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[13px] text-gray-700 truncate">
+                      {entry.title}
+                    </p>
+                    <p className="text-[10.5px] text-gray-400">
+                      {entry.blockCount} blocks · {formatTime(entry.timestamp)}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="px-3 py-4 text-center">
+              <p className="text-[12px] text-gray-300">No history yet</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Palettes footer link */}
+      <div className="px-2 pt-2 pb-1 border-t border-gray-100 shrink-0">
+        <button
+          onClick={onOpenTemplates}
+          className="w-full flex items-center gap-2.5 px-3 py-2 text-[13.5px] text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+        >
+          <Palette size={16} className="shrink-0" />
+          Palettes
+        </button>
+      </div>
+
+      {/* Bottom bar - user + command */}
+      <div className="border-t border-gray-100 shrink-0">
+        <div className="flex items-center justify-between px-2 py-1.5">
+          <UserAccountPreview />
+          <div className="relative" ref={commandRef}>
+            <button
+              onClick={() => setShowCommandMenu(!showCommandMenu)}
+              className={`p-1.5 rounded-lg transition-colors ${
+                showCommandMenu
+                  ? "text-black bg-gray-100"
+                  : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              <Command size={15} />
+            </button>
+
+            {showCommandMenu && (
+              <div className="absolute bottom-full right-0 mb-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg shadow-black/8 overflow-hidden z-50">
+                <div className="px-3 py-2.5 border-b border-gray-100">
+                  <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">Keyboard Shortcuts</p>
+                </div>
+                <div className="py-1.5">
+                  {[
+                    { keys: ["⌘", "S"], desc: "Download" },
+                    { keys: ["⌘", "⇧", "C"], desc: "Copy Markdown" },
+                    { keys: ["⌘", "/"], desc: "Search" },
+                    { keys: ["⌘", "⇧", "P"], desc: "Command Palette" },
+                    { keys: ["⌘", "⇧", "R"], desc: "Reset" },
+                  ].map((s) => (
+                    <div key={s.desc} className="flex items-center justify-between px-3 py-2 hover:bg-gray-50 transition-colors">
+                      <span className="text-[12px] text-gray-600">{s.desc}</span>
+                      <div className="flex items-center gap-1">
+                        {s.keys.map((k, i) => (
+                          <span key={i} className="flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded bg-gray-100 text-[10px] font-medium text-gray-500 font-mono">
+                            {k}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

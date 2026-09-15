@@ -11,10 +11,42 @@ const DEFAULT_BLOCKS = [
   "installation",
   "usage",
 ];
-// A single fixed workspace key, now that there's no login/identity system
-// to scope storage per user. Every visitor to this browser shares the one
-// workspace, same as how the app behaves today with no one logged in.
+
 export const BLOCKS_KEY = "readmade:blocks";
+export const HISTORY_KEY = "readmade:history";
+export const USER_KEY = "readmade:user";
+
+const ADJECTIVES = ["Swift", "Bright", "Calm", "Bold", "Keen", "Wise", "Kind", "Pure", "True", "Cool"];
+const NOUNS = ["Fox", "Owl", "Bear", "Hawk", "Wolf", "Deer", "Lynx", "Seal", "Crow", "Hare"];
+
+function generateUsername() {
+  const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
+  const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
+  return `${adj} ${noun}`;
+}
+
+function getStoredUser() {
+  try {
+    const stored = localStorage.getItem(USER_KEY);
+    if (stored) return JSON.parse(stored);
+    const user = { name: generateUsername(), plan: "Free" };
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    return user;
+  } catch {
+    const user = { name: generateUsername(), plan: "Free" };
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    return user;
+  }
+}
+
+function getStoredHistory() {
+  try {
+    const stored = localStorage.getItem(HISTORY_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
 
 let _dupeCounter = 0;
 
@@ -23,6 +55,8 @@ export const useReadme = create(
     (set, get) => ({
       blocks: DEFAULT_BLOCKS.map(createBlock),
       activeBlockId: null,
+      user: getStoredUser(),
+      history: getStoredHistory(),
 
       addBlock: (type, contentOverride) =>
         set((s) => ({ blocks: [...s.blocks, createBlock(type, contentOverride)] })),
@@ -31,6 +65,12 @@ export const useReadme = create(
         set((s) => ({
           blocks: s.blocks.filter((b) => b.id !== id),
           activeBlockId: s.activeBlockId === id ? null : s.activeBlockId,
+        })),
+
+      removeBlocks: (ids) =>
+        set((s) => ({
+          blocks: s.blocks.filter((b) => !ids.includes(b.id)),
+          activeBlockId: ids.includes(s.activeBlockId) ? null : s.activeBlockId,
         })),
 
       reorderBlocks: (blocks) => set({ blocks }),
@@ -59,6 +99,42 @@ export const useReadme = create(
           next.splice(idx + 1, 0, copy);
           return { blocks: next };
         }),
+
+      saveToHistory: () => {
+        const { blocks, history } = get();
+        if (blocks.length === 0) return;
+        const title = blocks.find((b) => b.type === "title")?.content?.name || "Untitled";
+        const entry = {
+          id: Date.now(),
+          title,
+          blockCount: blocks.length,
+          timestamp: new Date().toISOString(),
+          blocks: JSON.parse(JSON.stringify(blocks)),
+        };
+        const newHistory = [entry, ...history.filter((h) => h.title !== title)].slice(0, 20);
+        set({ history: newHistory });
+        try {
+          localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
+        } catch { /* storage full */ }
+      },
+
+      loadFromHistory: (id) => {
+        const { history } = get();
+        const entry = history.find((h) => h.id === id);
+        if (entry) {
+          set({ blocks: JSON.parse(JSON.stringify(entry.blocks)), activeBlockId: null });
+        }
+      },
+
+      deleteFromHistory: (id) => {
+        set((s) => {
+          const newHistory = s.history.filter((h) => h.id !== id);
+          try {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
+          } catch { /* storage full */ }
+          return { history: newHistory };
+        });
+      },
 
       resetToInitialTemplate: () => {
         set({ blocks: DEFAULT_BLOCKS.map(createBlock), activeBlockId: null });

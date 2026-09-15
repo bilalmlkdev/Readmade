@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useReadme } from "../../store/useReadme.js";
-import { X, FileText, Download, Star, Package, AppWindow, BookOpen, Users, Component, Terminal, Layers } from "lucide-react";
+import { X, FileText, Star, Package, AppWindow, BookOpen, Users, Component, Terminal, Layers } from "lucide-react";
 
 const TEMPLATES = [
   {
@@ -242,76 +242,57 @@ export default function TemplateGallery({ onClose, onApplyTemplate }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
-      <div className="bg-white rounded-xl shadow-2xl shadow-black/10 border border-gray-200 max-w-[640px] w-full mx-4 max-h-[80vh] flex flex-col animate-in zoom-in-95 slide-in-from-bottom-2 duration-200" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
-              <FileText size={18} className="text-gray-600" />
-            </div>
-            <div>
-              <h2 className="text-lg font-semibold text-gray-900">Templates</h2>
-              <p className="text-sm text-gray-500">Start with a pre-built structure</p>
-            </div>
+      <div className="bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 max-w-[560px] w-full mx-4 max-h-[80vh] flex flex-col animate-slide-up" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 shrink-0">
+          <div>
+            <h2 className="text-[15px] font-semibold text-black">Templates</h2>
+            <p className="text-[12px] text-gray-400 mt-0.5">Start with a pre-built structure</p>
           </div>
-          <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
-            <X size={20} />
+          <button onClick={onClose} className="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+            <X size={16} />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 space-y-2">
+        <div className="flex-1 overflow-y-auto p-3 space-y-1.5">
           {TEMPLATES.map((template) => {
             const Icon = template.icon || FileText;
             return (
               <button
                 key={template.id}
                 onClick={() => handleApply(template)}
-                className={`w-full p-4 rounded-xl border transition-all text-left flex items-start gap-4 ${
+                className={`w-full px-4 py-3 rounded-xl border transition-all text-left flex items-center gap-3.5 ${
                   activeId === template.id
-                    ? "border-gray-900 bg-gray-50"
-                    : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                    ? "border-black bg-gray-50"
+                    : "border-gray-100 hover:border-gray-200 hover:bg-gray-50"
                 }`}
               >
                 <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                  activeId === template.id ? "bg-gray-900" : "bg-gray-100"
+                  activeId === template.id ? "bg-black" : "bg-gray-100"
                 }`}>
-                  <Icon size={17} className={activeId === template.id ? "text-white" : "text-gray-500"} strokeWidth={2} />
+                  <Icon size={16} className={activeId === template.id ? "text-white" : "text-gray-500"} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-medium text-gray-900">{template.name}</h3>
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="text-[13px] font-medium text-gray-900">{template.name}</h3>
                     {template.starred && (
-                      <Star size={12} className="text-amber-400 fill-amber-400" />
+                      <Star size={10} className="text-amber-400 fill-amber-400" />
                     )}
                   </div>
-                  <p className="text-sm text-gray-500 mt-0.5">{template.desc}</p>
-                  <div className="mt-2 flex flex-wrap gap-1">
-                    {template.blocks.slice(0, 6).map((block, i) => {
-                      const type = typeof block === "string" ? block : block.type;
-                      return (
-                        <span key={i} className="text-[10px] px-2 py-0.5 rounded bg-gray-100 text-gray-600 font-medium">
-                          {type}
-                        </span>
-                      );
-                    })}
-                    {template.blocks.length > 6 && (
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-gray-100 text-gray-400">
-                        +{template.blocks.length - 6} more
-                      </span>
-                    )}
-                  </div>
+                  <p className="text-[12px] text-gray-400 mt-0.5">{template.desc}</p>
                 </div>
-                <Download size={16} className={activeId === template.id ? "text-gray-900" : "text-gray-300 mt-1"} />
+                <span className="text-[11px] text-gray-400 shrink-0 tabular-nums">
+                  {template.blocks.length > 0 ? `${template.blocks.length} blocks` : "Empty"}
+                </span>
               </button>
             );
           })}
         </div>
 
-        <div className="px-6 py-4 border-t border-gray-100 shrink-0">
+        <div className="px-5 py-3 border-t border-gray-100 shrink-0">
           <button
             onClick={() => { clearAllData(); onClose(); }}
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-gray-600 font-medium hover:bg-gray-50 hover:border-gray-300 transition-colors flex items-center justify-center gap-2"
+            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-[13px] font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-colors"
           >
-            <FileText size={14} className="text-gray-400" />
             Start with blank
           </button>
         </div>
