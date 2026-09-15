@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { AlertTriangle } from "lucide-react";
 
 export default function ResetConfirmationModal({
   isOpen,
@@ -63,7 +62,7 @@ export default function ResetConfirmationModal({
   return (
     <div
       onClick={onCancel}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[3px] animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[2px]"
     >
       <div
         ref={dialogRef}
@@ -72,30 +71,26 @@ export default function ResetConfirmationModal({
         aria-modal="true"
         aria-labelledby="reset-modal-title"
         aria-describedby="reset-modal-description"
-        className="bg-white rounded-2xl shadow-2xl shadow-black/20 border border-black/[0.06] max-w-[380px] w-full mx-4 p-6 animate-in zoom-in-95 slide-in-from-bottom-2 duration-200 outline-none"
+        className="bg-white rounded-xl shadow-2xl shadow-black/10 border border-gray-200 max-w-[360px] w-full mx-4 p-5 outline-none"
       >
-        <div className="w-11 h-11 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center mb-4">
-          <AlertTriangle className="w-5 h-5 text-black" />
-        </div>
-
-        <h3 id="reset-modal-title" className="text-[17px] font-semibold text-gray-900 mb-1.5 tracking-tight">
+        <h3 id="reset-modal-title" className="text-[15px] font-semibold text-gray-900 mb-1.5">
           Reset workspace?
         </h3>
-        <p id="reset-modal-description" className="text-gray-500 text-[13px] leading-relaxed mb-6">
+        <p id="reset-modal-description" className="text-gray-500 text-[13px] leading-relaxed mb-5">
           This clears every block and setting. You'll start over with a fresh
-          README - this can't be undone.
+          README — this can't be undone.
         </p>
 
         <div className="flex gap-2">
           <button
             onClick={onCancel}
-            className="flex-1 px-4 py-2.5 text-[13px] font-medium text-gray-600! bg-gray-100! hover:bg-gray-200! rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300"
+            className="flex-1 px-4 py-2 text-[13px] font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={onConfirm}
-            className="flex-1 px-4 py-2.5 text-[13px] font-medium text-white! bg-black! hover:bg-gray-800! rounded-xl transition-colors shadow-sm shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+            className="flex-1 px-4 py-2 text-[13px] font-medium text-white bg-gray-900 hover:bg-gray-800 rounded-lg transition-colors"
           >
             Reset
           </button>

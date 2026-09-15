@@ -46,7 +46,7 @@ export default class ErrorBoundary extends Component {
           <div className="mt-8 flex items-center gap-3">
             <button
               onClick={this.handleReload}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black text-white! text-[13.5px] font-semibold hover:bg-gray-800 transition-colors shadow-lg shadow-black/10"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black text-white text-[13.5px] font-semibold hover:bg-gray-800 transition-colors shadow-lg shadow-black/10"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M23 4v6h-6" />
@@ -58,7 +58,7 @@ export default class ErrorBoundary extends Component {
             </button>
             <Link
               to="/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 text-[13.5px] font-semibold text-gray-800! hover:bg-gray-50 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 text-[13.5px] font-semibold text-gray-800 hover:bg-gray-50 transition-colors"
             >
               Back to Readmade
             </Link>

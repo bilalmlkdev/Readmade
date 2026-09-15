@@ -14,7 +14,7 @@ const DEFAULT_BLOCKS = [
 // A single fixed workspace key, now that there's no login/identity system
 // to scope storage per user. Every visitor to this browser shares the one
 // workspace, same as how the app behaves today with no one logged in.
-const BLOCKS_KEY = "readmade:blocks";
+export const BLOCKS_KEY = "readmade:blocks";
 
 let _dupeCounter = 0;
 

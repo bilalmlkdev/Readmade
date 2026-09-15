@@ -7,32 +7,32 @@
 }
 
 :root {
-  /* --bg: #ffffff; */
-  --bg: #FCFCFC;
-  --surface: #f7f7f5;
-  --border: #e5e5e2;
+  --bg: #FAFAFA;
+  --surface: #f5f5f5;
+  --border: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.14);
-  --text: #111111;
+  --text: #1a1a1a;
   --text-muted: #6b7280;
   --font-main: "Inter", sans-serif;
   --accent: #111111;
-  --accent-bg: #f5f5f4;
+  --accent-bg: rgba(0, 0, 0, 0.05);
   --radius: 6px;
 
-  --background: #ffffff;
-  --foreground: #111111;
+  --background: #FAFAFA;
+  --foreground: #1a1a1a;
   --card: #ffffff;
-  --card-foreground: #111111;
+  --card-foreground: #1a1a1a;
   --primary: #111111;
   --primary-foreground: #ffffff;
-  --muted: #f7f7f5;
+  --muted: #f5f5f5;
   --muted-foreground: #6b7280;
-  --accent-2: #f5f5f4;
-  --accent-2-foreground: #111111;
+  --accent-2: rgba(0, 0, 0, 0.05);
+  --accent-2-foreground: #1a1a1a;
 }
 
 @theme inline {
   --font-display: "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-archivo: "Inter", sans-serif;
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -51,7 +51,13 @@
   margin-inline: auto;
   width: 100%;
   max-width: 90rem;
-  padding-inline: 1.5rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .landing-container {
+    padding-inline: 3.75rem;
+  }
 }
 
 html {
@@ -105,6 +111,100 @@ body,
   color: var(--accent);
 }
 
+/* Landing page section label */
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.35;
+}
+
+/* Landing page section heading */
+.section-heading {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  max-width: 36rem;
+}
+
+@media (min-width: 1024px) {
+  .section-heading {
+    font-size: 1.5rem;
+  }
+}
+
+/* Landing page body text */
+.section-body {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  font-weight: 300;
+  opacity: 0.6;
+  max-width: 36rem;
+}
+
+@media (min-width: 1024px) {
+  .section-body {
+    font-size: 1rem;
+  }
+}
+
+/* Code block styling */
+.code-block {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+}
+
+/* Arrow link */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.arrow-link:hover {
+  opacity: 1;
+}
+
+.arrow-link svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  transition: transform 0.2s;
+}
+
+.arrow-link:hover svg {
+  transform: translateX(2px);
+}
+
+/* Feature grid item */
+.feature-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.feature-item:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Footer wordmark */
+.footer-wordmark {
+  font-size: 18vw;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+  opacity: 0.08;
+  user-select: none;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #1a1a1a;
+}
+
+/* Markdown preview */
 .markdown-preview {
   color: #1a1a1a;
   font-size: 14.5px;
@@ -181,30 +281,32 @@ body,
 }
 
 .markdown-preview code {
-  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  font-size: 12px;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
+  font-family: 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  font-size: 12.5px;
+  background: #f0f0f0;
+  border: 1px solid #e0e0e0;
   border-radius: 4px;
   padding: 1px 5px;
-  color: #1e293b;
+  color: #1e1e1e;
 }
 
 .markdown-preview pre {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: #f6f8fa;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 14px 16px;
+  padding: 16px;
   overflow-x: auto;
-  margin: 10px 0;
+  margin: 12px 0;
 }
 
 .markdown-preview pre code {
   background: none;
   border: none;
   padding: 0;
-  color: #1e293b;
-  font-size: 12px;
+  color: #1e1e1e;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre;
 }
 
 .markdown-preview hr {
@@ -306,15 +408,6 @@ body,
   text-align: center;
   font-family: monospace;
   font-size: 12px;
-}
-
-.code-view-wrapper {
-  background: #ffffff;
-}
-
-.code-view-wrapper pre {
-  max-width: 100% !important;
-  background: #ffffff !important;
 }
 
 .react-syntax-highlighter-line-number {

@@ -31,7 +31,10 @@
   <link rel="canonical" href="https://readmade.vercel.app/" />
 
   <!--  Theme color  -->
-  <meta name="theme-color" content="#f5f4ef" />
+  <meta name="theme-color" content="#111111" />
+
+  <!--  PWA Manifest  -->
+  <link rel="manifest" href="/manifest.json" />
 
   <!--  Open Graph  -->
   <meta property="og:type" content="website" />
@@ -66,8 +69,8 @@
   </script>
 
   <!--  Favicon  -->
-  <link rel="icon" type="image/svg+xml" href="./src/assets/favicon.svg" />
-  <link rel="shortcut icon" href="./src/assets/favicon.svg" type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="shortcut icon" href="/logo.svg" type="image/x-icon">
 
   <!--
     Critical inline CSS: paints the correct background instantly, before the
@@ -81,7 +84,8 @@
     #root {
       height: 100%;
       margin: 0;
-      background: #f5f4ef;
+      background: #FAFAFA;
+      color: #1a1a1a;
     }
   </style>
 
@@ -95,6 +99,13 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch(() => {});
+      });
+    }
+  </script>
 </body>
 
 </html>

@@ -1,11 +1,10 @@
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import BlockPalette from "./components/editor/BlockPalette.jsx";
 import SortableBlockList from "./components/editor/SortableBlockList.jsx";
 import ResetConfirmationModal from "./components/ui/ResetConfirmationModal.jsx";
 import ErrorBoundary from "./components/ui/ErrorBoundary.jsx";
 import MobileDrawer from "./components/app/MobileDrawer.jsx";
 import MobileNavbar from "./components/app/MobileNavbar.jsx";
-import CenterBarHeader from "./components/app/CenterBarHeader.jsx";
 import PreviewFallback from "./components/app/PreviewFallback.jsx";
 import useReadme from "./store/useReadme.js";
 import { useDocumentTitle } from "./lib/utils.js";
@@ -13,9 +12,10 @@ import { useDocumentTitle } from "./lib/utils.js";
 const MarkdownPreview = lazy(() => import("./components/preview/MarkdownPreview"));
 const OnboardingTour = lazy(() => import("./components/ui/OnboardingTour"));
 
+const CENTER_WIDTH = 460;
+
 export default function Home() {
   const { blocks, clearAllData, resetToInitialTemplate } = useReadme();
-  const tourRef = useRef();
   useDocumentTitle("Readmade - Build your README");
 
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -55,10 +55,6 @@ export default function Home() {
     setMobileActiveTab(null);
   };
 
-  const handleRestartTour = () => {
-    if (tourRef.current) tourRef.current.restart();
-  };
-
   const handleResetConfirmed = () => {
     setShowResetConfirm(false);
     clearAllData();
@@ -68,32 +64,24 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen bg-white">
       <div className="flex flex-1 min-h-0">
-        <div className="hidden md:flex border-r border-gray-200">
-          <BlockPalette />
+        <div className="hidden md:flex flex-shrink-0 h-full">
+          <BlockPalette onReset={() => setShowResetConfirm(true)} />
         </div>
 
-        <main className="hidden md:flex w-[41rem] shrink-0 flex-col min-h-0 bg-white">
-          <CenterBarHeader
-            onReset={() => setShowResetConfirm(true)}
-            onRestartTour={handleRestartTour}
-          />
-          <div className="flex-1 overflow-y-auto">
-            <SortableBlockList />
-          </div>
+        <main
+          className="hidden md:flex shrink-0 flex-col min-h-0 bg-white border-r border-gray-200"
+          style={{ width: CENTER_WIDTH }}
+          data-tour="blocks"
+        >
+          <SortableBlockList />
         </main>
 
-        <div className="hidden md:block w-[1px] bg-gray-200 relative hover:bg-black/20 transition-colors">
-          <div className="absolute top-1/2 -translate-y-1/2 h-6 w-2 rounded-full -left-[3px] bg-gray-300 shadow-sm" />
-        </div>
-
-        <div className="flex-1 flex flex-col min-h-0 overflow-hidden bg-white pb-16 md:pb-0 markdown-preview-container">
-          <div className="flex-1 overflow-y-auto">
-            <ErrorBoundary>
-              <Suspense fallback={<PreviewFallback />}>
-                <MarkdownPreview />
-              </Suspense>
-            </ErrorBoundary>
-          </div>
+        <div className="flex-1 flex flex-col min-h-0 overflow-hidden bg-white pb-16 md:pb-0" data-tour="preview">
+          <ErrorBoundary>
+            <Suspense fallback={<PreviewFallback />}>
+              <MarkdownPreview />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </div>
 
@@ -104,35 +92,14 @@ export default function Home() {
         activeTab={mobileActiveTab}
       />
 
-      <MobileDrawer
-        open={paletteOpen}
-        onClose={handleClosePalette}
-        title="Block palette"
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-            overflowY: "auto",
-          }}
-        >
-          <BlockPalette />
+      <MobileDrawer open={paletteOpen} onClose={handleClosePalette} title="Block palette">
+        <div className="flex flex-col h-full overflow-y-auto">
+          <BlockPalette onReset={() => setShowResetConfirm(true)} />
         </div>
       </MobileDrawer>
 
-      <MobileDrawer
-        open={blocksOpen}
-        onClose={handleCloseBlocks}
-        title="Blocks"
-      >
-        <div className="flex flex-col h-full">
-          <CenterBarHeader
-            onReset={() => setShowResetConfirm(true)}
-            onRestartTour={handleRestartTour}
-          />
-          <SortableBlockList />
-        </div>
+      <MobileDrawer open={blocksOpen} onClose={handleCloseBlocks} title="Blocks">
+        <SortableBlockList />
       </MobileDrawer>
 
       <ResetConfirmationModal
@@ -142,7 +109,7 @@ export default function Home() {
       />
 
       <Suspense fallback={null}>
-        <OnboardingTour ref={tourRef} />
+        <OnboardingTour />
       </Suspense>
     </div>
   );

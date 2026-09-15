@@ -1,9 +1,119 @@
 import { FileWarning } from "lucide-react";
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import markdownLang from "react-syntax-highlighter/dist/esm/languages/prism/markdown";
-import EmptyCanvas from "../ui/EmptyCanvas.jsx";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import EmptyPreview from "../ui/EmptyPreview.jsx";
 
-SyntaxHighlighter.registerLanguage("markdown", markdownLang);
+import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
+import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
+import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
+import tsx from "react-syntax-highlighter/dist/esm/languages/prism/tsx";
+import py from "react-syntax-highlighter/dist/esm/languages/prism/python";
+import bash from "react-syntax-highlighter/dist/esm/languages/prism/bash";
+import json from "react-syntax-highlighter/dist/esm/languages/prism/json";
+import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
+import html from "react-syntax-highlighter/dist/esm/languages/prism/markup";
+import go from "react-syntax-highlighter/dist/esm/languages/prism/go";
+import rust from "react-syntax-highlighter/dist/esm/languages/prism/rust";
+import php from "react-syntax-highlighter/dist/esm/languages/prism/php";
+import ruby from "react-syntax-highlighter/dist/esm/languages/prism/ruby";
+import yaml from "react-syntax-highlighter/dist/esm/languages/prism/yaml";
+import md from "react-syntax-highlighter/dist/esm/languages/prism/markdown";
+import docker from "react-syntax-highlighter/dist/esm/languages/prism/docker";
+import sql from "react-syntax-highlighter/dist/esm/languages/prism/sql";
+import shell from "react-syntax-highlighter/dist/esm/languages/prism/shell-session";
+
+SyntaxHighlighter.registerLanguage("javascript", js);
+SyntaxHighlighter.registerLanguage("js", js);
+SyntaxHighlighter.registerLanguage("typescript", ts);
+SyntaxHighlighter.registerLanguage("ts", ts);
+SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("tsx", tsx);
+SyntaxHighlighter.registerLanguage("python", py);
+SyntaxHighlighter.registerLanguage("py", py);
+SyntaxHighlighter.registerLanguage("bash", bash);
+SyntaxHighlighter.registerLanguage("shell", bash);
+SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("css", css);
+SyntaxHighlighter.registerLanguage("html", html);
+SyntaxHighlighter.registerLanguage("markup", html);
+SyntaxHighlighter.registerLanguage("go", go);
+SyntaxHighlighter.registerLanguage("rust", rust);
+SyntaxHighlighter.registerLanguage("php", php);
+SyntaxHighlighter.registerLanguage("ruby", ruby);
+SyntaxHighlighter.registerLanguage("yaml", yaml);
+SyntaxHighlighter.registerLanguage("yml", yaml);
+SyntaxHighlighter.registerLanguage("markdown", md);
+SyntaxHighlighter.registerLanguage("docker", docker);
+SyntaxHighlighter.registerLanguage("dockerfile", docker);
+SyntaxHighlighter.registerLanguage("sql", sql);
+SyntaxHighlighter.registerLanguage("shell-session", shell);
+
+const vsCodeTheme = {
+  'pre[class*="language-"]': {
+    background: "#ffffff",
+    margin: 0,
+    padding: "16px 20px",
+    fontSize: "13px",
+    lineHeight: "1.65",
+    fontFamily: "'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace",
+    color: "#1e1e1e",
+    tabSize: 2,
+    overflow: "auto",
+  },
+  'code[class*="language-"]': {
+    background: "none",
+    fontSize: "13px",
+    fontFamily: "'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace",
+    color: "#1e1e1e",
+  },
+  comment: { color: "#008000", fontStyle: "italic" },
+  prolog: { color: "#008000", fontStyle: "italic" },
+  doctype: { color: "#008000", fontStyle: "italic" },
+  cdata: { color: "#008000", fontStyle: "italic" },
+  punctuation: { color: "#383a42" },
+  namespace: { opacity: 0.7 },
+  property: { color: "#005cc5" },
+  tag: { color: "#808080" },
+  boolean: { color: "#005cc5" },
+  number: { color: "#005cc5" },
+  constant: { color: "#005cc5" },
+  symbol: { color: "#005cc5" },
+  deleted: { color: "#a31515" },
+  selector: { color: "#800000" },
+  "attr-name": { color: "#e45649" },
+  string: { color: "#0451a5" },
+  char: { color: "#0451a5" },
+  builtin: { color: "#005cc5" },
+  inserted: { color: "#008000" },
+  operator: { color: "#383a42" },
+  entity: { color: "#383a42", cursor: "help" },
+  url: { color: "#0451a5" },
+  atrule: { color: "#800000" },
+  "attr-value": { color: "#0451a5" },
+  keyword: { color: "#af00db" },
+  function: { color: "#795e26" },
+  "class-name": { color: "#267f99" },
+  regex: { color: "#800000" },
+  important: { color: "#af00db", fontWeight: "bold" },
+  variable: { color: "#e45649" },
+  bold: { fontWeight: "bold" },
+  italic: { fontStyle: "italic" },
+  "template-string": { color: "#0451a5" },
+  "template-punctuation": { color: "#af00db" },
+  parameter: { color: "#e45649" },
+  "type-annotation": { color: "#267f99" },
+  decorator: { color: "#795e26" },
+};
+
+const lineNumberStyle = {
+  display: "inline-block",
+  minWidth: "2.5em",
+  paddingRight: "1.5em",
+  textAlign: "right",
+  color: "#bfc4ca",
+  userSelect: "none",
+  fontSize: "12px",
+  fontFamily: "'SF Mono', Menlo, Consolas, monospace",
+};
 
 export default function PreviewContent({
   blocks,
@@ -12,12 +122,13 @@ export default function PreviewContent({
   html,
   validScreenshots,
   screenshotsKey,
-  codeTheme,
 }) {
+  const hasContent = raw?.trim();
+
   return (
     <div className="flex-1 min-h-full py-0! flex flex-col overflow-hidden bg-white relative">
       {blocks.length === 0 ? (
-        <EmptyCanvas />
+        <EmptyPreview activeTab={activeTab} />
       ) : (
         <div
           className="flex-1 h-full overflow-y-auto"
@@ -36,7 +147,7 @@ export default function PreviewContent({
                     <FileWarning size={12} />
                   </span>
                   <div>
-                    <p className="text-[11px]  text-gray-500">
+                    <p className="text-[11px] text-gray-500">
                       Screenshots block has no valid URLs yet
                     </p>
                     <p className="text-[10px] text-gray-400 mt-0.5">
@@ -49,7 +160,7 @@ export default function PreviewContent({
           {activeTab === "preview" && validScreenshots.length > 0 && (
             <div className="mx-5 mt-4 px-3 py-2 rounded-lg bg-gray-50 border border-gray-200 flex items-center gap-2">
               <span className="text-black text-[11px]">✓</span>
-              <p className="text-[10px]  text-gray-500">
+              <p className="text-[10px] text-gray-500">
                 {validScreenshots.length} screenshot
                 {validScreenshots.length > 1 ? "s" : ""} loaded
               </p>
@@ -57,10 +168,8 @@ export default function PreviewContent({
           )}
 
           {activeTab === "preview" &&
-            (!raw?.trim() ? (
-              <div className="text-center text-[12px]  text py-10">
-                No content to preview
-              </div>
+            (!hasContent ? (
+              <EmptyPreview activeTab="preview" />
             ) : (
               <div className="px-3 py-6 max-w-full mx-auto">
                 <div
@@ -72,51 +181,38 @@ export default function PreviewContent({
             ))}
 
           {activeTab === "code" && (
-            <div className="flex flex-col h-full">
-              <div className="flex-1 overflow-auto relative code-view-wrapper" style={{ scrollbarWidth: "none" }}>
+            <div className="h-full overflow-auto" style={{ scrollbarWidth: "thin" }}>
+              {!hasContent ? (
+                <EmptyPreview activeTab="code" />
+              ) : (
                 <SyntaxHighlighter
                   language="markdown"
-                  style={codeTheme}
+                  style={vsCodeTheme}
                   showLineNumbers={true}
-                  wrapLines={true}
-                  wrapLongLines={true}
-                  lineNumberStyle={{
-                    minWidth: "2.5em",
-                    paddingRight: "1.25em",
-                    paddingLeft: "1em",
-                    color: "#c9c4c9",
-                    userSelect: "none",
-                    fontSize: "12px",
-                    fontFamily: "ui-monospace, 'SF Mono', Menlo, Consolas, monospace",
-                  }}
+                  wrapLines={false}
+                  lineNumberStyle={lineNumberStyle}
                   customStyle={{
                     background: "#ffffff",
                     margin: 0,
                     borderRadius: 0,
+                    padding: "16px 0",
                     minHeight: "100%",
-                    fontSize: "12.5px",
-                    lineHeight: "1.75",
-                    fontFamily: "ui-monospace, 'SF Mono', Menlo, Consolas, monospace",
-                    whiteSpace: "pre-wrap",
-                    wordBreak: "break-word",
-                    overflowWrap: "break-word",
+                    fontSize: "13px",
+                    lineHeight: "1.65",
+                    fontFamily: "'SF Mono', Menlo, Consolas, monospace",
                   }}
                   codeTagProps={{
                     style: {
-                      fontFamily: "ui-monospace, 'SF Mono', Menlo, Consolas, monospace",
-                      fontSize: "12.5px",
-                      color: "#111111",
-                      whiteSpace: "pre-wrap",
-                      wordBreak: "break-word",
-                      overflowWrap: "break-word",
+                      fontFamily: "'SF Mono', Menlo, Consolas, monospace",
+                      fontSize: "13px",
+                      color: "#1e1e1e",
                       display: "block",
-                      padding: "14px 16px 18px",
                     },
                   }}
                 >
-                  {raw || "# Start adding blocks to generate your README"}
+                  {raw}
                 </SyntaxHighlighter>
-              </div>
+              )}
             </div>
           )}
         </div>

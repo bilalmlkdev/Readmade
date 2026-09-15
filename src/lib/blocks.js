@@ -59,7 +59,7 @@ export const BLOCK_ICONS = {
 const DEFAULTS = {
   title: {
     name: "My Awesome Project",
-    tagline: "A magical tool for building beautiful READMEs in minutes ✨",
+    tagline: "A magical tool for building beautiful READMEs in minutes",
   },
   badges: {
     badges: [
@@ -90,11 +90,11 @@ const DEFAULTS = {
   },
   features: {
     items: [
-      "🚀 Visual block editor – no markdown headaches",
-      "👁️ Live preview as you build",
-      "📦 One‑click copy or download as README.md",
-      "🎨 Dark & clean interface",
-      "🔒 Works completely offline – your data stays local",
+      "Visual block editor — no markdown headaches",
+      "Live preview as you build",
+      "One-click copy or download as README.md",
+      "Clean, minimal interface",
+      "Works completely offline — your data stays local",
     ],
   },
   installation: {
