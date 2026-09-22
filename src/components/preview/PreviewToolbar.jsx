@@ -95,8 +95,10 @@ export default function PreviewToolbar({
   onCopy,
   onDownload,
   raw,
+  fileName = "README",
 }) {
   const [downloadFormat, setDownloadFormat] = useState("md");
+  const baseName = (fileName || "README").replace(/\.(md|txt|html)$/i, "") || "README";
 
   const handleExport = (format) => {
     setDownloadFormat(format);
@@ -109,7 +111,7 @@ export default function PreviewToolbar({
   const downloadAsTxt = (content) => {
     const a = Object.assign(document.createElement("a"), {
       href: URL.createObjectURL(new Blob([content], { type: "text/plain" })),
-      download: "README.txt",
+      download: `${baseName}.txt`,
     });
     document.body.appendChild(a);
     a.click();
@@ -123,7 +125,7 @@ export default function PreviewToolbar({
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>README</title>
+  <title>${baseName}</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #1a1a1a; }
     code { background: #f0f0f0; padding: 0.125rem 0.375rem; border-radius: 4px; font-family: 'SF Mono', monospace; }
@@ -137,7 +139,7 @@ export default function PreviewToolbar({
 </html>`;
     const a = Object.assign(document.createElement("a"), {
       href: URL.createObjectURL(new Blob([html], { type: "text/html" })),
-      download: "README.html",
+      download: `${baseName}.html`,
     });
     document.body.appendChild(a);
     a.click();
@@ -167,8 +169,8 @@ export default function PreviewToolbar({
             </button>
           ))}
         </div>
-        <span className="text-[13px] text-gray-400 hidden sm:block">
-          README <span className="text-gray-300">·</span>{" "}
+        <span className="text-[13px] text-gray-400 hidden sm:block truncate max-w-[140px]">
+          {baseName} <span className="text-gray-300">·</span>{" "}
           {activeTab === "preview" ? "Preview" : "Code"}
         </span>
       </div>

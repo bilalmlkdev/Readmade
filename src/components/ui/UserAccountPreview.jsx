@@ -231,7 +231,7 @@ export default function UserAccountPreview({ minimized = false }) {
   return (
     <div
       ref={ref}
-      className="relative w-full bg-white px-2 py-1.5 flex items-center gap-2.5 flex-shrink-0"
+      className="relative flex-1 min-w-0 bg-white rounded-lg px-2 py-1.5 flex items-center gap-2.5"
     >
       {trigger}
       {editing ? (

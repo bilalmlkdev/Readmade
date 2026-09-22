@@ -18,17 +18,25 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { BLOCK_META, BLOCK_ICONS, BLOCK_TYPES } from "../../lib/blocks.js";
 import useReadme from "../../store/useReadme.js";
-import { Search, Trash2, GripVertical, Check, ChevronDown, Edit2, X } from "lucide-react";
+import { Search, Trash2, GripVertical, Maximize2, ChevronDown, X } from "lucide-react";
 
 export default function BlockArranger() {
-  const { blocks, reorderBlocks, removeBlocks, clearAllData, updateBlock, activeBlockId, setActiveBlock } = useReadme();
+  const {
+    blocks,
+    reorderBlocks,
+    updateBlock,
+    activeBlockId,
+    setActiveBlock,
+    settings,
+    updateSettings,
+    expandedId,
+    toggleExpanded,
+  } = useReadme();
   const [activeId, setActiveId] = useState(null);
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const [selectedIds, setSelectedIds] = useState([]);
-  const [showTrashMenu, setShowTrashMenu] = useState(false);
   const [editingBlock, setEditingBlock] = useState(null);
-  const trashRef = useRef(null);
+  const [settingsOpen, setSettingsOpen] = useState(true);
   const searchInputRef = useRef(null);
 
   const sensors = useSensors(
@@ -39,15 +47,6 @@ export default function BlockArranger() {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
-
-  useEffect(() => {
-    if (!showTrashMenu) return;
-    const handleClick = (e) => {
-      if (trashRef.current && !trashRef.current.contains(e.target)) setShowTrashMenu(false);
-    };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [showTrashMenu]);
 
   useEffect(() => {
     if (showSearch && searchInputRef.current) {
@@ -74,32 +73,6 @@ export default function BlockArranger() {
     }
   }
 
-  function toggleSelect(id) {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    );
-  }
-
-  function enterSelectMode() {
-    setShowTrashMenu(false);
-    setSelectedIds([]);
-  }
-
-  function deleteAll() {
-    setShowTrashMenu(false);
-    clearAllData();
-  }
-
-  function deleteSelected() {
-    if (selectedIds.length === 0) return;
-    removeBlocks(selectedIds);
-    setSelectedIds([]);
-  }
-
-  function exitSelectMode() {
-    setSelectedIds([]);
-  }
-
   function handleEditBlock(block) {
     setEditingBlock(block);
   }
@@ -116,17 +89,67 @@ export default function BlockArranger() {
   const activeBlock = blocks.find((b) => b.id === activeId);
   const activeMeta = activeBlock ? BLOCK_META[activeBlock.type] : null;
   const activeIcon = activeBlock ? BLOCK_ICONS[activeBlock.type] : null;
-  const isSelectMode = selectedIds.length > 0;
 
   return (
-    <div className="w-[380px] flex flex-col bg-[#FAFAFB] border border-gray-200 h-full rounded-lg overflow-hidden" data-tour="blocks">
+    <div
+      className="w-[380px] flex flex-col bg-[#FAFAFB] border border-gray-200 h-full rounded-lg overflow-hidden"
+      data-tour="blocks"
+    >
+      {/* README Settings */}
+      <div className="shrink-0 border-b border-gray-200">
+        <button
+          onClick={() => setSettingsOpen(!settingsOpen)}
+          className="w-full flex items-center justify-between px-3 py-3"
+        >
+          <span className="text-[14px] font-medium text-black">README Settings</span>
+          <ChevronDown
+            size={15}
+            className={`text-gray-400 transition-transform ${settingsOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+        {settingsOpen && (
+          <div className="pb-3 space-y-2.5 animate-slide-down">
+            <div className="grid grid-cols-[100px_1fr] gap-2 items-center">
+              <label className="text-[12px] text-gray-500 text-right">README Name</label>
+              <input
+                type="text"
+                value={settings.name}
+                onChange={(e) => updateSettings({ name: e.target.value })}
+                placeholder="README"
+                className="w-full px-3 py-1.5 text-[13px] bg-white border border-gray-200 rounded-lg placeholder:text-gray-400 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-black"
+              />
+            </div>
+            <div className="grid grid-cols-[85px_1fr] gap-2 items-center">
+              <label className="text-[12px] text-gray-500 text-right">Description</label>
+              <input
+                type="text"
+                value={settings.description}
+                onChange={(e) => updateSettings({ description: e.target.value })}
+                placeholder="Short summary"
+                className="w-full px-3 py-1.5 text-[13px] bg-white border border-gray-200 rounded-lg placeholder:text-gray-400 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-black"
+              />
+            </div>
+            <div className="grid grid-cols-[60px_1fr] gap-2 items-center">
+              <label className="text-[12px] text-gray-500 text-right">Author</label>
+              <input
+                type="text"
+                value={settings.author}
+                onChange={(e) => updateSettings({ author: e.target.value })}
+                placeholder="Your name"
+                className="w-full px-3 py-1.5 text-[13px] bg-white border border-gray-200 rounded-lg placeholder:text-gray-400 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-black"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Header */}
-      <div className=" px-3 pt-4 pb-3 border-b border-gray-200 shrink-0 bg-white">
-        <div className="flex items-center justify-between mb-3">
-          <div>
+      <div className=" px-3 py-2.5 border-b border-gray-200 shrink-0">
+        <div className="flex items-center justify-between">
+          <div className="flex flex-row gap-2">
             <h2 className="text-[14px] font-semibold text-black">Blocks</h2>
-            <p className="text-[11px] text-gray-400 mt-0.5">
-              {blocks.length} {blocks.length === 1 ? "block" : "blocks"}
+            <p className="text-xs text-black mt-0.5">
+              ({blocks.length} {blocks.length === 1 ? "block" : "blocks"})
             </p>
           </div>
 
@@ -142,48 +165,13 @@ export default function BlockArranger() {
             >
               <Search size={14} />
             </button>
-
-            {/* Trash dropdown */}
-            <div className="relative" ref={trashRef}>
-              <button
-                onClick={() => setShowTrashMenu(!showTrashMenu)}
-                disabled={blocks.length === 0}
-                className="flex items-center gap-1 px-2 py-1.5 text-[12px] font-medium text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-40"
-              >
-                <Trash2 size={14} />
-                <ChevronDown size={12} className={`transition-transform ${showTrashMenu ? "rotate-180" : ""}`} />
-              </button>
-
-              {showTrashMenu && (
-                <div className="absolute top-full right-0 mt-1 w-44 bg-white border border-gray-200 rounded-lg shadow-lg shadow-black/5 overflow-hidden z-50">
-                  <button
-                    onClick={enterSelectMode}
-                    disabled={blocks.length === 0}
-                    className="w-full flex items-center gap-2 px-3 py-2.5 text-[12px] font-medium text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-40"
-                  >
-                    <Check size={13} className="text-gray-400" />
-                    Select
-                  </button>
-                  <div className="h-px bg-gray-100" />
-                  <button
-                    onClick={deleteAll}
-                    disabled={blocks.length === 0}
-                    className="w-full flex items-center gap-2 px-3 py-2.5 text-[12px] font-medium text-red-600 hover:bg-red-50 transition-colors disabled:opacity-40"
-                  >
-                    <Trash2 size={13} />
-                    Delete All
-                  </button>
-                </div>
-              )}
-            </div>
           </div>
         </div>
 
         {/* Search input - collapsible */}
         {showSearch && (
-          <div className="relative animate-slide-down">
+          <div className="relative animate-slide-down mt-2">
             <div className="flex items-center gap-2">
-              <Search size={14} className="text-gray-400 shrink-0" />
               <input
                 ref={searchInputRef}
                 type="text"
@@ -193,7 +181,10 @@ export default function BlockArranger() {
                 className="flex-1 pl-2 pr-3 py-2 text-[13px] bg-gray-100 border border-gray-200 rounded-lg placeholder:text-gray-400 focus:outline-none focus:border-gray-300 focus:bg-white transition-colors"
               />
               <button
-                onClick={() => { setSearch(""); setShowSearch(false); }}
+                onClick={() => {
+                  setSearch("");
+                  setShowSearch(false);
+                }}
                 className="text-gray-400 hover:text-gray-600 transition-colors shrink-0"
               >
                 <X size={14} />
@@ -204,14 +195,19 @@ export default function BlockArranger() {
       </div>
 
       {/* Block list */}
-      <div className="flex-1 overflow-y-auto  py-3" style={{ scrollbarWidth: "thin" }}>
+      <div
+        className="flex-1 overflow-y-auto relative py-3"
+        style={{ scrollbarWidth: "thin" }}
+      >
         {filteredBlocks.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-[13px] text-gray-400">
+          <div className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 py-12 w-full">
+            <p className="text-base text-black font-medium">
               {search ? "No blocks match" : "No blocks yet"}
             </p>
-            <p className="text-[11px] text-gray-300 mt-1">
-              {search ? "Try a different search" : "Add blocks from the left panel"}
+            <p className="text-sm text-gray-600 mt-1 max-w-[80%] mx-auto">
+              {search
+                ? "Try a different search"
+                : "Click a block type on the left, or use Templates to start from a ready-made form."}
             </p>
           </div>
         ) : (
@@ -225,17 +221,20 @@ export default function BlockArranger() {
               items={filteredBlocks.map((b) => b.id)}
               strategy={verticalListSortingStrategy}
             >
-              <div className="space-y-0.5">
+              <div className="space-y-0.5 px-3">
                 {filteredBlocks.map((block, index) => (
                   <SortableBlockItem
                     key={block.id}
                     block={block}
                     index={index}
-                    isSelected={selectedIds.includes(block.id)}
-                    onToggleSelect={() => toggleSelect(block.id)}
                     isActive={activeBlockId === block.id}
-                    onActive={() => setActiveBlock(activeBlockId === block.id ? null : block.id)}
-                    isSelectMode={isSelectMode}
+                    onActive={() =>
+                      setActiveBlock(
+                        activeBlockId === block.id ? null : block.id,
+                      )
+                    }
+                    isExpanded={expandedId === block.id}
+                    onToggleExpand={() => toggleExpanded(block.id)}
                     onEdit={() => handleEditBlock(block)}
                   />
                 ))}
@@ -260,33 +259,6 @@ export default function BlockArranger() {
         )}
       </div>
 
-      {/* Bottom action bar - shows when items are selected */}
-      {isSelectMode && (
-        <div className="px-5 py-3 border-t border-gray-200 bg-white shrink-0">
-          <div className="flex items-center justify-between">
-            <span className="text-[12px] text-gray-500">
-              {selectedIds.length} selected
-            </span>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={exitSelectMode}
-                className="px-3 py-1.5 text-[12px] font-medium text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={deleteSelected}
-                disabled={selectedIds.length === 0}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-white bg-black hover:bg-black/90 disabled:bg-gray-300 rounded-lg transition-colors"
-              >
-                <Trash2 size={12} />
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Edit Block Modal */}
       {editingBlock && (
         <EditBlockModal
@@ -299,7 +271,7 @@ export default function BlockArranger() {
   );
 }
 
-function SortableBlockItem({ block, index, isSelected, onToggleSelect, isActive, onActive, isSelectMode, onEdit }) {
+function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onToggleExpand, onEdit }) {
   const {
     attributes,
     listeners,
@@ -309,7 +281,7 @@ function SortableBlockItem({ block, index, isSelected, onToggleSelect, isActive,
     isDragging,
   } = useSortable({ id: block.id });
 
-  const { removeBlock } = useReadme();
+  const { removeBlock, updateBlock } = useReadme();
   const meta = BLOCK_META[block.type];
   const IconComponent = BLOCK_ICONS[block.type];
 
@@ -328,23 +300,20 @@ function SortableBlockItem({ block, index, isSelected, onToggleSelect, isActive,
     <div
       ref={setNodeRef}
       style={style}
-      className={`flex items-center gap-2 px-2 py-2  transition-all group ${
-        isActive
-          ? "bg-white shadow-sm ring-1 ring-black/5"
+      className={`rounded-lg transition-all group bg-white border border-gray-200 shadow-xs overflow-hidden ${
+        isActive || isExpanded
+          ? "bg-white"
           : "hover:bg-white/80"
-      } ${isDragging ? "z-50 shadow-lg" : ""}`}
-      onClick={isSelectMode ? onToggleSelect : onActive}
+      } ${isDragging ? "z-50 shadow-xs" : ""}`}
     >
-      {/* Checkbox or drag handle */}
-      {isSelectMode ? (
-        <div className={`w-5 h-5 rounded-md border-[1.5px] flex items-center justify-center shrink-0 transition-all ${
-          isSelected
-            ? "bg-black border-black"
-            : "border-gray-300 hover:border-gray-400"
-        }`}>
-          {isSelected && <Check size={11} className="text-white" strokeWidth={2.5} />}
-        </div>
-      ) : (
+      <div
+        className="flex items-center gap-2 px-2 py-2.5 cursor-pointer"
+        onClick={() => {
+          onToggleExpand();
+          onActive();
+        }}
+      >
+        {/* Drag handle */}
         <div
           {...attributes}
           {...listeners}
@@ -353,34 +322,32 @@ function SortableBlockItem({ block, index, isSelected, onToggleSelect, isActive,
         >
           <GripVertical size={14} />
         </div>
-      )}
 
-      {/* Icon */}
-      {IconComponent && (
-        <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 shrink-0">
-          <IconComponent size={14} className="text-gray-500" />
+        {/* Icon */}
+        {IconComponent && (
+          <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 shrink-0">
+            <IconComponent size={15} className="text-gray-500" />
+          </div>
+        )}
+
+        {/* Label + subtitle */}
+        <div className="flex-1 min-w-0">
+          <span className="text-sm font-medium text-gray-800 block truncate leading-tight">
+            {meta?.label}
+          </span>
+          <span className="text-[11px] text-black/60 font-medium block truncate">
+            {block.content?.name || block.content?.text?.slice(0, 30) || `Block ${index + 1}`}
+          </span>
         </div>
-      )}
 
-      {/* Label + subtitle */}
-      <div className="flex-1 min-w-0">
-        <span className="text-[13px] font-medium text-gray-800 block truncate leading-tight">
-          {meta?.label}
-        </span>
-        <span className="text-[11px] text-gray-400 block truncate">
-          {block.content?.name || block.content?.text?.slice(0, 30) || `Block ${index + 1}`}
-        </span>
-      </div>
-
-      {/* Actions */}
-      {!isSelectMode && (
+        {/* Actions */}
         <div className="flex items-center gap-0.5 shrink-0">
           <button
             onClick={(e) => { e.stopPropagation(); onEdit(); }}
             className="p-1.5 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
-            title="Edit"
+            title="Open in popup"
           >
-            <Edit2 size={13} />
+            <Maximize2 size={13} />
           </button>
           <button
             onClick={handleDelete}
@@ -389,10 +356,44 @@ function SortableBlockItem({ block, index, isSelected, onToggleSelect, isActive,
           >
             <Trash2 size={13} />
           </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); onToggleExpand(); }}
+            className="p-1.5 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
+            title={isExpanded ? "Collapse" : "Expand"}
+          >
+            <ChevronDown
+              size={14}
+              className={`transition-transform ${isExpanded ? "rotate-180" : ""}`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* Expanded editor */}
+      {isExpanded && (
+        <div
+          className="border-t border-gray-100 bg-white px-3 py-3"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <InlineBlockEditor key={block.id} block={block} updateBlock={updateBlock} />
         </div>
       )}
     </div>
   );
+}
+
+function InlineBlockEditor({ block, updateBlock }) {
+  const [content, setContent] = useState(() => JSON.parse(JSON.stringify(block.content)));
+
+  function setAndSave(action) {
+    setContent((prev) => {
+      const next = typeof action === "function" ? action(prev) : action;
+      updateBlock(block.id, next);
+      return next;
+    });
+  }
+
+  return <EditBlockFields block={block} content={content} setContent={setAndSave} />;
 }
 
 function EditBlockModal({ block, onClose, onSave }) {
@@ -400,6 +401,59 @@ function EditBlockModal({ block, onClose, onSave }) {
 
   const meta = BLOCK_META[block.type];
 
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 animate-fade-in" onClick={onClose}>
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-xl overflow-hidden animate-slide-up" onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            {BLOCK_ICONS[block.type] && (() => {
+              const Icon = BLOCK_ICONS[block.type];
+              return (
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 shrink-0">
+                  <Icon size={16} className="text-gray-600" />
+                </div>
+              );
+            })()}
+            <div>
+              <h3 className="text-[16px] font-semibold text-black">{meta?.label}</h3>
+              <p className="text-[12px] text-gray-400">Edit block content</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-5 max-h-[60vh] overflow-y-auto">
+          <EditBlockFields block={block} content={content} setContent={setContent} />
+        </div>
+
+        {/* Footer */}
+        <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-gray-100 bg-gray-50">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-[13px] font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => onSave(block.id, content)}
+            className="px-4 py-2 text-[13px] font-medium text-white bg-black hover:bg-black/90 rounded-lg transition-colors"
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EditBlockFields({ block, content, setContent }) {
   function handleChange(key, value) {
     setContent((prev) => ({ ...prev, [key]: value }));
   }
@@ -423,8 +477,8 @@ function EditBlockModal({ block, onClose, onSave }) {
     setContent((prev) => ({ ...prev, [arrKey]: [...prev[arrKey], defaultItem] }));
   }
 
-  const renderFields = () => {
-    switch (block.type) {
+  return (() => {
+  switch (block.type) {
       case BLOCK_TYPES.TITLE:
         return (
           <div className="space-y-3">
@@ -836,56 +890,5 @@ function EditBlockModal({ block, onClose, onSave }) {
       default:
         return <p className="text-gray-500 text-[13px]">No editable fields for this block type.</p>;
     }
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 animate-fade-in" onClick={onClose}>
-      <div className="w-full max-w-lg bg-white rounded-xl shadow-xl overflow-hidden animate-slide-up" onClick={(e) => e.stopPropagation()}>
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-          <div className="flex items-center gap-3">
-            {BLOCK_ICONS[block.type] && (() => {
-              const Icon = BLOCK_ICONS[block.type];
-              return (
-                <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 shrink-0">
-                  <Icon size={16} className="text-gray-600" />
-                </div>
-              );
-            })()}
-            <div>
-              <h3 className="text-[16px] font-semibold text-black">{meta?.label}</h3>
-              <p className="text-[12px] text-gray-400">Edit block content</p>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <X size={18} />
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="p-5 max-h-[60vh] overflow-y-auto">
-          {renderFields()}
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-gray-100 bg-gray-50">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-[13px] font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={() => onSave(block.id, content)}
-            className="px-4 py-2 text-[13px] font-medium text-white bg-black hover:bg-black/90 rounded-lg transition-colors"
-          >
-            Save Changes
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+  })();
 }

@@ -55,22 +55,45 @@ export const useReadme = create(
     (set, get) => ({
       blocks: DEFAULT_BLOCKS.map(createBlock),
       activeBlockId: null,
+      expandedId: null,
+      settings: {
+        name: "README",
+        description: "",
+        author: "",
+      },
       user: getStoredUser(),
       history: getStoredHistory(),
 
-      addBlock: (type, contentOverride) =>
-        set((s) => ({ blocks: [...s.blocks, createBlock(type, contentOverride)] })),
+      updateSettings: (patch) =>
+        set((s) => ({ settings: { ...s.settings, ...patch } })),
+
+      toggleExpanded: (id) =>
+        set((s) => ({ expandedId: s.expandedId === id ? null : id })),
+
+      expandBlock: (id) => set({ expandedId: id }),
+
+      addBlock: (type, contentOverride) => {
+        const block = createBlock(type, contentOverride);
+        set((s) => ({
+          blocks: [...s.blocks, block],
+          expandedId: block.id,
+          activeBlockId: block.id,
+        }));
+        return block;
+      },
 
       removeBlock: (id) =>
         set((s) => ({
           blocks: s.blocks.filter((b) => b.id !== id),
           activeBlockId: s.activeBlockId === id ? null : s.activeBlockId,
+          expandedId: s.expandedId === id ? null : s.expandedId,
         })),
 
       removeBlocks: (ids) =>
         set((s) => ({
           blocks: s.blocks.filter((b) => !ids.includes(b.id)),
           activeBlockId: ids.includes(s.activeBlockId) ? null : s.activeBlockId,
+          expandedId: ids.includes(s.expandedId) ? null : s.expandedId,
         })),
 
       reorderBlocks: (blocks) => set({ blocks }),
@@ -122,7 +145,11 @@ export const useReadme = create(
         const { history } = get();
         const entry = history.find((h) => h.id === id);
         if (entry) {
-          set({ blocks: JSON.parse(JSON.stringify(entry.blocks)), activeBlockId: null });
+          set({
+            blocks: JSON.parse(JSON.stringify(entry.blocks)),
+            activeBlockId: null,
+            expandedId: null,
+          });
         }
       },
 
@@ -137,11 +164,15 @@ export const useReadme = create(
       },
 
       resetToInitialTemplate: () => {
-        set({ blocks: DEFAULT_BLOCKS.map(createBlock), activeBlockId: null });
+        set({
+          blocks: DEFAULT_BLOCKS.map(createBlock),
+          activeBlockId: null,
+          expandedId: null,
+        });
       },
 
       clearAllData: () => {
-        set({ blocks: [], activeBlockId: null });
+        set({ blocks: [], activeBlockId: null, expandedId: null });
       },
     }),
     {
@@ -154,6 +185,7 @@ export const useReadme = create(
       partialize: (state) => ({
         blocks: state.blocks,
         activeBlockId: state.activeBlockId,
+        settings: state.settings,
       }),
     },
   ),

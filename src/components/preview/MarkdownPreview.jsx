@@ -45,6 +45,7 @@ function parseMarkdown(raw) {
 
 export default function MarkdownPreview() {
   const blocks = useReadme((s) => s.blocks);
+  const settings = useReadme((s) => s.settings);
   const [activeTab, setActiveTab] = useState("preview");
   const [html, setHtml] = useState("");
   const [copied, setCopied] = useState(false);
@@ -93,16 +94,17 @@ export default function MarkdownPreview() {
   }, [raw]);
 
   const downloadReadme = useCallback(() => {
+    const baseName = (settings?.name || "README").replace(/\.md$/i, "") || "README";
     const a = Object.assign(document.createElement("a"), {
       href: URL.createObjectURL(new Blob([raw], { type: "text/markdown" })),
-      download: "README.md",
+      download: `${baseName}.md`,
     });
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     setDownloading(true);
     setTimeout(() => setDownloading(false), 2000);
-  }, [raw]);
+  }, [raw, settings?.name]);
 
   useEffect(() => {
     function handleDownload() { downloadReadme(); }
@@ -131,6 +133,7 @@ export default function MarkdownPreview() {
         onDownload={downloadReadme}
         raw={raw}
         blocks={blocks}
+        fileName={settings?.name || "README"}
       />
       <PreviewContent
         blocks={blocks}
