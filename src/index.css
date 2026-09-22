@@ -13,7 +13,7 @@
   --border-strong: rgba(0, 0, 0, 0.14);
   --text: #1a1a1a;
   --text-muted: #6b7280;
-  --font-main: "Inter", sans-serif;
+  --font-main: "Space Grotesk", sans-serif;
   --accent: #111111;
   --accent-bg: rgba(0, 0, 0, 0.05);
   --radius: 6px;
@@ -31,8 +31,7 @@
 }
 
 @theme inline {
-  --font-display: "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-archivo: "Inter", sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -227,7 +226,7 @@ body,
 }
 
 .markdown-preview h2 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 19px;
   font-weight: 700;
   color: #000;

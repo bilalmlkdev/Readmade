@@ -48,18 +48,13 @@ export default function BlockPalette({ onOpenTemplates }) {
 
   return (
     <div
-      className="w-[340px] flex flex-col bg-white h-full border-r border-gray-200"
+      className="w-[340px] flex flex-col bg-[#FAFAFB] h-full border border-gray-200 rounded-lg overflow-hidden"
       data-tour="sidebar"
     >
       {/* Wordmark */}
       <div className="px-3 pt-2 pb-2 shrink-0">
         <a href="/" className="flex items-center">
-          <span
-            className="text-[22px] text-black tracking-tight"
-            style={{
-              fontFamily: "'Instrument Serif', ui-serif, Georgia, serif",
-            }}
-          >
+          <span className="text-[22px] text-black tracking-tight">
             Readmade
           </span>
         </a>

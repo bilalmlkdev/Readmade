@@ -119,7 +119,7 @@ export default function BlockArranger() {
   const isSelectMode = selectedIds.length > 0;
 
   return (
-    <div className="w-[380px] flex flex-col bg-gray-50 border-l border-gray-200 h-full" data-tour="blocks">
+    <div className="w-[380px] flex flex-col bg-[#FAFAFB] border border-gray-200 h-full rounded-lg overflow-hidden" data-tour="blocks">
       {/* Header */}
       <div className=" px-3 pt-4 pb-3 border-b border-gray-200 shrink-0 bg-white">
         <div className="flex items-center justify-between mb-3">

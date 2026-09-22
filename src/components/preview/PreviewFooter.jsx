@@ -11,7 +11,7 @@ function StatChip({ icon, label }) {
 
 export default function PreviewFooter({ kbSize, validScreenshots, wordCount }) {
   return (
-    <div className="border-t border-gray-200 sticky bottom-0 bg-white px-3 py-2 flex items-center justify-between gap-4 text-[9px] sm:text-[10px] text-gray-500 font-bold">
+    <div className="border-t border-gray-200 sticky bottom-0 bg-[#FAFAFB] px-3 py-2 flex items-center justify-between gap-4 text-[9px] sm:text-[10px] text-gray-500 font-bold">
       <div className="flex items-center w-full gap-4 sm:gap-9">
         <div className="flex items-center gap-1.5">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

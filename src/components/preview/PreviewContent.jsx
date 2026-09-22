@@ -91,7 +91,7 @@ export default function PreviewContent({
   const hasContent = raw?.trim();
 
   return (
-    <div className="flex-1 min-h-full py-0! flex flex-col overflow-hidden bg-white relative">
+    <div className="flex-1 min-h-full py-0! flex flex-col overflow-hidden bg-[#FAFAFB] relative">
       {blocks.length === 0 ? (
         <EmptyPreview activeTab={activeTab} />
       ) : (

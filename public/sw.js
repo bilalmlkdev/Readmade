@@ -1,4 +1,4 @@
-const CACHE_NAME = "readmade-v1";
+const CACHE_NAME = "readmade-v2";
 const PRECACHE = ["/", "/app"];
 
 self.addEventListener("install", (event) => {
