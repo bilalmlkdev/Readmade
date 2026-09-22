@@ -3,7 +3,6 @@ import useReadme from "../../store/useReadme.js";
 import UserAccountPreview from "../ui/UserAccountPreview.jsx";
 import { BLOCK_TYPES, BLOCK_META, BLOCK_ICONS } from "../../lib/blocks.js";
 import {
-  Plus,
   FolderClosed,
   Palette,
   Command,
@@ -12,11 +11,12 @@ import {
 const ALL_BLOCKS = Object.values(BLOCK_TYPES).map((type) => ({
   type,
   label: BLOCK_META[type].label,
+  desc: BLOCK_META[type].desc,
   icon: BLOCK_ICONS[type],
 }));
 
 export default function BlockPalette({ onOpenTemplates }) {
-  const { history, loadFromHistory, clearAllData, addBlock } = useReadme();
+  const { history, loadFromHistory, addBlock } = useReadme();
   const [showCommandMenu, setShowCommandMenu] = useState(false);
   const commandRef = useRef(null);
 
@@ -28,10 +28,6 @@ export default function BlockPalette({ onOpenTemplates }) {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, [showCommandMenu]);
-
-  const handleNew = () => {
-    clearAllData();
-  };
 
   const formatTime = (iso) => {
     const date = new Date(iso);
@@ -48,49 +44,74 @@ export default function BlockPalette({ onOpenTemplates }) {
 
   return (
     <div
-      className="w-[340px] flex flex-col bg-[#FAFAFB] h-full border border-gray-200 rounded-lg overflow-hidden"
+      className="w-[240px] flex flex-col bg-[#FAFAFB] h-full border border-gray-200 rounded-lg overflow-hidden"
       data-tour="sidebar"
     >
-      {/* Wordmark */}
-      <div className="px-3 pt-2 pb-2 shrink-0">
-        <a href="/" className="flex items-center">
-          <span className="text-[22px] text-black tracking-tight">
-            Readmade
-          </span>
-        </a>
-      </div>
+      {/* Header */}
+      <div className="flex items-start justify-between px-3 pt-3 pb-2 shrink-0 border-b border-gray-200">
+        <div>
+          <h2 className="text-[14px] font-semibold text-black">Field Types</h2>
+          <p className="text-[11px] text-gray-400 mt-0.5">Click to add a field</p>
+        </div>
+        <div className="relative" ref={commandRef}>
+          <button
+            onClick={() => setShowCommandMenu(!showCommandMenu)}
+            className={`p-1.5 rounded-lg transition-colors ${
+              showCommandMenu
+                ? "text-black bg-gray-100"
+                : "text-gray-500 hover:text-black hover:bg-gray-100"
+            }`}
+            title="Keyboard shortcuts"
+          >
+            <Command size={15} />
+          </button>
 
-      {/* New button */}
-      <div className=" shrink-0">
-        <button
-          onClick={handleNew}
-          className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[13.5px] font-medium text-gray-800"
-        >
-          <span className="h-6 w-6 rounded-full bg-gray-400 flex items-center justify-center">
-            <Plus size={18} />
-          </span>
-          New
-        </button>
+          {showCommandMenu && (
+            <div className="absolute top-full right-0 mt-1.5 w-64 bg-white border border-gray-200 rounded-xl shadow-lg shadow-black/8 overflow-hidden z-50">
+              <div className="px-3 py-2.5 border-b border-gray-100">
+                <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">Keyboard Shortcuts</p>
+              </div>
+              <div className="py-1.5">
+                {[
+                  { keys: ["⌘", "S"], desc: "Download" },
+                  { keys: ["⌘", "⇧", "C"], desc: "Copy Markdown" },
+                  { keys: ["⌘", "/"], desc: "Search" },
+                  { keys: ["⌘", "⇧", "P"], desc: "Command Palette" },
+                  { keys: ["⌘", "⇧", "R"], desc: "Reset" },
+                ].map((s) => (
+                  <div key={s.desc} className="flex items-center justify-between px-3 py-2 hover:bg-gray-50 transition-colors">
+                    <span className="text-[12px] text-gray-600">{s.desc}</span>
+                    <div className="flex items-center gap-1">
+                      {s.keys.map((k, i) => (
+                        <span key={i} className="flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded bg-gray-100 text-[10px] font-medium text-gray-500 font-mono">
+                          {k}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* All Blocks */}
-      <div className="px-1 shrink-0">
-        <div className="px-2 py-1">
-          <span className="text-[11.5px] font-medium text-gray-400">
-            All Blocks
-          </span>
-        </div>
-        <div className="space-y-0.5">
+      <div className="px-1 shrink-0 mt-3">
+        <div className="space-y-1">
           {ALL_BLOCKS.map((block) => {
             const Icon = block.icon;
             return (
               <button
                 key={block.type}
                 onClick={() => addBlock(block.type)}
-                className="w-full flex items-center gap-2.5 px-3 py-[7px] text-[13.5px] text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2 text-[13.5px] text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-colors"
               >
                 <Icon size={16} className="shrink-0" />
                 <span className="flex-1 text-left truncate">{block.label}</span>
+                <span className="text-[11px] text-gray-400 shrink-0">
+                  ({block.desc})
+                </span>
               </button>
             );
           })}
@@ -138,61 +159,19 @@ export default function BlockPalette({ onOpenTemplates }) {
       </div>
 
       {/* Palettes footer link */}
-      <div className="px-2 pt-2 pb-1 border-t border-gray-100 shrink-0">
+      <div className="h-10 flex items-center border-t border-gray-200 shrink-0">
         <button
           onClick={onOpenTemplates}
-          className="w-full flex items-center gap-2.5 px-3 py-2 text-[13.5px] text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+          className="w-full flex items-center gap-2.5 px-3 py-2 text-[13.5px] text-black bg-white transition-colors"
         >
           <Palette size={16} className="shrink-0" />
           Palettes
         </button>
       </div>
 
-      {/* Bottom bar - user + command */}
-      <div className="border-t border-gray-100 shrink-0">
-        <div className="flex items-center justify-between px-2 py-1.5">
-          <UserAccountPreview />
-          <div className="relative" ref={commandRef}>
-            <button
-              onClick={() => setShowCommandMenu(!showCommandMenu)}
-              className={`p-1.5 rounded-lg transition-colors ${
-                showCommandMenu
-                  ? "text-black bg-gray-100"
-                  : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              <Command size={15} />
-            </button>
-
-            {showCommandMenu && (
-              <div className="absolute bottom-full right-0 mb-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg shadow-black/8 overflow-hidden z-50">
-                <div className="px-3 py-2.5 border-b border-gray-100">
-                  <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">Keyboard Shortcuts</p>
-                </div>
-                <div className="py-1.5">
-                  {[
-                    { keys: ["⌘", "S"], desc: "Download" },
-                    { keys: ["⌘", "⇧", "C"], desc: "Copy Markdown" },
-                    { keys: ["⌘", "/"], desc: "Search" },
-                    { keys: ["⌘", "⇧", "P"], desc: "Command Palette" },
-                    { keys: ["⌘", "⇧", "R"], desc: "Reset" },
-                  ].map((s) => (
-                    <div key={s.desc} className="flex items-center justify-between px-3 py-2 hover:bg-gray-50 transition-colors">
-                      <span className="text-[12px] text-gray-600">{s.desc}</span>
-                      <div className="flex items-center gap-1">
-                        {s.keys.map((k, i) => (
-                          <span key={i} className="flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded bg-gray-100 text-[10px] font-medium text-gray-500 font-mono">
-                            {k}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+      {/* Bottom bar - user */}
+      <div className="border-t border-gray-200 shrink-0">
+        <UserAccountPreview />
       </div>
     </div>
   );

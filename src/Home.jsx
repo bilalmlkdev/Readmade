@@ -173,8 +173,8 @@ export default function Home() {
               <img src={logoIcon} />
             </span>
             <div className="leading-tight">
-              <p className="text-[14.5px] font-medium text-black">Readmade</p>
-              <p className="text-[11.5px] text-gray-400">
+              <p className="text-[14.5px] font-medium text-black mt-0.5">Readmade</p>
+              <p className="text-xs text-black/80 relative top-[1px]">
                 Build READMEs visually, copy production-ready markdown
               </p>
             </div>
