@@ -300,7 +300,7 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: block.id });
+  } = useSortable({ id: block.id, disabled: isExpanded });
 
   const { removeBlock, updateBlock, toggleBlockHidden } = useReadme();
   const meta = BLOCK_META[block.type];
@@ -340,15 +340,22 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
           onActive();
         }}
       >
-        {/* Drag handle */}
-        <div
-          {...attributes}
-          {...listeners}
-          onClick={(e) => e.stopPropagation()}
-          className="cursor-grab active:cursor-grabbing text-gray-300 hover:text-gray-500 transition-colors shrink-0"
-        >
-          <GripVertical size={14} />
-        </div>
+        {/* Drag handle — disabled while expanded so form inputs stay usable */}
+        {isExpanded ? (
+          <div className="shrink-0 text-gray-200" aria-hidden="true">
+            <GripVertical size={14} />
+          </div>
+        ) : (
+          <div
+            {...attributes}
+            {...listeners}
+            onClick={(e) => e.stopPropagation()}
+            className="cursor-grab active:cursor-grabbing text-gray-300 hover:text-gray-500 transition-colors shrink-0"
+            title="Drag to reorder"
+          >
+            <GripVertical size={14} />
+          </div>
+        )}
 
         {/* Icon */}
         {IconComponent && (
