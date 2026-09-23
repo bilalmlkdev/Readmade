@@ -10,10 +10,11 @@ export const TPL_MONOREPO = {
     blocks: [
       {
         type: "title",
-        content: {
-          name: "acme-monorepo",
-          tagline: "Shared packages for the Acme platform",
-        },
+        content: { name: "acme-monorepo" },
+      },
+      {
+        type: "tagline",
+        content: { text: "Shared packages for the Acme platform" },
       },
       {
         type: "badges",

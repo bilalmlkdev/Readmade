@@ -14,7 +14,7 @@ export function BrandLogo({ size = "md", className, withIcon = true }) {
       {withIcon && <Logo className="size-6 text-foreground" />}
       <span
         className={cn(
-          "font-semibold tracking-tight text-foreground",
+          "dancing-script font-normal tracking-normal text-foreground",
           sizes[size] ?? sizes.md,
         )}
       >

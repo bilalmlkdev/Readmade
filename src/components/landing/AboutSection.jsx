@@ -6,7 +6,10 @@ export function AboutSection() {
       <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-12 lg:gap-16">
         <div className="flex flex-col gap-4 sm:gap-6 md:col-span-5">
           <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            About Readmade
+            About{" "}
+            <span className="dancing-script font-normal normal-case tracking-normal">
+              Readmade
+            </span>
           </span>
           <h2 className="bg-linear-to-b from-foreground to-foreground/70 bg-clip-text text-3xl leading-[1.1] font-medium tracking-tighter text-transparent sm:text-4xl md:text-5xl lg:text-6xl dark:from-foreground dark:to-foreground/40">
             README

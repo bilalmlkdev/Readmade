@@ -17,7 +17,11 @@ function AppRoutes() {
   const [transitioning, setTransitioning] = useState(true);
 
   if (location.pathname !== prevPath) {
-    setTransitioning(true);
+    const docsTopicChange =
+      prevPath.startsWith("/docs") && location.pathname.startsWith("/docs");
+    if (!docsTopicChange) {
+      setTransitioning(true);
+    }
     setPrevPath(location.pathname);
   }
 

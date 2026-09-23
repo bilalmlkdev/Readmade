@@ -11,10 +11,11 @@ export const TPL_FULL = {
     blocks: [
       {
         type: "title",
-        content: {
-          name: "Readmade",
-          tagline: "The fastest way to craft beautiful READMEs",
-        },
+        content: { name: "Readmade" },
+      },
+      {
+        type: "tagline",
+        content: { text: "The fastest way to craft beautiful READMEs" },
       },
       {
         type: "badges",

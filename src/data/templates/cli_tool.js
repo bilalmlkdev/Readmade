@@ -10,10 +10,11 @@ export const TPL_CLI_TOOL = {
     blocks: [
       {
         type: "title",
-        content: {
-          name: "create-app",
-          tagline: "Scaffold new projects in seconds",
-        },
+        content: { name: "create-app" },
+      },
+      {
+        type: "tagline",
+        content: { text: "Scaffold new projects in seconds" },
       },
       {
         type: "badges",

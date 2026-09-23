@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Boxes } from "lucide-react";
+import { SiTypescript, SiTailwindcss } from "react-icons/si";
+import { FaReact } from "react-icons/fa";
 import { Header } from "./Header";
 import { HeroAnimations } from "./HeroAnimations";
 import { AppScreenshot } from "./AppScreenshot";
@@ -24,11 +26,11 @@ const transitionVariants = {
 };
 
 const techStack = [
-  { label: "Blocks", short: "Bk" },
-  { label: "Markdown", short: "Md" },
-  { label: "GitHub", short: "Gh" },
-  { label: "Local", short: "Lo" },
-  { label: "PWA", short: "Pw" },
+  { label: "React", Icon: FaReact },
+  { label: "TypeScript", Icon: SiTypescript },
+  { label: "Tailwind", Icon: SiTailwindcss },
+  { label: "DOMPurify", Icon: ShieldCheck },
+  { label: "Zustand", Icon: Boxes },
 ];
 
 function LandingBackground() {
@@ -69,7 +71,7 @@ export default function LandingPage() {
                     **
                   </div>
 
-                  <h1 className="text-4xl leading-[1.15] font-light tracking-tighter sm:text-5xl md:text-7xl lg:text-8xl">
+                  <h1 className="text-4xl leading-[1.15] font-light sm:text-5xl md:text-7xl lg:text-8xl">
                     Design Your System
                   </h1>
                   <h2 className="mt-1 text-4xl leading-[1.05] sm:mt-2 sm:text-5xl md:mt-4 md:text-7xl lg:text-8xl">
@@ -104,9 +106,9 @@ export default function LandingPage() {
                     <div
                       key={tech.label}
                       title={tech.label}
-                      className="relative z-0 flex size-10 cursor-default items-center justify-center rounded-full border-2 border-background bg-muted text-foreground hover:z-10 hover:scale-110 sm:size-12"
+                      className="relative z-0 flex size-10 cursor-default items-center justify-center rounded-full border-2 border-background bg-muted text-foreground hover:z-10 hover:scale-110 sm:size-12 transition-all"
                     >
-                      <span className="text-[10px] font-semibold sm:text-xs">{tech.short}</span>
+                      <tech.Icon className="size-4 sm:size-5" aria-hidden="true" />
                     </div>
                   ))}
                 </div>

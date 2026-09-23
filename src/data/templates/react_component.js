@@ -10,10 +10,11 @@ export const TPL_REACT_COMPONENT = {
     blocks: [
       {
         type: "title",
-        content: {
-          name: "ui-kit",
-          tagline: "Beautiful, accessible React components",
-        },
+        content: { name: "ui-kit" },
+      },
+      {
+        type: "tagline",
+        content: { text: "Beautiful, accessible React components" },
       },
       {
         type: "badges",

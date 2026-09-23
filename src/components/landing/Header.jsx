@@ -84,7 +84,7 @@ export const Header = memo(function Header() {
               href="https://github.com/bilalmlkdev/readmade"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-8.5 items-center gap-2 rounded-lg border border-border bg-background px-3 text-sm text-foreground/80 shadow-xs  outline-none hover:bg-accent hover:text-accent-foreground"
+              className="inline-flex h-8.5 items-center gap-2 px-3 text-sm bg-white border border-gray-300 shadow-xs hover:bg-gray-50 dark:bg-[#1a1a1a] dark:border-white/20 dark:hover:bg-white/10 shadow-xs outline-none rounded-lg "
             >
               <FaGithub className="size-4" />
               GitHub

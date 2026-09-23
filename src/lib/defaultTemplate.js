@@ -4,7 +4,9 @@ export function createDefaultBlocks() {
   return [
     createBlock("title", {
       name: "readmade",
-      tagline: "Visual README builder - craft production-ready markdown in minutes",
+    }),
+    createBlock("tagline", {
+      text: "Visual README builder - craft production-ready markdown in minutes",
     }),
     createBlock("badges", {
       badges: [

@@ -10,7 +10,11 @@ export const TPL_API_DOCS = {
     blocks: [
       {
         type: "title",
-        content: { name: "Acme API", tagline: "RESTful API for the Acme platform" },
+        content: { name: "Acme API" },
+      },
+      {
+        type: "tagline",
+        content: { text: "RESTful API for the Acme platform" },
       },
       {
         type: "badges",

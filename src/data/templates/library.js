@@ -10,10 +10,11 @@ export const TPL_LIBRARY = {
     blocks: [
       {
         type: "title",
-        content: {
-          name: "data-transform",
-          tagline: "Type-safe data transformation utilities",
-        },
+        content: { name: "data-transform" },
+      },
+      {
+        type: "tagline",
+        content: { text: "Type-safe data transformation utilities" },
       },
       {
         type: "badges",

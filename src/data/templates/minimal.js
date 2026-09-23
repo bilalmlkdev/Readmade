@@ -10,7 +10,11 @@ export const TPL_MINIMAL = {
     blocks: [
       {
         type: "title",
-        content: { name: "My Project", tagline: "A simple, lightweight tool" },
+        content: { name: "My Project" },
+      },
+      {
+        type: "tagline",
+        content: { text: "A simple, lightweight tool" },
       },
       {
         type: "description",

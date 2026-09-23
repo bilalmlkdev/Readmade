@@ -64,7 +64,7 @@ export default function HomeHeader({
         <div className="w-px h-6 bg-gray-200 dark:bg-white/10" />
         <div className="flex items-center gap-4">
           <div className="leading-tight">
-            <p className="text-[14.5px] font-medium text-black dark:text-white mt-0.5">
+            <p className="dancing-script text-[16.5px] font-normal text-black dark:text-white mt-0.5">
               Readmade
             </p>
           </div>

@@ -10,10 +10,11 @@ export const TPL_APPLICATION = {
     blocks: [
       {
         type: "title",
-        content: {
-          name: "NoteVault",
-          tagline: "End-to-end encrypted note taking",
-        },
+        content: { name: "NoteVault" },
+      },
+      {
+        type: "tagline",
+        content: { text: "End-to-end encrypted note taking" },
       },
       {
         type: "badges",

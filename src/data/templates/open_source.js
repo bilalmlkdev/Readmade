@@ -11,10 +11,11 @@ export const TPL_OPEN_SOURCE = {
     blocks: [
       {
         type: "title",
-        content: {
-          name: "FastQuery",
-          tagline: "Blazing fast query builder for any database",
-        },
+        content: { name: "FastQuery" },
+      },
+      {
+        type: "tagline",
+        content: { text: "Blazing fast query builder for any database" },
       },
       {
         type: "badges",

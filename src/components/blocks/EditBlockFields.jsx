@@ -1,5 +1,6 @@
 import { BLOCK_TYPES } from "../../lib/blocks.js";
 import TitleBlock from "./TitleBlock.jsx";
+import TaglineBlock from "./TaglineBlock.jsx";
 import BadgesBlock from "./BadgesBlock.jsx";
 import DescriptionBlock from "./DescriptionBlock.jsx";
 import FeaturesBlock from "./FeaturesBlock.jsx";
@@ -10,9 +11,16 @@ import ApiBlock from "./ApiBlock.jsx";
 import ContributingBlock from "./ContributingBlock.jsx";
 import LicenseBlock from "./LicenseBlock.jsx";
 import CustomBlock from "./CustomBlock.jsx";
+import RequirementsBlock from "./RequirementsBlock.jsx";
+import ChangelogBlock from "./ChangelogBlock.jsx";
+import RoadmapBlock from "./RoadmapBlock.jsx";
+import FaqBlock from "./FaqBlock.jsx";
+import CreditsBlock from "./CreditsBlock.jsx";
+import TableBlock from "./TableBlock.jsx";
 
 const BLOCK_EDITORS = {
   [BLOCK_TYPES.TITLE]: TitleBlock,
+  [BLOCK_TYPES.TAGLINE]: TaglineBlock,
   [BLOCK_TYPES.BADGES]: BadgesBlock,
   [BLOCK_TYPES.DESCRIPTION]: DescriptionBlock,
   [BLOCK_TYPES.FEATURES]: FeaturesBlock,
@@ -23,6 +31,12 @@ const BLOCK_EDITORS = {
   [BLOCK_TYPES.CONTRIBUTING]: ContributingBlock,
   [BLOCK_TYPES.LICENSE]: LicenseBlock,
   [BLOCK_TYPES.CUSTOM]: CustomBlock,
+  [BLOCK_TYPES.REQUIREMENTS]: RequirementsBlock,
+  [BLOCK_TYPES.CHANGELOG]: ChangelogBlock,
+  [BLOCK_TYPES.ROADMAP]: RoadmapBlock,
+  [BLOCK_TYPES.FAQ]: FaqBlock,
+  [BLOCK_TYPES.CREDITS]: CreditsBlock,
+  [BLOCK_TYPES.TABLE]: TableBlock,
 };
 
 export default function EditBlockFields({ block, content, setContent }) {

@@ -79,7 +79,7 @@ export default function ViewerHeader({ brand, onMenu, pages, basePath }) {
                 <Logo className="h-7 w-7 text-black dark:text-white" />
               )
             ) : null}
-            <span className="text-sm font-semibold text-gray-900 dark:text-white">
+            <span className="dancing-script text-[17px] font-normal text-gray-900 dark:text-white">
               {brand.name}
             </span>
             {brand.badge ? (

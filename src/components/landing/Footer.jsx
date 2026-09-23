@@ -71,7 +71,9 @@ export function Footer() {
 
       <div className="flex w-full items-center justify-center py-4">
         <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Readmade. All rights reserved
+          &copy; {new Date().getFullYear()}{" "}
+          <span className="dancing-script font-normal">Readmade</span>. All
+          rights reserved
         </p>
       </div>
     </footer>

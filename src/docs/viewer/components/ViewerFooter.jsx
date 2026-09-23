@@ -54,7 +54,7 @@ export default function ViewerFooter({ footer, brand, basePath }) {
                 <Logo className="h-8 w-8 text-black dark:text-white" />
               )
             ) : null}
-            <span className="text-sm font-semibold text-gray-950 dark:text-white">
+            <span className="dancing-script text-[17px] font-normal text-gray-950 dark:text-white">
               {brand.name}
             </span>
           </div>
