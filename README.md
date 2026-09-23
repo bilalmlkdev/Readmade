@@ -20,7 +20,7 @@
 </p>
 
 
-[![readmade Dashboard](https://raw.githubusercontent.com/bilalmlkdev/blobmaker/main/public/previews/dashboardDark.webp)](https://readmade.vercel.app/)
+[![readmade Dashboard](https://raw.githubusercontent.com/bilalmlkdev/readmade/main/public/previews/dashboardDark.webp)](https://readmade.vercel.app/)
 
 ## Why Readmade
 
