@@ -47,7 +47,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label={link.title}
                 className={cn(
-                  "flex size-9 items-center justify-center rounded-lg",
+                  "flex px-2.5 py-1 items-center justify-center rounded-lg",
                   "border border-border bg-muted/50",
                   "text-muted-foreground transition-all duration-200",
                   "hover:border-foreground/20 hover:bg-muted hover:text-foreground",

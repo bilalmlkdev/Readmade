@@ -84,7 +84,7 @@ export const Header = memo(function Header() {
               href="https://github.com/bilalmlkdev/readmade"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-foreground/80 shadow-xs transition-all outline-none hover:bg-accent hover:text-accent-foreground"
+              className="inline-flex h-8.5 items-center gap-2 rounded-lg border border-border bg-background px-3 text-sm text-foreground/80 shadow-xs  outline-none hover:bg-accent hover:text-accent-foreground"
             >
               <FaGithub className="size-4" />
               GitHub
@@ -93,7 +93,7 @@ export const Header = memo(function Header() {
 
           <Link
             to="/app"
-            className="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm text-primary-foreground transition hover:bg-primary/90"
+            className="inline-flex h-8 items-center justify-center gap-2 rounded-lg bg-primary px-[9px] shadow-xs text-sm text-primary-foreground transition hover:bg-primary/90"
           >
             Open App
             <ArrowRight className="size-4" />
@@ -115,7 +115,7 @@ export const Header = memo(function Header() {
             aria-controls="mobile-menu"
             aria-expanded={open}
             aria-label="Toggle menu"
-            className="inline-flex size-9 items-center justify-center rounded-md border border-border"
+            className="inline-flex size-9 items-center justify-center rounded-lg border border-border"
             onClick={() => setOpen((v) => !v)}
             type="button"
           >

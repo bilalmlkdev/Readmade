@@ -104,7 +104,7 @@ export default function LandingPage() {
                     <div
                       key={tech.label}
                       title={tech.label}
-                      className="relative z-0 flex size-10 cursor-default items-center justify-center rounded-full border-2 border-background bg-muted text-foreground transition-all hover:z-10 hover:scale-110 sm:size-12"
+                      className="relative z-0 flex size-10 cursor-default items-center justify-center rounded-full border-2 border-background bg-muted text-foreground hover:z-10 hover:scale-110 sm:size-12"
                     >
                       <span className="text-[10px] font-semibold sm:text-xs">{tech.short}</span>
                     </div>

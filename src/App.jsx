@@ -15,19 +15,18 @@ function AppRoutes() {
   const location = useLocation();
   const [prevPath, setPrevPath] = useState(location.pathname);
   const [transitioning, setTransitioning] = useState(false);
+  const [hasNavigated, setHasNavigated] = useState(false);
 
   if (location.pathname !== prevPath) {
-    const isLandingAppSwap =
-      (prevPath === "/" && location.pathname === "/app") ||
-      (prevPath === "/app" && location.pathname === "/");
-    if (isLandingAppSwap) setTransitioning(true);
+    setTransitioning(true);
     setPrevPath(location.pathname);
+    setHasNavigated(true);
   }
 
   return (
     <>
       <ErrorBoundary key={location.pathname}>
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense fallback={hasNavigated ? <LoadingSpinner /> : null}>
           <Routes location={location}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/app" element={<Home />} />

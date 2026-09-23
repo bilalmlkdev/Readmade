@@ -1,6 +1,6 @@
 export function AppScreenshot({
-  darkSrc = "/dashboard.png",
-  lightSrc = "/dashboard.png",
+  darkSrc = "/dashboardDark.png",
+  lightSrc = "/dashboardLight.png",
   alt = "Readmade app screenshot",
 }) {
   return (
@@ -10,14 +10,14 @@ export function AppScreenshot({
           alt={alt}
           width={2700}
           height={1440}
-          className="bg-background aspect-15/8 relative hidden w-full rounded-2xl object-cover dark:block"
+          className="bg-background aspect-15/8 relative hidden w-full rounded-2xl dark:block"
           src={darkSrc}
         />
         <img
           alt={alt}
           width={2700}
           height={1440}
-          className="border-border/25 aspect-15/8 relative z-2 w-full rounded-2xl border object-cover dark:hidden"
+          className="border-border/25 aspect-15/8 relative z-2 w-full rounded-2xl border dark:hidden"
           src={lightSrc}
         />
       </div>

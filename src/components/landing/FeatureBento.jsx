@@ -63,7 +63,7 @@ function BlocksVisual() {
   return (
     <>
       <div className="relative mx-auto flex size-32 items-center justify-center rounded-full border bg-background shadow-xs outline outline-border outline-offset-4">
-        <Blocks className="size-24 text-primary/70" strokeWidth={1.2} />
+        <Blocks className="size-20 text-primary/70" strokeWidth={1.2} />
         <div className="absolute inset-0 scale-120 rounded-full bg-radial from-foreground/15 via-foreground/5 to-transparent blur-xl" />
       </div>
       <div className="relative mt-8 space-y-1.5 text-center">
