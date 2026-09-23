@@ -78,6 +78,13 @@ export default function BlockPalette() {
       </div>
 
       <div className="flex-1 min-h-0" />
+
+      {!minimized && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none h-16 shrink-0 -mt-16 bg-gradient-to-t from-[#FAFAFB] via-[#FAFAFB]/85 to-transparent dark:from-[#111] dark:via-[#111]/85"
+        />
+      )}
     </div>
   );
 }
