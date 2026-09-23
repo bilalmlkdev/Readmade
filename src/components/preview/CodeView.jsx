@@ -261,8 +261,8 @@ export default function CodeView({ code, fileName = "README" }) {
         </button>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-auto">
-        <div className="min-w-full py-3 font-mono text-[13px] leading-[1.7]">
+      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+        <div className="min-w-full py-3 font-mono text-[13px] leading-[1.7] [overflow-wrap:anywhere]">
           {lines.map((line, idx) => {
             const firstType = line.tokens[0]?.type;
             const isFence =
@@ -282,10 +282,8 @@ export default function CodeView({ code, fileName = "README" }) {
                   {idx + 1}
                 </span>
                 <code
-                  className={`flex-1 min-w-0 px-4 ${
-                    line.badgeLine
-                      ? "whitespace-pre"
-                      : "whitespace-pre-wrap break-words"
+                  className={`flex-1 min-w-0 px-4 whitespace-pre-wrap ${
+                    line.badgeLine ? "break-all" : "break-words"
                   }`}
                 >
                   <HighlightedLine tokens={line.tokens} />
