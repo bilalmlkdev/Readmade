@@ -1,7 +1,7 @@
 export default function StatsSection() {
   return (
-    <section className="px-15 pt-12 pb-10 lg:pt-14 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
-      <div className="mx-auto max-w-full">
+    <section className="pt-12 pb-10 lg:pt-14 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
+      <div className="landing-container">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
             <h2 className="m-0 max-w-md section-heading">

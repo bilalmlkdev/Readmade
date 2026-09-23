@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function FeaturesSection() {
   return (
-    <section className="px-15 py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
-      <div className="mx-auto max-w-full">
+    <section className="py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
+      <div className="landing-container">
         <h3 className="m-0 max-w-2xl section-heading">
           A home for every project's story.
         </h3>

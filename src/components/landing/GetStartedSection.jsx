@@ -17,8 +17,8 @@ export default function GetStartedSection() {
   };
 
   return (
-    <section id="get-started" className="px-15 py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
-      <div className="mx-auto max-w-full">
+    <section id="get-started" className="py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
+      <div className="landing-container">
         <div className="mb-3 section-label">Get started</div>
         <h3 className="m-0 mb-10 max-w-2xl section-heading">
           Your README, in 60 seconds.

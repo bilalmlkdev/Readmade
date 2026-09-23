@@ -5,8 +5,8 @@ import { BsTwitterX } from "react-icons/bs";
 
 export default function Footer() {
   return (
-    <footer className="px-15 py-16 lg:py-20 bg-[#FAFAFA] dark:bg-[#0c0c0c] border-t border-gray-100 dark:border-white/10">
-      <div className="mx-auto max-w-full">
+    <footer className="py-16 lg:py-20 bg-[#FAFAFA] dark:bg-[#0c0c0c] border-t border-gray-100 dark:border-white/10">
+      <div className="landing-container">
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-5 lg:gap-12">
           <div className="col-span-2 md:col-span-1">
             <div className="-mx-2 mb-8">

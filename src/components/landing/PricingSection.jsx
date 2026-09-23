@@ -3,8 +3,8 @@ import { PLANS } from "../../data/plans.js";
 
 export default function PricingSection() {
   return (
-    <section className="px-15 pb-34 pt-14 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
-      <div className="mx-auto max-w-full">
+    <section className="pb-34 pt-14 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
+      <div className="landing-container">
         <div className="text-center mb-16">
           <div className="mb-3 section-label">Pricing</div>
           <h3 className="m-0 mb-4 mx-auto max-w-lg section-heading">

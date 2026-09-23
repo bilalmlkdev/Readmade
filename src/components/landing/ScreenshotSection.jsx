@@ -2,8 +2,8 @@ import dashboardImg from "/home.webp";
 
 export default function ScreenshotSection() {
   return (
-    <section className="px-15 pb-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
-      <div className="mx-auto max-w-full">
+    <section className="pb-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
+      <div className="landing-container">
         <figure className="m-0 grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-8">
           <figcaption className="order-2 m-0 flex items-end text-[13px] leading-relaxed text-gray-400 dark:text-gray-500 lg:order-1 lg:col-span-5 lg:max-w-sm">
             Your README takes shape as you build it. Every block, every edit,

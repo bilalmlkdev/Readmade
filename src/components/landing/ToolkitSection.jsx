@@ -7,8 +7,8 @@ export default function ToolkitSection() {
   ];
 
   return (
-    <section className="px-15 py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
-      <div className="mx-auto max-w-full">
+    <section className="py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
+      <div className="landing-container">
         <div className="mb-3 section-label">Full toolkit</div>
         <h3 className="m-0 mb-6 max-w-2xl section-heading">
           Everything a great README needs. Available now.

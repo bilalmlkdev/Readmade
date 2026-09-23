@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <section className="px-15 pt-28 pb-10 lg:pt-38 lg:pb-12 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
-      <div className="mx-auto max-w-full">
+    <section className="pt-28 pb-10 lg:pt-38 lg:pb-12 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
+      <div className="landing-container">
         <div className="mb-5 section-label">Readmade</div>
 
         <h1 className="m-0 max-w-3xl text-[2rem] leading-[1.1] font-normal tracking-[-0.025em] lg:text-[2.75rem] relative right-1.5">

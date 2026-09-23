@@ -5,7 +5,7 @@ import ThemeToggle from "../ui/ThemeToggle.jsx";
 export default function LandingHeader() {
   return (
     <header className="fixed top-0 right-0 left-0 z-50 bg-[#FAFAFA]/90 dark:bg-[#0c0c0c]/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 max-w-[100%] items-center justify-between px-15">
+      <div className="landing-container flex h-14 items-center justify-between">
         <Link to="/" aria-label="Readmade - home" className="flex items-center gap-2.5">
           <img src={logo} alt="Readmade" className="h-7 w-7" />
         </Link>

@@ -1,7 +1,7 @@
 export default function CommunitySection() {
   return (
-    <section className="px-15 py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
-      <div className="mx-auto max-w-full">
+    <section className="py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
+      <div className="landing-container">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
             <div className="mb-3 section-label">Open Source</div>
