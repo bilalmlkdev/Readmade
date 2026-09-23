@@ -316,7 +316,7 @@ export default function TemplateGallery({ onClose }) {
 
         {pendingTemplate && (
           <div
-            className="absolute inset-0 z-10 flex items-center justify-center bg-black/40 backdrop-blur-[2px] rounded-2xl p-4"
+            className="absolute inset-0 z-10 flex items-center justify-center bg-black/50 rounded-2xl p-4"
             onClick={handleCancel}
           >
             <div

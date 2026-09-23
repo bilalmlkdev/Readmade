@@ -2,13 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import useReadme from "../../store/useReadme.js";
 import UserAccountPreview from "../ui/UserAccountPreview.jsx";
 import { BLOCK_TYPES, BLOCK_META, BLOCK_ICONS } from "../../lib/blocks.js";
-import {
-  Command,
-  Search,
-  PanelLeftClose,
-  PanelLeftOpen,
-  X,
-} from "lucide-react";
+import { Search, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
 
 const ALL_BLOCKS = Object.values(BLOCK_TYPES).map((type) => ({
   type,
@@ -19,21 +13,10 @@ const ALL_BLOCKS = Object.values(BLOCK_TYPES).map((type) => ({
 
 export default function BlockPalette() {
   const { addBlock } = useReadme();
-  const [showCommandMenu, setShowCommandMenu] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState("");
-  const commandRef = useRef(null);
   const searchInputRef = useRef(null);
-
-  useEffect(() => {
-    if (!showCommandMenu) return;
-    const handleClick = (e) => {
-      if (commandRef.current && !commandRef.current.contains(e.target)) setShowCommandMenu(false);
-    };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [showCommandMenu]);
 
   useEffect(() => {
     if (!showSearch) return;
@@ -145,7 +128,7 @@ export default function BlockPalette() {
       {/* Spacer */}
       <div className="flex-1 min-h-0" />
 
-      {/* Bottom bar - user + search + command */}
+      {/* Bottom bar - user + search */}
       <div className="border-t border-gray-200 bg-white shrink-0">
         <div
           className={
@@ -163,64 +146,12 @@ export default function BlockPalette() {
                 <button
                   type="button"
                   onClick={() => setShowSearch(true)}
-                  className="p-1.5 rounded-lg text-gray-500 hover:text-black hover:bg-gray-100 transition-colors"
+                  className="p-1.5 relative right-1.5 top-[3px] rounded-lg text-gray-500 hover:text-black hover:bg-gray-100 transition-colors"
                   title="Search blocks"
                   aria-label="Search blocks"
                 >
                   <Search size={15} />
                 </button>
-                <div className="relative" ref={commandRef}>
-                  <button
-                    onClick={() => setShowCommandMenu(!showCommandMenu)}
-                    className={`p-1.5 rounded-lg mr-1 transition-colors ${
-                      showCommandMenu
-                        ? "text-black bg-gray-100"
-                        : "text-gray-500 hover:text-black hover:bg-gray-100"
-                    }`}
-                    title="Keyboard shortcuts"
-                    aria-label="Keyboard shortcuts"
-                  >
-                    <Command size={15} />
-                  </button>
-
-                  {showCommandMenu && (
-                    <div className="absolute bottom-full left-0 mb-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg shadow-black/8 overflow-hidden z-50">
-                      <div className="px-3 py-2.5 border-b border-gray-100">
-                        <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">
-                          Keyboard Shortcuts
-                        </p>
-                      </div>
-                      <div className="py-1.5">
-                        {[
-                          { keys: ["⌘", "S"], desc: "Download" },
-                          { keys: ["⌘", "⇧", "C"], desc: "Copy Markdown" },
-                          { keys: ["⌘", "/"], desc: "Search" },
-                          { keys: ["⌘", "⇧", "P"], desc: "Command Palette" },
-                          { keys: ["⌘", "⇧", "R"], desc: "Reset" },
-                        ].map((s) => (
-                          <div
-                            key={s.desc}
-                            className="flex items-center justify-between px-3 py-2 hover:bg-gray-50 transition-colors"
-                          >
-                            <span className="text-[12px] text-gray-600">
-                              {s.desc}
-                            </span>
-                            <div className="flex items-center gap-1">
-                              {s.keys.map((k, i) => (
-                                <span
-                                  key={i}
-                                  className="flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded bg-gray-100 text-[10px] font-medium text-gray-500 font-mono"
-                                >
-                                  {k}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
               </div>
             </>
           )}

@@ -80,7 +80,7 @@ export const useReadme = create(
           timestamp: new Date().toISOString(),
           blocks: JSON.parse(JSON.stringify(blocks)),
         };
-        const newHistory = [entry, ...history.filter((h) => h.title !== title)].slice(0, 20);
+        const newHistory = [entry, ...history.filter((h) => h.title !== title)].slice(0, 8);
         set({ history: newHistory });
         try {
           localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
@@ -97,6 +97,13 @@ export const useReadme = create(
             expandedId: null,
           });
         }
+      },
+
+      clearHistory: () => {
+        set({ history: [] });
+        try {
+          localStorage.removeItem(HISTORY_KEY);
+        } catch { /* storage unavailable */ }
       },
 
       resetToInitialTemplate: () => {

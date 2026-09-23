@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useReadme } from "../../store/useReadme.js";
-import { X, FolderClosed } from "lucide-react";
+import { X, FolderClosed, Trash2 } from "lucide-react";
 
 function formatTime(iso) {
   const date = new Date(iso);
@@ -16,8 +16,9 @@ function formatTime(iso) {
 }
 
 export default function HistoryGallery({ onClose }) {
-  const { history, loadFromHistory } = useReadme();
+  const { history, loadFromHistory, clearHistory } = useReadme();
   const [pendingEntry, setPendingEntry] = useState(null);
+  const [confirmClear, setConfirmClear] = useState(false);
 
   const handleConfirm = () => {
     if (!pendingEntry) return;
@@ -29,6 +30,16 @@ export default function HistoryGallery({ onClose }) {
   const handleCancel = (e) => {
     e?.stopPropagation?.();
     setPendingEntry(null);
+  };
+
+  const handleClearConfirm = () => {
+    clearHistory();
+    setConfirmClear(false);
+  };
+
+  const handleClearCancel = (e) => {
+    e?.stopPropagation?.();
+    setConfirmClear(false);
   };
 
   return (
@@ -47,13 +58,25 @@ export default function HistoryGallery({ onClose }) {
               Restore a previous version of your readme
             </p>
           </div>
-          <button
-            onClick={onClose}
-            className="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
-            aria-label="Close history"
-          >
-            <X size={16} />
-          </button>
+          <div className="flex items-center gap-1">
+            {history.length > 0 && (
+              <button
+                onClick={() => setConfirmClear(true)}
+                className="flex items-center gap-1.5 px-2 py-1.5 text-[12px] font-medium text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                title="Clear history"
+              >
+                <Trash2 size={13} />
+                Clear
+              </button>
+            )}
+            <button
+              onClick={onClose}
+              className="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Close history"
+            >
+              <X size={16} />
+            </button>
+          </div>
         </div>
 
         <div
@@ -95,7 +118,7 @@ export default function HistoryGallery({ onClose }) {
 
         {pendingEntry && (
           <div
-            className="absolute inset-0 z-10 flex items-center justify-center bg-black/40 backdrop-blur-[2px] rounded-2xl p-4"
+            className="absolute inset-0 z-10 flex items-center justify-center bg-black/50 rounded-2xl p-4"
             onClick={handleCancel}
           >
             <div
@@ -131,6 +154,50 @@ export default function HistoryGallery({ onClose }) {
                   className="flex-1 px-4 py-2 text-[13px] font-medium text-white bg-gray-900 hover:bg-gray-800 rounded-lg transition-colors"
                 >
                   Restore
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {confirmClear && (
+          <div
+            className="absolute inset-0 z-10 flex items-center justify-center bg-black/50 rounded-2xl p-4"
+            onClick={handleClearCancel}
+          >
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="history-clear-title"
+              aria-describedby="history-clear-desc"
+              className="bg-white rounded-xl shadow-2xl shadow-black/10 border border-gray-200 max-w-[360px] w-full p-5"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3
+                id="history-clear-title"
+                className="text-[15px] font-semibold text-gray-900 mb-1.5"
+              >
+                Clear all history?
+              </h3>
+              <p
+                id="history-clear-desc"
+                className="text-gray-500 text-[13px] leading-relaxed mb-5"
+              >
+                This permanently removes every saved version. This cannot be
+                undone.
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleClearCancel}
+                  className="flex-1 px-4 py-2 text-[13px] font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleClearConfirm}
+                  className="flex-1 px-4 py-2 text-[13px] font-medium text-white bg-gray-900 hover:bg-gray-800 rounded-lg transition-colors"
+                >
+                  Clear
                 </button>
               </div>
             </div>
