@@ -67,7 +67,7 @@ export default function ApiBlock({ content, setContent }) {
                   handleArrayChange("entries", i, "params", e.target.value)
                 }
                 className={inputMonoCls}
-                placeholder="options — object with configuration"
+                placeholder="options - object with configuration"
               />
             </div>
             <button

@@ -53,10 +53,26 @@ The editor is intentionally client-first. React renders the workspace, Zustand p
 
 The main pieces are:
 
-- `src/components/blocks` - editable documentation sections
-- `src/components/editor` - the block palette and sortable canvas
-- `src/components/preview` - Markdown and rendered-document views
+- `src/components` - UI pieces for app shell, editor, blocks, preview, landing, and dialogs
+- `src/data` - static content (templates, plans, palette lists, tour steps)
+- `src/hooks` - shared React hooks (shortcuts, autosave, focus trap, dismiss)
+- `src/lib` - pure JavaScript helpers (markdown, tokenizer, theme, export)
 - `src/store` - workspace state and browser persistence
+
+Code style rules for this repo:
+
+- Keep each source file under 180 lines - split large components into smaller files.
+- Put pure JavaScript logic in `.js` modules, not inside `.jsx` components.
+- Strip noisy comments; keep only short hint comments where intent is unclear.
+- Use simple hyphens (`-`) instead of em dashes in copy and docs.
+
+## Docs
+
+- [Contributing](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security Policy](SECURITY.md)
+- [Changelog](CHANGELOG.md)
+- [License](LICENSE)
 
 ## Privacy and storage
 
@@ -64,7 +80,7 @@ Readmade does not require an account. Workspace identity and content are stored 
 
 ## Contributing
 
-If you see a way to make project documentation easier to write or easier to read, we’d love the help. Open an issue for a substantial change, or send a focused pull request with a clear description and a passing build.
+If you see a way to make project documentation easier to write or easier to read, we would love the help. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide. Open an issue for a substantial change, or send a focused pull request with a clear description and a passing build.
 
 ```bash
 npm run lint

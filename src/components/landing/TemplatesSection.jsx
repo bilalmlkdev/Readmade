@@ -61,7 +61,7 @@ export default function TemplatesSection() {
         </h3>
         <p className="m-0 mb-16 max-w-2xl section-body">
           Pick a template, customize the content, and ship. Every template is
-          designed for a specific use case — from minimal READMEs to full
+          designed for a specific use case - from minimal READMEs to full
           API documentation.
         </p>
 

@@ -83,9 +83,9 @@ const DEFAULTS = {
   },
   features: {
     items: [
-      "First feature — what it does",
-      "Second feature — what it does",
-      "Third feature — what it does",
+      "First feature - what it does",
+      "Second feature - what it does",
+      "Third feature - what it does",
     ],
   },
   installation: {
@@ -105,7 +105,7 @@ const DEFAULTS = {
       {
         name: "init(options)",
         description: "Initialize the library with the given options.",
-        options: "options — configuration object",
+        options: "options - configuration object",
       },
     ],
   },

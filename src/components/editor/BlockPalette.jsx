@@ -1,58 +1,24 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import useReadme from "../../store/useReadme.js";
-import UserAccountPreview from "../ui/UserAccountPreview.jsx";
-import { BLOCK_TYPES, BLOCK_META, BLOCK_ICONS } from "../../lib/blocks.js";
-import { Search, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
-
-const ALL_BLOCKS = Object.values(BLOCK_TYPES).map((type) => ({
-  type,
-  label: BLOCK_META[type].label,
-  desc: BLOCK_META[type].desc,
-  icon: BLOCK_ICONS[type],
-}));
-
-const PALETTE_MIN_KEY = "readmade:paletteMinimized";
-
-function getStoredMinimized() {
-  try {
-    return localStorage.getItem(PALETTE_MIN_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
+import { ALL_BLOCKS } from "../../data/blocks.js";
+import {
+  readPaletteMinimized,
+  writePaletteMinimized,
+} from "../../data/paletteState.js";
+import PaletteHeader from "./PaletteHeader.jsx";
+import PaletteFooter from "./PaletteFooter.jsx";
+import BlockSearchPopup from "./BlockSearchPopup.jsx";
 
 export default function BlockPalette() {
   const { addBlock } = useReadme();
-  const [minimized, setMinimized] = useState(getStoredMinimized);
+  const [minimized, setMinimized] = useState(readPaletteMinimized);
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState("");
-  const searchInputRef = useRef(null);
 
   function updateMinimized(value) {
     setMinimized(value);
-    try {
-      localStorage.setItem(PALETTE_MIN_KEY, value ? "1" : "0");
-    } catch { /* storage unavailable */ }
+    writePaletteMinimized(value);
   }
-
-  useEffect(() => {
-    if (!showSearch) return;
-    if (searchInputRef.current) searchInputRef.current.focus();
-    const onKey = (e) => {
-      if (e.key === "Escape") setShowSearch(false);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [showSearch]);
-
-  const trimmedQuery = query.trim().toLowerCase();
-  const filteredBlocks = trimmedQuery
-    ? ALL_BLOCKS.filter(
-        (b) =>
-          b.label.toLowerCase().includes(trimmedQuery) ||
-          b.desc.toLowerCase().includes(trimmedQuery),
-      )
-    : ALL_BLOCKS;
 
   function handleAddFromSearch(type) {
     addBlock(type);
@@ -65,51 +31,23 @@ export default function BlockPalette() {
       className={`w-full ${minimized ? "app:w-[60px]" : "app:w-[240px]"} flex flex-col bg-[#FAFAFB] dark:bg-[#111] h-full border border-gray-200 dark:border-white/10 rounded-lg transition-[width] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]`}
       data-tour="sidebar"
     >
-      {/* Header */}
-      <div
-        className={`shrink-0 border-b border-gray-200 dark:border-white/10 ${
-          minimized ? "flex flex-col items-center gap-1 px-1.5 pt-3 pb-2" : "flex items-start justify-between gap-2 px-3 pt-3 pb-2"
-        }`}
-      >
-        {minimized ? (
-          <button
-            type="button"
-            onClick={() => updateMinimized(false)}
-            className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-            title="Expand palette"
-            aria-label="Expand palette"
-          >
-            <PanelLeftOpen size={14} />
-          </button>
-        ) : (
-          <>
-            <div className="min-w-0">
-              <h2 className="text-[14px] font-semibold text-black dark:text-white">Field Types</h2>
-              <p className="text-[11px] text-black/50 dark:text-white/50 mt-0.5">Click to add a field</p>
-            </div>
-            <button
-              type="button"
-              onClick={() => updateMinimized(true)}
-              className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors shrink-0"
-              title="Minimize palette"
-              aria-label="Minimize palette"
-            >
-              <PanelLeftClose size={14} />
-            </button>
-          </>
-        )}
-      </div>
+      <PaletteHeader
+        minimized={minimized}
+        onExpand={() => updateMinimized(false)}
+        onMinimize={() => updateMinimized(true)}
+      />
 
-      {/* All Blocks */}
       <div className={`shrink-0 mt-3 ${minimized ? "px-1.5" : "px-1"}`}>
         {!minimized && (
           <div className="px-3 pb-1 shrink-0">
             <span className="text-[11.5px] font-medium text-gray-400 dark:text-gray-500">
-             Select Blocks
+              Select Blocks
             </span>
           </div>
         )}
-        <div className={minimized ? "flex flex-col items-center gap-1" : "space-y-1"}>
+        <div
+          className={minimized ? "flex flex-col items-center gap-1" : "space-y-1"}
+        >
           {ALL_BLOCKS.map((block) => {
             const Icon = block.icon;
             if (minimized) {
@@ -142,110 +80,20 @@ export default function BlockPalette() {
         </div>
       </div>
 
-      {/* Spacer */}
       <div className="flex-1 min-h-0" />
 
-      {/* Bottom bar - user + search */}
-      <div className="border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#151515] shrink-0">
-        <div
-          className={
-            minimized
-              ? "flex items-center justify-center py-2"
-              : "flex items-center justify-between gap-2 py-1.5"
-          }
-        >
-          {minimized ? (
-            <UserAccountPreview avatarOnly />
-          ) : (
-            <>
-              <UserAccountPreview />
-              <div className="flex items-center gap-0.5 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setShowSearch(true)}
-                  className="p-1.5 relative right-1.5 top-0.5 rounded-lg text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-                  title="Search blocks"
-                  aria-label="Search blocks"
-                >
-                  <Search size={15} />
-                </button>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+      <PaletteFooter
+        minimized={minimized}
+        onOpenSearch={() => setShowSearch(true)}
+      />
 
-      {/* Search blocks popup */}
-      {showSearch && (
-        <div
-          className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-black/40 dark:bg-black/60 animate-fade-in"
-          onClick={() => setShowSearch(false)}
-        >
-          <div
-            className="w-full max-w-[420px] bg-white dark:bg-[#161616] rounded-xl shadow-xl border border-gray-200 dark:border-white/10 overflow-hidden animate-slide-up"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center gap-2 px-3 py-2.5 border-b border-gray-100 dark:border-white/10">
-              <Search size={15} className="text-gray-400 shrink-0" />
-              <input
-                ref={searchInputRef}
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search all blocks..."
-                className="flex-1 min-w-0 text-[13px] outline-none placeholder:text-gray-400 bg-transparent dark:text-white"
-                aria-label="Search blocks"
-              />
-              <button
-                type="button"
-                onClick={() => setShowSearch(false)}
-                className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors shrink-0"
-                aria-label="Close search"
-              >
-                <X size={14} />
-              </button>
-            </div>
-
-            <div
-              className="max-h-[50vh] overflow-y-auto py-1.5"
-              style={{ scrollbarWidth: "thin" }}
-            >
-              {filteredBlocks.length === 0 ? (
-                <p className="px-3 py-8 text-center text-[13px] text-gray-400">
-                  No blocks match “{query.trim()}”
-                </p>
-              ) : (
-                filteredBlocks.map((block) => {
-                  const Icon = block.icon;
-                  return (
-                    <button
-                      key={block.type}
-                      type="button"
-                      onClick={() => handleAddFromSearch(block.type)}
-                      className="w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-gray-50 transition-colors"
-                    >
-                      <span className="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 shrink-0">
-                        <Icon size={14} className="text-gray-500 dark:text-gray-400" />
-                      </span>
-                      <span className="flex-1 min-w-0">
-                        <span className="block text-[13px] font-medium text-gray-800 truncate">
-                          {block.label}
-                        </span>
-                        <span className="block text-[11px] text-gray-400 truncate">
-                          {block.desc}
-                        </span>
-                      </span>
-                      <span className="text-[11px] text-gray-300 shrink-0">
-                        Add
-                      </span>
-                    </button>
-                  );
-                })
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      <BlockSearchPopup
+        open={showSearch}
+        query={query}
+        onQueryChange={setQuery}
+        onClose={() => setShowSearch(false)}
+        onSelect={handleAddFromSearch}
+      />
     </div>
   );
 }

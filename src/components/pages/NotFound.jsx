@@ -14,20 +14,20 @@ export default function NotFound() {
         Page not found
       </h1>
 
-      <p className="mt-4 text-[15px] text-gray-500 dark:text-gray-400 max-w-sm leading-relaxed">
+      <p className="mt-4 text-base text-black dark:text-white max-w-sm leading-relaxed">
         The page you're looking for was moved, renamed, or never existed.
       </p>
 
       <div className="mt-10 flex flex-col sm:flex-row items-center gap-3">
         <Link
           to="/"
-          className="inline-flex items-center px-6 py-3 bg-black text-white text-[14px] font-medium hover:bg-black/90 transition-colors dark:bg-white dark:text-black dark:hover:bg-white/90"
+          className="inline-flex items-center px-3 py-1.5 bg-black text-white text-[14px] font-medium hover:bg-black/90 rounded-lg transition-colors dark:bg-white dark:text-black dark:hover:bg-white/90"
         >
           Back to Readmade
         </Link>
         <Link
           to="/app"
-          className="inline-flex items-center px-6 py-3 text-[14px] font-medium text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors"
+          className="inline-flex items-center px-3 py-1.5 text-[14px] font-medium text-gray-500 hover:text-black dark:text-black dark:hover:text-white transition-colors bg-gray-200 rounded-lg"
         >
           Open App
         </Link>

@@ -5,7 +5,9 @@ export function getStoredTheme() {
   try {
     const stored = localStorage.getItem(THEME_KEY);
     if (stored === "light" || stored === "dark") return stored;
-  } catch { /* storage unavailable */ }
+  } catch {
+    // storage unavailable
+  }
   return null;
 }
 
@@ -29,7 +31,9 @@ export function applyTheme(theme) {
   document.documentElement.style.colorScheme = next;
   try {
     localStorage.setItem(THEME_KEY, next);
-  } catch { /* storage unavailable */ }
+  } catch {
+    // storage unavailable
+  }
   window.dispatchEvent(new CustomEvent(THEME_EVENT, { detail: { theme: next } }));
 }
 

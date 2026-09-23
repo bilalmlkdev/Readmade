@@ -84,7 +84,9 @@ export const useReadme = create(
         set({ history: newHistory });
         try {
           localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
-        } catch { /* storage full */ }
+        } catch {
+          // storage full
+        }
       },
 
       loadFromHistory: (id) => {
@@ -103,7 +105,9 @@ export const useReadme = create(
         set({ history: [] });
         try {
           localStorage.removeItem(HISTORY_KEY);
-        } catch { /* storage unavailable */ }
+        } catch {
+          // storage unavailable
+        }
       },
 
       resetToInitialTemplate: () => {

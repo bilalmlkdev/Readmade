@@ -11,7 +11,7 @@ export default function FeaturesSection() {
             <div className="mb-4 section-label">Built for developers</div>
             <p className="m-0 text-[15px] leading-relaxed text-gray-500 dark:text-gray-400 lg:text-base">
               Every block, every preview, every export in one place. Drag and
-              drop to reorder. Choose from 11 block types — title, badges,
+              drop to reorder. Choose from 11 block types - title, badges,
               description, features, installation, usage, screenshots, API,
               contributing, license, or custom Markdown. Data stays exactly
               where it belongs: in your browser.
@@ -32,7 +32,7 @@ export default function FeaturesSection() {
             <div className="mb-4 section-label">Built for speed</div>
             <p className="m-0 text-[15px] leading-relaxed text-gray-500 dark:text-gray-400 lg:text-base">
               From idea to polished README in minutes. No Markdown syntax to
-              memorize. The live preview shows exactly what GitHub will render —
+              memorize. The live preview shows exactly what GitHub will render -
               badges, images, code blocks, tables, all of it. Copy to clipboard
               or download the file. Ship faster.
             </p>

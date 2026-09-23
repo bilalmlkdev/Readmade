@@ -251,7 +251,7 @@ body,
   color: #fafafa;
 }
 
-/* Markdown preview — GitHub / VS Code style (.markdown-body) */
+/* Markdown preview - GitHub / VS Code style (.markdown-body) */
 .markdown-body {
   color: #1f2328;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
@@ -519,7 +519,7 @@ body,
   overflow-x: auto;
 }
 
-/* Tables — GitHub style */
+/* Tables - GitHub style */
 .markdown-body table {
   display: block;
   width: max-content;
@@ -754,7 +754,7 @@ body,
   animation: slide-down 0.15s var(--ease-out-quart);
 }
 
-/* Dark theme — markdown preview */
+/* Dark theme - markdown preview */
 .dark .markdown-body {
   color: #e6edf3;
 }

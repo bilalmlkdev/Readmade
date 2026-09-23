@@ -3,21 +3,11 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
 import LoadingSpinner from "./components/ui/LoadingSpinner";
 import ErrorBoundary from "./components/ui/ErrorBoundary";
-import { BLOCKS_KEY } from "./store/useReadme.js";
+import { migrateLegacyStorage } from "./lib/migrateStorage.js";
 
 const Home = lazy(() => import("./Home"));
 const LandingPage = lazy(() => import("./components/landing/LandingPage"));
 
-function migrateLegacyStorage() {
-  if (localStorage.getItem(BLOCKS_KEY) !== null) return;
-  for (const prefix of ["readmeforge", "brikk"]) {
-    const oldValue = localStorage.getItem(`${prefix}:blocks`);
-    if (oldValue !== null) {
-      localStorage.setItem(BLOCKS_KEY, oldValue);
-      return;
-    }
-  }
-}
 migrateLegacyStorage();
 
 function AppRoutes() {

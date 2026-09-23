@@ -4,7 +4,7 @@ export function createDefaultBlocks() {
   return [
     createBlock("title", {
       name: "readmade",
-      tagline: "Visual README builder — craft production-ready markdown in minutes",
+      tagline: "Visual README builder - craft production-ready markdown in minutes",
     }),
     createBlock("badges", {
       badges: [
@@ -30,7 +30,7 @@ export function createDefaultBlocks() {
     }),
     createBlock("features", {
       items: [
-        "Visual block editor — no raw markdown wrestling",
+        "Visual block editor - no raw markdown wrestling",
         "Live preview styled like GitHub / VS Code",
         "Export to `.md`, `.txt`, or standalone `.html`",
         "Starter templates for apps, libraries, and APIs",
