@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "/logo.svg";
+import Logo from "../ui/Logo.tsx";
 import { LuGithub } from "react-icons/lu";
 import { BsTwitterX } from "react-icons/bs";
 
@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-5 lg:gap-12">
           <div className="col-span-2 md:col-span-1">
             <div className="-mx-2 mb-8">
-              <img src={logo} alt="Readmade" className="block size-10" />
+              <Logo className="block size-10 text-black dark:text-white" title="Readmade" />
             </div>
             <div className="flex items-center gap-4">
               <a

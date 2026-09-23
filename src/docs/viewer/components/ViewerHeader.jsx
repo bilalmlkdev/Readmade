@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ThemeToggle from "../../../components/ui/ThemeToggle.jsx";
+import Logo from "../../../components/ui/Logo.tsx";
 import SearchDialog from "./SearchDialog.jsx";
 import { useModK } from "../hooks/useDocsViewer.js";
 import {
@@ -72,7 +73,11 @@ export default function ViewerHeader({ brand, onMenu, pages, basePath }) {
             aria-label={`${brand.name} home`}
           >
             {brand.logo ? (
-              <img src={brand.logo} alt="" className="h-7 w-7" />
+              typeof brand.logo === "string" ? (
+                <img src={brand.logo} alt="" className="h-7 w-7" />
+              ) : (
+                <Logo className="h-7 w-7 text-black dark:text-white" />
+              )
             ) : null}
             <span className="text-sm font-semibold text-gray-900 dark:text-white">
               {brand.name}

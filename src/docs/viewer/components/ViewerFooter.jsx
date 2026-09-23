@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Logo from "../../../components/ui/Logo.tsx";
 
 function Column({ title, links, basePath }) {
   if (!links?.length) return null;
@@ -47,7 +48,11 @@ export default function ViewerFooter({ footer, brand, basePath }) {
         <div className="col-span-2 md:col-span-1">
           <div className="mb-3 flex items-center gap-2">
             {brand.logo ? (
-              <img src={brand.logo} alt="" className="h-8 w-8" />
+              typeof brand.logo === "string" ? (
+                <img src={brand.logo} alt="" className="h-8 w-8" />
+              ) : (
+                <Logo className="h-8 w-8 text-black dark:text-white" />
+              )
             ) : null}
             <span className="text-sm font-semibold text-gray-950 dark:text-white">
               {brand.name}

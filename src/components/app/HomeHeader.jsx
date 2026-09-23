@@ -2,7 +2,7 @@ import { ArrowLeft, Trash2, History } from "lucide-react";
 import { REPO_URL } from "../../lib/repo.js";
 import { formatStars } from "../../lib/formatStars.js";
 import ThemeToggle from "../ui/ThemeToggle.jsx";
-import logoIcon from "/logo.svg";
+import Logo from "../ui/Logo.tsx";
 
 export default function HomeHeader({ repoStars, onHistory, onReset }) {
   return (
@@ -16,8 +16,8 @@ export default function HomeHeader({ repoStars, onHistory, onReset }) {
         </a>
         <div className="w-px h-6 bg-gray-200 dark:bg-white/10" />
         <div className="flex items-center gap-2.5">
-          <span className="h-8 w-8 flex items-center justify-center shrink-0">
-            <img src={logoIcon} alt="" />
+          <span className="h-8 w-8 flex items-center justify-center shrink-0 text-black dark:text-white">
+            <Logo className="h-7 w-7" />
           </span>
           <div className="leading-tight">
             <p className="text-[14.5px] font-medium text-black dark:text-white mt-0.5">

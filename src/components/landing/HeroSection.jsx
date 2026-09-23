@@ -38,12 +38,15 @@ export default function HeroSection() {
         </div>
 
         <div className="mt-16">
-          <div className="overflow-hidden border border-gray-200 dark:border-white/10">
-            <video
-              src="/landing.mp4" autoPlay
-              loop
-              muted
-              playsInline
+          <div className="overflow-hidden border border-gray-200 bg-white dark:border-white/10 dark:bg-[#111]">
+            <div className="flex items-center gap-1.5 border-b border-gray-200 bg-gray-50 px-3 py-2 dark:border-white/10 dark:bg-[#161616]">
+              <span className="h-2.5 w-2.5 rounded-full bg-gray-300 dark:bg-white/20" />
+              <span className="h-2.5 w-2.5 rounded-full bg-gray-300 dark:bg-white/20" />
+              <span className="h-2.5 w-2.5 rounded-full bg-gray-300 dark:bg-white/20" />
+            </div>
+            <img
+              src="/dashboard.png"
+              alt="Readmade app screenshot"
               className="block w-full"
             />
           </div>

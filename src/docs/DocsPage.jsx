@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "/logo.svg";
 import { parseMarkdown } from "../lib/parseMarkdown.js";
 import { PAGES, DEFAULT_SLUG } from "./data/pages.js";
 import { SECTIONS } from "./data/nav.js";
@@ -8,7 +7,7 @@ import DocsViewerRoute from "./viewer/DocsViewerRoute.jsx";
 const brand = {
   name: "Readmade",
   badge: "Docs",
-  logo,
+  logo: true,
   homeTo: "/",
   homeLabel: "Home",
   cta: { to: "/app", label: "Open App" },
