@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { cn } from "../../lib/cn";
-import Logo from "../ui/Logo.tsx";
 
 const sizes = {
   sm: "text-xl",
@@ -8,10 +7,9 @@ const sizes = {
   lg: "text-3xl",
 };
 
-export function BrandLogo({ size = "md", className, withIcon = true }) {
+export function BrandLogo({ size = "md", className }) {
   return (
     <span className={cn("inline-flex select-none items-center gap-2", className)}>
-      {withIcon && <Logo className="size-6 text-foreground" />}
       <span
         className={cn(
           "dancing-script font-normal tracking-normal text-foreground",

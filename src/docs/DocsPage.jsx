@@ -7,7 +7,7 @@ import DocsViewerRoute from "./viewer/DocsViewerRoute.jsx";
 const brand = {
   name: "Readmade",
   badge: "Docs",
-  logo: true,
+  logo: null,
   homeTo: "/",
   homeLabel: "Home",
   cta: { to: "/app", label: "Open App" },
