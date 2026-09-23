@@ -1,6 +1,6 @@
 export function AppScreenshot({
-  darkSrc = "/dashboardDark.png",
-  lightSrc = "/dashboardLight.png",
+  darkSrc = "/previews/dashboardDark.webp",
+  lightSrc = "/previews/dashboardLight.webp",
   alt = "Readmade app screenshot",
 }) {
   return (
