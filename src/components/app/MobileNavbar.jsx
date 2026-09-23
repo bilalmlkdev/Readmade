@@ -11,8 +11,8 @@ export default function MobileNavbar({
       <div className="flex items-center justify-around h-14 px-4 pb-safe">
         <button
           onClick={onBlocksClick}
-          className={`flex flex-col items-center justify-center gap-0.5 w-full h-full transition-colors
-            ${activeTab === "arranger" ? "text-black dark:text-white" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"}`}
+          className={`flex flex-col items-center justify-center gap-0.5 w-full h-full 
+  ${activeTab === "arranger" ? "text-black dark:text-white" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"}`}
         >
           <div className="relative">
             <Layers size={18} strokeWidth={activeTab === "arranger" ? 2 : 1.5} />
@@ -27,8 +27,8 @@ export default function MobileNavbar({
 
         <button
           onClick={onPaletteClick}
-          className={`flex flex-col items-center justify-center gap-0.5 w-full h-full transition-colors
-            ${activeTab === "palette" ? "text-black dark:text-white" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"}`}
+          className={`flex flex-col items-center justify-center gap-0.5 w-full h-full 
+  ${activeTab === "palette" ? "text-black dark:text-white" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"}`}
         >
           <LayoutGrid size={18} strokeWidth={activeTab === "palette" ? 2 : 1.5} />
           <span className="text-[10px] font-medium">Palette</span>

@@ -18,11 +18,8 @@ export default function PaletteFooter({ minimized, onOpenSearch }) {
             <UserAccountPreview />
             <div className="flex items-center gap-0.5 shrink-0">
               <button
-                type="button"
-                onClick={onOpenSearch}
-                className="p-1.5 relative right-1.5 top-0.5 rounded-lg text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-                title="Search blocks"
-                aria-label="Search blocks"
+                type="button" onClick={onOpenSearch}
+                className="p-1.5 relative right-1.5 top-0.5 rounded-lg text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10" title="Search blocks" aria-label="Search blocks"
               >
                 <Search size={15} />
               </button>

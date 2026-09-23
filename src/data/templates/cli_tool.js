@@ -41,12 +41,7 @@ export const TPL_CLI_TOOL = {
       {
         type: "features",
         content: {
-          items: [
-            "Interactive prompts",
-            "Multiple framework support",
-            "Pre-configured ESLint + Prettier",
-            "Git initialization",
-            "First commit ready",
+          items: [ "Interactive prompts", "Multiple framework support", "Pre-configured ESLint + Prettier", "Git initialization", "First commit ready",
           ],
         },
       },
@@ -87,12 +82,7 @@ export const TPL_CLI_TOOL = {
         type: "contributing",
         content: {
           text: "Want to add a new template? We'd love your help!",
-          steps: [
-            "Fork the repo",
-            "Add template to `/templates`",
-            "Update the template registry",
-            "Test with `node bin/cli.js`",
-            "Submit PR",
+          steps: [ "Fork the repo", "Add template to `/templates`","Update the template registry","Test with `node bin/cli.js`","Submit PR",
           ],
         },
       },

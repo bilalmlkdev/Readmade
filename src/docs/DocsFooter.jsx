@@ -35,7 +35,7 @@ function LinkColumn({ title, links, internal }) {
             <li key={item.to}>
               <Link
                 to={item.to}
-                className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
               >
                 {item.label}
               </Link>
@@ -44,9 +44,7 @@ function LinkColumn({ title, links, internal }) {
             <li key={item.href}>
               <a
                 href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
               >
                 {item.label}
               </a>
@@ -71,11 +69,7 @@ export default function DocsFooter() {
             Local-first README editor. Compose, preview, and export GitHub-ready Markdown.
           </p>
           <a
-            href="https://github.com/bilalmlkdev/readmade"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex text-gray-400 transition hover:text-black dark:text-gray-500 dark:hover:text-white"
-            aria-label="GitHub"
+            href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex text-gray-400 transition hover:text-black dark:text-gray-500 dark:hover:text-white" aria-label="GitHub"
           >
             <LuGithub size={20} />
           </a>

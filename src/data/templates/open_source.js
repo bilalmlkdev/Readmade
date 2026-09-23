@@ -52,13 +52,7 @@ export const TPL_OPEN_SOURCE = {
       {
         type: "features",
         content: {
-          items: [
-            "Universal query builder for SQL databases",
-            "TypeScript-first with full generics",
-            "Chainable API",
-            "Automatic query optimization",
-            "Built-in migration support",
-            "Comprehensive documentation",
+          items: [ "Universal query builder for SQL databases", "TypeScript-first with full generics", "Chainable API", "Automatic query optimization", "Built-in migration support", "Comprehensive documentation",
           ],
         },
       },
@@ -70,7 +64,7 @@ export const TPL_OPEN_SOURCE = {
         type: "usage",
         content: {
           language: "ts",
-          code: "import { Query } from 'fastquery'\n\nconst users = await Query.from('users')\n  .where('age', '>', 18)\n  .orderBy('name')\n  .limit(10)\n  .execute()",
+          code: "import { Query } from 'fastquery'\n\nconst users = await Query.from('users')\n .where('age', '>', 18)\n .orderBy('name')\n .limit(10)\n .execute()",
         },
       },
       {
@@ -99,13 +93,7 @@ export const TPL_OPEN_SOURCE = {
         type: "contributing",
         content: {
           text: "We love contributions! Whether it's a bug report, feature request, or code contribution, we appreciate your help making FastQuery better.",
-          steps: [
-            "Read our Code of Conduct",
-            "Fork the repository",
-            "Create a feature branch",
-            "Write tests for your changes",
-            "Ensure all tests pass",
-            "Submit a pull request with a clear description",
+          steps: [ "Read our Code of Conduct", "Fork the repository", "Create a feature branch", "Write tests for your changes", "Ensure all tests pass", "Submit a pull request with a clear description",
           ],
         },
       },

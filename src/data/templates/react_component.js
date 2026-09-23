@@ -46,12 +46,7 @@ export const TPL_REACT_COMPONENT = {
       {
         type: "features",
         content: {
-          items: [
-            "30+ accessible components",
-            "TypeScript definitions included",
-            "CSS variables for easy theming",
-            "Tree-shakeable",
-            "Zero runtime CSS",
+          items: [ "30+ accessible components", "TypeScript definitions included", "CSS variables for easy theming", "Tree-shakeable", "Zero runtime CSS",
           ],
         },
       },
@@ -63,7 +58,7 @@ export const TPL_REACT_COMPONENT = {
         type: "usage",
         content: {
           language: "tsx",
-          code: "import { Button, Card, Input } from '@ui-kit/react'\nimport '@ui-kit/react/styles.css'\n\nexport function Form() {\n  return (\n    <Card>\n      <Input placeholder='Enter your name' />\n      <Button variant='primary'>Submit</Button>\n    </Card>\n  )\n}",
+          code: "import { Button, Card, Input } from '@ui-kit/react'\nimport '@ui-kit/react/styles.css'\n\nexport function Form() {\n return (\n <Card>\n <Input placeholder='Enter your name' />\n <Button variant='primary'>Submit</Button>\n </Card>\n )\n}",
         },
       },
       {
@@ -92,12 +87,7 @@ export const TPL_REACT_COMPONENT = {
         type: "contributing",
         content: {
           text: "Contributions welcome! Check our Storybook for component docs.",
-          steps: [
-            "Clone the repo",
-            "Run `npm run storybook`",
-            "Add or update components",
-            "Write stories and tests",
-            "Submit PR",
+          steps: [ "Clone the repo", "Run `npm run storybook`","Add or update components","Write stories and tests","Submit PR",
           ],
         },
       },

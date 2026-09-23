@@ -1,44 +1,8 @@
 // Deterministic guest names from a stable browser id
-const NAME_POOL = [
-  "Alex",
-  "Jordan",
-  "Sam",
-  "Casey",
-  "Riley",
-  "Morgan",
-  "Quinn",
-  "Avery",
-  "Rowan",
-  "Skyler",
-  "Reese",
-  "Hayden",
-  "Emerson",
-  "Finley",
-  "Dakota",
-  "Blake",
-  "Charlie",
-  "Jamie",
-  "Taylor",
-  "Drew",
-  "Harper",
-  "Parker",
-  "Ari",
-  "Noel",
-  "Shay",
-  "Kai",
-  "Robin",
-  "Jules",
-  "Marlow",
-  "Sage",
+const NAME_POOL = [ "Alex", "Jordan", "Sam", "Casey", "Riley", "Morgan", "Quinn", "Avery", "Rowan", "Skyler", "Reese", "Hayden", "Emerson", "Finley", "Dakota", "Blake", "Charlie", "Jamie", "Taylor", "Drew", "Harper", "Parker", "Ari", "Noel", "Shay", "Kai", "Robin", "Jules", "Marlow", "Sage",
 ];
 
-const FALLBACK_NAMES = [
-  "Guest",
-  "Visitor",
-  "Creator",
-  "Builder",
-  "Maker",
-  "Explorer",
+const FALLBACK_NAMES = [ "Guest", "Visitor", "Creator", "Builder", "Maker", "Explorer",
 ];
 
 export const GITHUB_URL = "https://github.com/bilalmlkdev/readmade";

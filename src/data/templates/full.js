@@ -47,12 +47,7 @@ export const TPL_FULL = {
       {
         type: "features",
         content: {
-          items: [
-            "Visual block editor",
-            "Live preview",
-            "One-click export",
-            "Works offline",
-            "Dark mode support",
+          items: [ "Visual block editor", "Live preview", "One-click export", "Works offline", "Dark mode support",
           ],
         },
       },

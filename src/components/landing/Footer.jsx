@@ -14,20 +14,12 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-4">
               <a
-                href="https://github.com/bilalmlkdev/readmade"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black dark:text-white transition-colors"
-                aria-label="GitHub"
+                href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white" aria-label="GitHub"
               >
                 <LuGithub size={22} className="text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white" />
               </a>
               <a
-                href="https://x.com/readmade"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black dark:text-white transition-colors"
-                aria-label="X"
+                href="https://x.com/readmade" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white" aria-label="X"
               >
                 <BsTwitterX size={22} className="text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white" />
               </a>
@@ -39,24 +31,21 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  to="/app"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  to="/app" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   Open Editor
                 </Link>
               </li>
               <li>
                 <a
-                  href="#features"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  href="#features" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   Features
                 </a>
               </li>
               <li>
                 <a
-                  href="#get-started"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  href="#get-started" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   Get Started
                 </a>
@@ -71,28 +60,21 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://github.com/bilalmlkdev/readmade"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   GitHub
                 </a>
               </li>
               <li>
                 <Link
-                  to="/docs"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  to="/docs" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   Documentation
                 </Link>
               </li>
               <li>
                 <a
-                  href="https://github.com/bilalmlkdev/readmade/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  href="https://github.com/bilalmlkdev/readmade/issues" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   Report an Issue
                 </a>
@@ -107,20 +89,14 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://github.com/bilalmlkdev/readmade"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   Contribute
                 </a>
               </li>
               <li>
                 <a
-                  href="https://github.com/bilalmlkdev/readmade/blob/main/LICENSE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  href="https://github.com/bilalmlkdev/readmade/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   MIT License
                 </a>
@@ -133,10 +109,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://github.com/bilalmlkdev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
+                  href="https://github.com/bilalmlkdev" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   Bilal Malik
                 </a>
@@ -156,10 +129,10 @@ export default function Footer() {
             &copy; 2026 Readmade. MIT License.
           </div>
           <div className="flex items-center gap-6 text-sm text-gray-400 dark:text-gray-500">
-            <a href="#" className="transition-colors hover:text-black dark:text-white">
+            <a href="#" className="hover:text-black dark:text-white">
               Privacy
             </a>
-            <a href="#" className="transition-colors hover:text-black dark:text-white">
+            <a href="#" className="hover:text-black dark:text-white">
               Terms
             </a>
           </div>

@@ -20,7 +20,7 @@ function mergeBadgeLines(md) {
 
   const flushBadges = () => {
     if (badgeBuf.length) {
-      out.push(badgeBuf.join(" "));
+      out.push(badgeBuf.join(""));
       badgeBuf = [];
     }
   };
@@ -38,7 +38,7 @@ function mergeBadgeLines(md) {
 }
 
 function clean(s) {
-  return String(s ?? "").replace(/\s+/g, " ").trim();
+  return String(s ?? "").replace(/\s+/g, "").trim();
 }
 
 function cleanUrl(s) {
@@ -67,7 +67,7 @@ function blockToMd(type, c) {
             ? `[![${b.label}](${b.url})](${b.link})`
             : `![${b.label}](${b.url})`,
         )
-        .join(" ");
+        .join("");
     }
 
     case BLOCK_TYPES.DESCRIPTION:

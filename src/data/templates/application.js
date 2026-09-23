@@ -41,12 +41,7 @@ export const TPL_APPLICATION = {
       {
         type: "features",
         content: {
-          items: [
-            "End-to-end encryption with AES-256",
-            "Offline-first with sync",
-            "Markdown support",
-            "Tags and folders",
-            "Export to PDF",
+          items: [ "End-to-end encryption with AES-256", "Offline-first with sync", "Markdown support", "Tags and folders", "Export to PDF",
           ],
         },
       },
@@ -81,10 +76,7 @@ export const TPL_APPLICATION = {
         type: "contributing",
         content: {
           text: "See our [contributing guide](CONTRIBUTING.md).",
-          steps: [
-            "Report bugs via GitHub Issues",
-            "Submit PRs for features",
-            "Join our Discord",
+          steps: [ "Report bugs via GitHub Issues", "Submit PRs for features", "Join our Discord",
           ],
         },
       },

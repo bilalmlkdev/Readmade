@@ -23,8 +23,7 @@ export default function LicenseBlock({ content, setContent }) {
       <div>
         <label className={labelCls}>Year</label>
         <input
-          type="text"
-          value={content.year}
+          type="text" value={content.year}
           onChange={(e) => handleChange("year", e.target.value)}
           className={inputCls}
         />
@@ -32,8 +31,7 @@ export default function LicenseBlock({ content, setContent }) {
       <div>
         <label className={labelCls}>Author</label>
         <input
-          type="text"
-          value={content.author}
+          type="text" value={content.author}
           onChange={(e) => handleChange("author", e.target.value)}
           className={inputCls}
         />

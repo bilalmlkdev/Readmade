@@ -25,8 +25,7 @@ export default function FeaturesBlock({ content, setContent }) {
         {content.items.map((item, i) => (
           <div key={i} className="flex items-center gap-2">
             <input
-              type="text"
-              value={item}
+              type="text" value={item}
               onChange={(e) =>
                 handleArrayChange("items", i, "0", e.target.value)
               }
@@ -34,8 +33,7 @@ export default function FeaturesBlock({ content, setContent }) {
             />
             <button
               onClick={() => handleArrayRemove("items", i)}
-              className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
-              title="Remove"
+              className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded" title="Remove"
             >
               <X size={13} />
             </button>

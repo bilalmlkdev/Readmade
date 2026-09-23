@@ -12,10 +12,7 @@ export default function ScreenshotSection() {
           <div className="order-1 overflow-hidden border border-gray-200 dark:border-white/10 lg:order-2 lg:col-span-7">
             <img
               src={dashboardImg}
-              alt="Readmade editor showing drag-and-drop blocks on the left and a live GitHub-faithful preview on the right"
-              loading="lazy"
-              decoding="async"
-              className="block h-64 w-full object-conver sm:h-80 lg:h-96"
+              alt="Readmade editor showing drag-and-drop blocks on the left and a live GitHub-faithful preview on the right" loading="lazy" decoding="async" className="block h-64 w-full object-conver sm:h-80 lg:h-96"
             />
           </div>
         </figure>

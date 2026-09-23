@@ -29,12 +29,7 @@ export function createDefaultBlocks() {
       text: "**Readmade** is a drag-and-drop README editor for developers who care about presentation. Arrange blocks, tweak content, and export clean markdown that renders perfectly on GitHub, GitLab, and anywhere else.",
     }),
     createBlock("features", {
-      items: [
-        "Visual block editor - no raw markdown wrestling",
-        "Live preview styled like GitHub / VS Code",
-        "Export to `.md`, `.txt`, or standalone `.html`",
-        "Starter templates for apps, libraries, and APIs",
-        "Everything stays local in your browser",
+      items: [ "Visual block editor - no raw markdown wrestling", "Live preview styled like GitHub / VS Code", "Export to `.md`, `.txt`, or standalone `.html`","Starter templates for apps, libraries, and APIs","Everything stays local in your browser",
       ],
     }),
     createBlock("installation", {

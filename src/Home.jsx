@@ -50,8 +50,7 @@ export default function Home() {
 
   return (
     <div
-      className="flex flex-col h-screen overflow-hidden"
-      style={{ background: "var(--bg)" }}
+      className="flex flex-col h-screen overflow-hidden" style={{ background: "var(--bg)" }}
     >
       <HomeHeader
         repoStars={repoStars}
@@ -69,8 +68,7 @@ export default function Home() {
         </aside>
 
         <main
-          className="flex-1 flex flex-col min-w-0 min-h-0 bg-[#FAFAFB] dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-lg overflow-hidden"
-          data-tour="preview"
+          className="flex-1 flex flex-col min-w-0 min-h-0 bg-[#FAFAFB] dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-lg overflow-hidden" data-tour="preview"
         >
           <ErrorBoundary>
             <Suspense fallback={<PreviewFallback />}>

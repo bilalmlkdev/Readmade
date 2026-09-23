@@ -2,8 +2,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import useReadme from "../../store/useReadme.js";
 
-const inputCls =
-  "w-full px-3 py-1.5 text-[13px] bg-white dark:bg-[#1a1a1a] dark:text-white border border-gray-200 dark:border-white/10 rounded-lg placeholder:text-gray-400 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-black dark:focus:ring-white";
+const inputCls = "w-full px-3 py-1.5 text-[13px] bg-white dark:bg-[#1a1a1a] dark:text-white border border-gray-200 dark:border-white/10 rounded-lg placeholder:text-gray-400 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-black dark:focus:ring-white";
 
 function SettingRow({ label, value, onChange, placeholder, labelCols }) {
   return (
@@ -12,8 +11,7 @@ function SettingRow({ label, value, onChange, placeholder, labelCols }) {
         {label}
       </label>
       <input
-        type="text"
-        value={value}
+        type="text" value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className={inputCls}
@@ -43,25 +41,19 @@ export default function BlockSettings() {
       {open && (
         <div className="pb-3 space-y-2.5 animate-slide-down">
           <SettingRow
-            label="README Name"
-            value={settings.name}
+            label="README Name" value={settings.name}
             onChange={(v) => updateSettings({ name: v })}
-            placeholder="README"
-            labelCols="grid-cols-[100px_1fr]"
+            placeholder="README" labelCols="grid-cols-[100px_1fr]"
           />
           <SettingRow
-            label="Description"
-            value={settings.description}
+            label="Description" value={settings.description}
             onChange={(v) => updateSettings({ description: v })}
-            placeholder="Short summary"
-            labelCols="grid-cols-[85px_1fr]"
+            placeholder="Short summary" labelCols="grid-cols-[85px_1fr]"
           />
           <SettingRow
-            label="Author"
-            value={settings.author}
+            label="Author" value={settings.author}
             onChange={(v) => updateSettings({ author: v })}
-            placeholder="Your name"
-            labelCols="grid-cols-[60px_1fr]"
+            placeholder="Your name" labelCols="grid-cols-[60px_1fr]"
           />
         </div>
       )}

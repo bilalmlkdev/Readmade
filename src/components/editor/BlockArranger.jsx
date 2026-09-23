@@ -97,8 +97,7 @@ export default function BlockArranger({ onOpenTemplates }) {
 
   return (
     <div
-      className="w-full app:w-[380px] flex flex-col bg-[#FAFAFB] dark:bg-[#111] border border-gray-200 dark:border-white/10 h-full rounded-lg overflow-hidden"
-      data-tour="blocks"
+      className="w-full app:w-[380px] flex flex-col bg-[#FAFAFB] dark:bg-[#111] border border-gray-200 dark:border-white/10 h-full rounded-lg overflow-hidden" data-tour="blocks"
     >
       <BlockSettings />
 
@@ -116,8 +115,7 @@ export default function BlockArranger({ onOpenTemplates }) {
       />
 
       <div
-        className="flex-1 overflow-y-auto relative py-3"
-        style={{ scrollbarWidth: "thin" }}
+        className="flex-1 overflow-y-auto relative py-3" style={{ scrollbarWidth: "thin" }}
       >
         {filteredBlocks.length === 0 ? (
           <EmptyList search={search} />

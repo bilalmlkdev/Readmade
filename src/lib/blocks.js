@@ -82,10 +82,7 @@ const DEFAULTS = {
     text: "Describe your project in a sentence or two. What problem does it solve, and who is it for?",
   },
   features: {
-    items: [
-      "First feature - what it does",
-      "Second feature - what it does",
-      "Third feature - what it does",
+    items: [ "First feature - what it does", "Second feature - what it does", "Third feature - what it does",
     ],
   },
   installation: {
@@ -95,7 +92,7 @@ const DEFAULTS = {
   },
   usage: {
     language: "js",
-    code: "import { init } from 'your-package-name'\n\ninit({\n  option: 'value',\n})",
+    code: "import { init } from 'your-package-name'\n\ninit({\n option: 'value',\n})",
   },
   screenshots: {
     items: [{ url: "", alt: "", caption: "" }],
@@ -111,12 +108,7 @@ const DEFAULTS = {
   },
   contributing: {
     text: "Contributions are welcome. Open an issue first to discuss what you would like to change.",
-    steps: [
-      "Fork the repository",
-      "Create your branch (`git checkout -b feature/amazing-feature`)",
-      "Commit your changes (`git commit -m 'Add amazing feature'`)",
-      "Push to the branch (`git push origin feature/amazing-feature`)",
-      "Open a Pull Request",
+    steps: [ "Fork the repository", "Create your branch (`git checkout -b feature/amazing-feature`)","Commit your changes (`git commit -m 'Add amazing feature'`)","Push to the branch (`git push origin feature/amazing-feature`)","Open a Pull Request",
     ],
   },
   license: {

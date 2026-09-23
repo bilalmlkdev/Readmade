@@ -58,8 +58,7 @@ export function exportReadme(format, { raw, fileName, onDownloadMd }) {
     return;
   }
   downloadBlob(
-    buildHtmlDocument(raw, baseName),
-    "text/html",
+    buildHtmlDocument(raw, baseName), "text/html",
     `${baseName}.html`,
   );
 }

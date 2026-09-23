@@ -12,8 +12,7 @@ import { BLOCK_META, BLOCK_ICONS } from "../../lib/blocks.js";
 import useReadme from "../../store/useReadme.js";
 import InlineBlockEditor from "./InlineBlockEditor.jsx";
 
-const iconBtn =
-  "p-1.5 rounded-lg transition-colors text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10";
+const iconBtn = "p-1.5 rounded-lg text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10";
 
 // Drag handle stays inert while expanded so form inputs remain usable
 function DragHandle({ isExpanded, attributes, listeners }) {
@@ -29,8 +28,7 @@ function DragHandle({ isExpanded, attributes, listeners }) {
       {...attributes}
       {...listeners}
       onClick={(e) => e.stopPropagation()}
-      className="cursor-grab active:cursor-grabbing text-gray-300 hover:text-gray-500 dark:text-white/20 dark:hover:text-white/40 transition-colors shrink-0"
-      title="Drag to reorder"
+      className="cursor-grab active:cursor-grabbing text-gray-300 hover:text-gray-500 dark:text-white/20 dark:hover:text-white/40 shrink-0" title="Drag to reorder"
     >
       <GripVertical size={14} />
     </div>
@@ -70,8 +68,7 @@ export default function SortableBlockItem({
       } ${isDragging ? "z-50 shadow-xs" : ""} ${isHidden ? "opacity-55" : ""}`}
     >
       <div
-        className="flex items-center gap-2 px-2 py-2.5 cursor-pointer"
-        onClick={() => {
+        className="flex items-center gap-2 px-2 py-2.5 cursor-pointer" onClick={() => {
           onToggleExpand();
           onActive();
         }}
@@ -118,7 +115,7 @@ export default function SortableBlockItem({
               e.stopPropagation();
               toggleBlockHidden(block.id);
             }}
-            className={`p-1.5 rounded-lg transition-colors ${
+            className={`p-1.5 rounded-lg ${
               isHidden
                 ? "text-amber-500 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-500/10"
                 : "text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10"
@@ -134,8 +131,7 @@ export default function SortableBlockItem({
               e.stopPropagation();
               removeBlock(block.id);
             }}
-            className="p-1.5 text-gray-400 hover:text-red-500 dark:text-gray-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors"
-            title="Delete"
+            className="p-1.5 text-gray-400 hover:text-red-500 dark:text-gray-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg" title="Delete"
           >
             <Trash2 size={13} />
           </button>
@@ -157,8 +153,7 @@ export default function SortableBlockItem({
 
       {isExpanded && (
         <div
-          className="border-t border-gray-100 dark:border-white/10 bg-white dark:bg-[#161616] px-3 py-3"
-          onClick={(e) => e.stopPropagation()}
+          className="border-t border-gray-100 dark:border-white/10 bg-white dark:bg-[#161616] px-3 py-3" onClick={(e) => e.stopPropagation()}
         >
           <InlineBlockEditor key={block.id} block={block} updateBlock={updateBlock} />
         </div>

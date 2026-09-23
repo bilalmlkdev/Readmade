@@ -5,9 +5,8 @@ import { GITHUB_URL, USER_PLAN } from "../../lib/userName.js";
 function MenuItem({ label, onClick }) {
   return (
     <button
-      type="button"
-      onClick={onClick}
-      className="w-full flex items-center justify-between px-3 py-2 text-[13px] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white transition-colors"
+      type="button" onClick={onClick}
+      className="w-full flex items-center justify-between px-3 py-2 text-[13px] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white"
     >
       <span className="flex items-center gap-2.5">{label}</span>
       <ChevronRight size={12} className="text-gray-300 dark:text-gray-600" />
@@ -32,15 +31,13 @@ export default function UserMenu({ open, onClose, name, onRename }) {
       <div className="py-1">
         <MenuItem label="Edit name" onClick={onRename} />
         <MenuItem
-          label="Source code"
-          onClick={() => {
+          label="Source code" onClick={() => {
             window.open(GITHUB_URL, "_blank");
             onClose();
           }}
         />
         <MenuItem
-          label="Close workspace"
-          onClick={() => {
+          label="Close workspace" onClick={() => {
             onClose();
             navigate("/");
           }}

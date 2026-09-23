@@ -6,7 +6,7 @@ function escapeAttr(s) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/"/g,"&quot;");
 }
 
 function slugify(text) {
@@ -61,7 +61,7 @@ export function parseMarkdown(raw) {
     return `<figure class="md-figure">
       <img src="${safeSrc}" alt="${safeAlt}"${safeTitle} loading="lazy" class="md-img" />
       <div class="img-err-msg">Failed to load image</div>
-      ${text ? `<figcaption>${text}</figcaption>` : ""}
+  ${text ? `<figcaption>${text}</figcaption>` : ""}
     </figure>`;
   };
 
@@ -75,7 +75,7 @@ export function parseMarkdown(raw) {
   };
 
   renderer.checkbox = (checked) =>
-    `<input type="checkbox" disabled${checked ? " checked" : ""} />`;
+    `<input type="checkbox" disabled${checked ? "checked" : ""} />`;
 
   marked.use({ renderer, mangle: false, headerIds: false });
 

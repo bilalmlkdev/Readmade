@@ -20,14 +20,12 @@ export default function NotFound() {
 
       <div className="mt-10 flex flex-col sm:flex-row items-center gap-3">
         <Link
-          to="/"
-          className="inline-flex items-center px-3 py-1.5 bg-black text-white text-[14px] font-medium hover:bg-black/90 rounded-lg transition-colors dark:bg-white dark:text-black dark:hover:bg-white/90"
+          to="/" className="inline-flex items-center px-3 py-1.5 bg-black text-white text-[14px] font-medium hover:bg-black/90 rounded-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
         >
           Back to Readmade
         </Link>
         <Link
-          to="/app"
-          className="inline-flex items-center px-3 py-1.5 text-[14px] font-medium text-gray-500 hover:text-black dark:text-black dark:hover:text-white transition-colors bg-gray-200 rounded-lg"
+          to="/app" className="inline-flex items-center px-3 py-1.5 text-[14px] font-medium text-gray-500 hover:text-black dark:text-black dark:hover:text-white bg-gray-200 rounded-lg"
         >
           Open App
         </Link>

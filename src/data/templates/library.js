@@ -46,12 +46,7 @@ export const TPL_LIBRARY = {
       {
         type: "features",
         content: {
-          items: [
-            "Full TypeScript support with generics",
-            "Tree-shakeable - only import what you use",
-            "Zero dependencies",
-            "Works in Node.js 18+ and all modern browsers",
-            "100% test coverage",
+          items: [ "Full TypeScript support with generics", "Tree-shakeable - only import what you use", "Zero dependencies", "Works in Node.js 18+ and all modern browsers", "100% test coverage",
           ],
         },
       },
@@ -67,7 +62,7 @@ export const TPL_LIBRARY = {
         type: "usage",
         content: {
           language: "ts",
-          code: "import { transform, filter, pipe } from 'data-transform'\n\nconst result = pipe(\n  data,\n  filter(item => item.active),\n  transform(item => ({ ...item, name: item.name.toUpperCase() }))\n)",
+          code: "import { transform, filter, pipe } from 'data-transform'\n\nconst result = pipe(\n data,\n filter(item => item.active),\n transform(item => ({ ...item, name: item.name.toUpperCase() }))\n)",
         },
       },
       {
@@ -96,12 +91,7 @@ export const TPL_LIBRARY = {
         type: "contributing",
         content: {
           text: "PRs welcome! Please read CONTRIBUTING.md first.",
-          steps: [
-            "Clone the repo",
-            "Run `npm install`",
-            "Create a branch",
-            "Add tests",
-            "Submit PR",
+          steps: [ "Clone the repo", "Run `npm install`","Create a branch","Add tests","Submit PR",
           ],
         },
       },

@@ -86,7 +86,7 @@ export default function PricingSection() {
                 {plan.active ? (
                   <Link
                     to={plan.href}
-                    className="inline-flex items-center justify-center w-full py-3 bg-black text-white text-[13px] font-medium hover:bg-black/90 transition-colors"
+                    className="inline-flex items-center justify-center w-full py-3 bg-black text-white text-[13px] font-medium hover:bg-black/90"
                   >
                     {plan.cta}
                   </Link>

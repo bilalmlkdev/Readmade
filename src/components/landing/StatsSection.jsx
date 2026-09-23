@@ -23,10 +23,7 @@ export default function StatsSection() {
                 </svg>
               </a>
               <a
-                href="https://github.com/bilalmlkdev/readmade"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="arrow-link"
+                href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="arrow-link"
               >
                 View source
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">

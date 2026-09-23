@@ -35,8 +35,7 @@ export default function PreviewContent({
     <div className="flex-1 h-full m-1.5 flex flex-col overflow-hidden bg-white dark:bg-[#161616] rounded-tl-2xl rounded-tr-2xl rounded-bl-lg rounded-br-lg border border-gray-200 dark:border-white/10 relative">
       <div
         ref={scrollRef}
-        className="flex-1 h-full overflow-y-auto overflow-x-hidden"
-        style={{ scrollbarWidth: "thin" }}
+        className="flex-1 h-full overflow-y-auto overflow-x-hidden" style={{ scrollbarWidth: "thin" }}
       >
         {!hasContent ? (
           <EmptyPreview />

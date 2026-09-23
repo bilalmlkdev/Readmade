@@ -30,8 +30,7 @@ export default function BadgesBlock({ content, setContent }) {
                 Label
               </label>
               <input
-                type="text"
-                value={badge.label}
+                type="text" value={badge.label}
                 onChange={(e) =>
                   handleArrayChange("badges", i, "label", e.target.value)
                 }
@@ -44,8 +43,7 @@ export default function BadgesBlock({ content, setContent }) {
                 Badge Image URL
               </label>
               <input
-                type="text"
-                value={badge.url}
+                type="text" value={badge.url}
                 onChange={(e) =>
                   handleArrayChange("badges", i, "url", e.target.value)
                 }
@@ -58,8 +56,7 @@ export default function BadgesBlock({ content, setContent }) {
                 Link (optional)
               </label>
               <input
-                type="text"
-                value={badge.link}
+                type="text" value={badge.link}
                 onChange={(e) =>
                   handleArrayChange("badges", i, "link", e.target.value)
                 }

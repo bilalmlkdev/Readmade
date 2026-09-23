@@ -16,10 +16,7 @@ export default function CommunitySection() {
               use it. The project belongs to the community that builds it.
             </p>
             <a
-              href="https://github.com/bilalmlkdev/readmade"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="arrow-link"
+              href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="arrow-link"
             >
               Explore on GitHub
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">

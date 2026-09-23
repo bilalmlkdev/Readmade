@@ -34,8 +34,7 @@ export default function ApiBlock({ content, setContent }) {
                 Function / Method Name
               </label>
               <input
-                type="text"
-                value={entry.name}
+                type="text" value={entry.name}
                 onChange={(e) =>
                   handleArrayChange("entries", i, "name", e.target.value)
                 }
@@ -61,8 +60,7 @@ export default function ApiBlock({ content, setContent }) {
                 Parameters
               </label>
               <input
-                type="text"
-                value={entry.params}
+                type="text" value={entry.params}
                 onChange={(e) =>
                   handleArrayChange("entries", i, "params", e.target.value)
                 }

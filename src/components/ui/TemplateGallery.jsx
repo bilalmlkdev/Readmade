@@ -32,12 +32,10 @@ export default function TemplateGallery({ onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm" onClick={onClose}
     >
       <div
-        className="relative bg-white dark:bg-[#161616] rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 dark:border-white/10 max-w-[560px] w-full mx-4 max-h-[80vh] flex flex-col animate-slide-up"
-        onClick={(e) => e.stopPropagation()}
+        className="relative bg-white dark:bg-[#161616] rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 dark:border-white/10 max-w-[560px] w-full mx-4 max-h-[80vh] flex flex-col animate-slide-up" onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-white/10 shrink-0">
           <div>
@@ -50,7 +48,7 @@ export default function TemplateGallery({ onClose }) {
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+            className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-white/10"
           >
             <X size={16} />
           </button>
@@ -111,7 +109,7 @@ export default function TemplateGallery({ onClose }) {
         <div className="px-5 py-3 border-t border-gray-100 dark:border-white/10 shrink-0">
           <button
             onClick={() => setPendingTemplate(BLANK_TEMPLATE)}
-            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 text-[13px] font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/10 transition-colors"
+            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 text-[13px] font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/10"
           >
             Start with blank
           </button>
@@ -119,12 +117,8 @@ export default function TemplateGallery({ onClose }) {
 
         {pendingTemplate && (
           <ConfirmDialog
-            title="Replace current readme?"
-            description={`Loading "${pendingTemplate.name}" will replace all your current fields. This cannot be undone.`}
-            confirmLabel="Replace"
-            titleId="template-confirm-title"
-            descId="template-confirm-desc"
-            onConfirm={handleConfirm}
+            title="Replace current readme?" description={`Loading "${pendingTemplate.name}" will replace all your current fields. This cannot be undone.`}
+            confirmLabel="Replace" titleId="template-confirm-title" descId="template-confirm-desc" onConfirm={handleConfirm}
             onCancel={() => setPendingTemplate(null)}
           />
         )}

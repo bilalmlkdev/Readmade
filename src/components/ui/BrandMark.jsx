@@ -9,10 +9,8 @@ export default function BrandMark({ size, browserId, onClick }) {
   if (errored) {
     return (
       <button
-        type="button"
-        onClick={onClick}
-        className="rounded-full flex items-center justify-center text-white font-semibold select-none shrink-0 bg-gray-800 hover:ring-2 hover:ring-gray-300 transition-all"
-        style={{ width: size, height: size, fontSize: Math.round(size * 0.42) }}
+        type="button" onClick={onClick}
+        className="rounded-full flex items-center justify-center text-white font-semibold select-none shrink-0 bg-gray-800 hover:ring-2 hover:ring-gray-300 transition-all" style={{ width: size, height: size, fontSize: Math.round(size * 0.42) }}
         aria-label={name}
       >
         {initial}
@@ -22,10 +20,8 @@ export default function BrandMark({ size, browserId, onClick }) {
 
   return (
     <button
-      type="button"
-      onClick={onClick}
-      className="rounded-full shrink-0 bg-gray-100 hover:ring-2 hover:ring-gray-300 transition-all overflow-hidden"
-      style={{ width: size, height: size }}
+      type="button" onClick={onClick}
+      className="rounded-full shrink-0 bg-gray-100 hover:ring-2 hover:ring-gray-300 transition-all overflow-hidden" style={{ width: size, height: size }}
       aria-label={name}
     >
       <img

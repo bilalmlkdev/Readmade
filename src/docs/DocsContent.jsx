@@ -89,7 +89,7 @@ export default function DocsContent({ page }) {
         <div className="markdown-body">
           <h1>Page not found</h1>
           <p>
-            That docs page does not exist.{" "}
+            That docs page does not exist.{""}
             <a href="/docs/intro">Back to the introduction</a>.
           </p>
         </div>
@@ -100,8 +100,7 @@ export default function DocsContent({ page }) {
   return (
     <div id="docs-markdown" className="docs-content min-w-0 flex-1">
       <div
-        className="markdown-body"
-        dangerouslySetInnerHTML={{ __html: html }}
+        className="markdown-body" dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
   );

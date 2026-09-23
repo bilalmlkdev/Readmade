@@ -9,14 +9,7 @@ export const SECTIONS = [
   },
   {
     title: "Reference",
-    pages: [
-      "storage",
-      "architecture",
-      "contributing",
-      "security",
-      "changelog",
-      "license",
-      "faq",
+    pages: [ "storage", "architecture", "contributing", "security", "changelog", "license", "faq",
     ],
   },
 ];

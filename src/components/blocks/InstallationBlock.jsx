@@ -21,8 +21,7 @@ export default function InstallationBlock({ content, setContent }) {
       <div>
         <label className={labelCls}>Package Name</label>
         <input
-          type="text"
-          value={content.package}
+          type="text" value={content.package}
           onChange={(e) => handleChange("package", e.target.value)}
           className={inputCls}
         />

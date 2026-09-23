@@ -34,13 +34,12 @@ export default class ErrorBoundary extends Component {
           <div className="mt-10 flex flex-col sm:flex-row items-center gap-3">
             <button
               onClick={this.handleReload}
-              className="inline-flex items-center px-2 py-1.5 bg-black text-white text-[14px] font-medium hover:bg-black/90 transition-colors rounded-lg shadow-xs dark:bg-white dark:text-black dark:hover:bg-white/90"
+              className="inline-flex items-center px-2 py-1.5 bg-black text-white text-[14px] font-medium hover:bg-black/90 rounded-lg shadow-xs dark:bg-white dark:text-black dark:hover:bg-white/90"
             >
               Reload
             </button>
             <Link
-              to="/"
-              className="inline-flex items-center bg-gray-200 dark:bg-white/10 rounded-lg px-2 py-1.5 text-[14px] font-medium text-gray-500 hover:text-black dark:text-gray-300 dark:hover:text-white transition-colors"
+              to="/" className="inline-flex items-center bg-gray-200 dark:bg-white/10 rounded-lg px-2 py-1.5 text-[14px] font-medium text-gray-500 hover:text-black dark:text-gray-300 dark:hover:text-white"
             >
               Back to Readmade
             </Link>

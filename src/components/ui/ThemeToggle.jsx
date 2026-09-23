@@ -16,9 +16,8 @@ export default function ThemeToggle({ className = "" }) {
 
   return (
     <button
-      type="button"
-      onClick={() => toggleTheme()}
-      className={`flex items-center gap-1.5 px-2 py-1.5 text-[13px] font-medium text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-colors ${className}`}
+      type="button" onClick={() => toggleTheme()}
+      className={`flex items-center gap-1.5 px-2 py-1.5 text-[13px] font-medium text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg ${className}`}
       title={label}
       aria-label={label}
       aria-pressed={isDark}

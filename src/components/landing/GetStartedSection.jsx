@@ -28,8 +28,7 @@ export default function GetStartedSection() {
         <div className="w-full border border-gray-200 dark:border-white/10 overflow-hidden">
           <div className="flex items-stretch border-b border-gray-200 dark:border-white/10">
             <button
-              type="button"
-              onClick={() => setActiveTab("web")}
+              type="button" onClick={() => setActiveTab("web")}
               className={`relative px-7 py-3 text-[13px] tracking-tight transition font-medium ${
                 activeTab === "web"
                   ? "text-black dark:text-white"
@@ -42,8 +41,7 @@ export default function GetStartedSection() {
               )}
             </button>
             <button
-              type="button"
-              onClick={() => setActiveTab("npx")}
+              type="button" onClick={() => setActiveTab("npx")}
               className={`relative px-7 py-3 text-[13px] tracking-tight transition font-normal ${
                 activeTab === "npx"
                   ? "text-black dark:text-white"
@@ -64,36 +62,22 @@ export default function GetStartedSection() {
             </span>
             <button
               onClick={handleCopy}
-              className="-mr-2 ml-1 shrink-0 p-2 text-gray-400 dark:text-gray-500 transition hover:text-gray-700 dark:text-gray-200"
-              type="button"
-              aria-label="Copy command"
+              className="-mr-2 ml-1 shrink-0 p-2 text-gray-400 dark:text-gray-500 transition hover:text-gray-700 dark:text-gray-200" type="button" aria-label="Copy command"
             >
               {copied ? (
                 <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
+                  className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.5 12.75l6 6 9-13.5"
+                    strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"
                   />
                 </svg>
               ) : (
                 <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
+                  className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
                   />
                 </svg>
               )}
@@ -107,42 +91,26 @@ export default function GetStartedSection() {
           </p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
             <a
-              href="https://github.com/bilalmlkdev/readmade"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
+              href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
             >
               View on GitHub
               <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="1.5"
+                className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
             </a>
             <Link
-              to="/docs"
-              className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
+              to="/docs" className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
             >
               Read the docs
               <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="1.5"
+                className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
             </Link>

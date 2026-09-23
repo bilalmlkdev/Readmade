@@ -41,12 +41,7 @@ export const TPL_MONOREPO = {
       {
         type: "features",
         content: {
-          items: [
-            "Shared TypeScript config",
-            "Unified linting and formatting",
-            "Incremental builds with Turborepo",
-            "Shared testing utilities",
-            "Automated publishing",
+          items: [ "Shared TypeScript config", "Unified linting and formatting", "Incremental builds with Turborepo", "Shared testing utilities", "Automated publishing",
           ],
         },
       },
@@ -91,11 +86,7 @@ export const TPL_MONOREPO = {
         type: "contributing",
         content: {
           text: "See [CONTRIBUTING.md](./CONTRIBUTING.md) for monorepo-specific guidelines.",
-          steps: [
-            "Create a branch",
-            "Make changes in relevant packages",
-            "Run `turbo test` and `turbo build`",
-            "Submit PR with changeset",
+          steps: [ "Create a branch", "Make changes in relevant packages", "Run `turbo test` and `turbo build`","Submit PR with changeset",
           ],
         },
       },

@@ -8,25 +8,15 @@ const INLINE_PATTERNS = [
   { type: "escape", re: /\\[\\`*{}[\]()#+\-.!_>~]/ },
 ];
 
-export const TOKEN_CLASS = {
-  "fence-open": "text-[#0550ae] dark:text-[#79c0ff] font-semibold",
-  "fence-close": "text-[#0550ae] dark:text-[#79c0ff] font-semibold",
-  "fence-body": "text-[#0550ae] dark:text-[#79c0ff]",
-  hash: "text-[#cf222e] dark:text-[#ff7b72] font-bold",
-  "heading-text": "text-[#1f2328] dark:text-[#e6edf3] font-bold",
+export const TOKEN_CLASS = { "fence-open": "text-[#0550ae] dark:text-[#79c0ff] font-semibold", "fence-close": "text-[#0550ae] dark:text-[#79c0ff] font-semibold", "fence-body": "text-[#0550ae] dark:text-[#79c0ff]",
+  hash: "text-[#cf222e] dark:text-[#ff7b72] font-bold", "heading-text": "text-[#1f2328] dark:text-[#e6edf3] font-bold",
   hr: "text-[#d0d7de] dark:text-[#30363d]",
-  blockquote: "text-[#57606a] dark:text-[#8b949e] italic",
-  "table-row": "text-[#0550ae] dark:text-[#79c0ff]",
-  "list-indent": "text-[#24292f] dark:text-[#c9d1d9]",
-  "list-bullet": "text-[#cf222e] dark:text-[#ff7b72] font-bold",
-  "list-text": "text-[#24292f] dark:text-[#c9d1d9]",
+  blockquote: "text-[#57606a] dark:text-[#8b949e] italic", "table-row": "text-[#0550ae] dark:text-[#79c0ff]", "list-indent": "text-[#24292f] dark:text-[#c9d1d9]", "list-bullet": "text-[#cf222e] dark:text-[#ff7b72] font-bold", "list-text": "text-[#24292f] dark:text-[#c9d1d9]",
   link: "text-[#0969da] dark:text-[#58a6ff] underline decoration-[#0969da]/40 dark:decoration-[#58a6ff]/40 underline-offset-2",
   autolink: "text-[#0969da] dark:text-[#58a6ff] underline decoration-[#0969da]/40 dark:decoration-[#58a6ff]/40 underline-offset-2",
   bold: "text-[#1f2328] dark:text-[#e6edf3] font-bold",
   italic: "text-[#1f2328] dark:text-[#e6edf3] italic",
-  strikethrough: "text-[#57606a] dark:text-[#8b949e] line-through",
-  "code-inline":
-    "text-[#0550ae] dark:text-[#79c0ff] bg-[#f6f8fa] dark:bg-[#1a1a1a] border border-[#d0d7de] dark:border-white/10 rounded px-1 font-mono text-[0.9em]",
+  strikethrough: "text-[#57606a] dark:text-[#8b949e] line-through", "code-inline": "text-[#0550ae] dark:text-[#79c0ff] bg-[#f6f8fa] dark:bg-[#1a1a1a] border border-[#d0d7de] dark:border-white/10 rounded px-1 font-mono text-[0.9em]",
   escape: "text-[#57606a] dark:text-[#8b949e]",
   plain: "text-[#24292f] dark:text-[#c9d1d9]",
 };
@@ -92,7 +82,7 @@ export function mergeBadgeLines(raw) {
 
   const flush = () => {
     if (buf.length) {
-      out.push(buf.join(" "));
+      out.push(buf.join(""));
       buf = [];
     }
   };

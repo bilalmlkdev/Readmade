@@ -86,8 +86,7 @@ export default function CodeView({ code, fileName = "README" }) {
         </div>
 
         <button
-          type="button"
-          onClick={handleCopy}
+          type="button" onClick={handleCopy}
           className={`shrink-0 inline-flex items-center gap-1.5 px-2 py-1 text-[12px] font-medium rounded-lg border transition-all shadow-xs ${
             copied
               ? "bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-black dark:border-white"

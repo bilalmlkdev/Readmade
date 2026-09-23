@@ -15,9 +15,7 @@ git clone https://github.com/bilalmlkdev/readmade.git
 cd readmade
 npm install
 npm run dev
-\`\`\`
-
-Vite prints the local URL after the development server starts. Open it in your browser.
+\`\`\` Vite prints the local URL after the development server starts. Open it in your browser.
 
 ## Production build
 

@@ -5,11 +5,8 @@ export default function PaletteHeader({ minimized, onExpand, onMinimize }) {
     return (
       <div className="shrink-0 border-b border-gray-200 dark:border-white/10 flex flex-col items-center gap-1 px-1.5 pt-3 pb-2">
         <button
-          type="button"
-          onClick={onExpand}
-          className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-          title="Expand palette"
-          aria-label="Expand palette"
+          type="button" onClick={onExpand}
+          className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10" title="Expand palette" aria-label="Expand palette"
         >
           <PanelLeftOpen size={14} />
         </button>
@@ -28,11 +25,8 @@ export default function PaletteHeader({ minimized, onExpand, onMinimize }) {
         </p>
       </div>
       <button
-        type="button"
-        onClick={onMinimize}
-        className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors shrink-0"
-        title="Minimize palette"
-        aria-label="Minimize palette"
+        type="button" onClick={onMinimize}
+        className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 shrink-0" title="Minimize palette" aria-label="Minimize palette"
       >
         <PanelLeftClose size={14} />
       </button>

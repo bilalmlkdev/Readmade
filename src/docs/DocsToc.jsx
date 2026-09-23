@@ -52,8 +52,7 @@ export default function DocsToc({ headings }) {
 
   return (
     <nav
-      className="hidden w-52 shrink-0 overflow-x-hidden overflow-y-auto border-l border-gray-200 px-4 py-8 xl:block dark:border-white/10"
-      aria-label="On this page"
+      className="hidden w-52 shrink-0 overflow-x-hidden overflow-y-auto border-l border-gray-200 px-4 py-8 xl:block dark:border-white/10" aria-label="On this page"
     >
       <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
         On this page
@@ -64,13 +63,12 @@ export default function DocsToc({ headings }) {
             <a
               href={`#${h.id}`}
               onClick={(e) => scrollToHeading(e, h.id)}
-              className={[
-                "-ml-px block border-l py-1 text-[13px] transition",
+              className={[ "-ml-px block border-l py-1 text-[13px] transition",
                 h.depth === 3 ? "pl-6" : "pl-3",
                 current === h.id
                   ? "border-black font-medium text-black dark:border-white dark:text-white"
                   : "border-transparent text-gray-500 hover:border-gray-300 hover:text-black dark:text-gray-400 dark:hover:border-white/30 dark:hover:text-white",
-              ].join(" ")}
+              ].join("")}
             >
               {h.text}
             </a>

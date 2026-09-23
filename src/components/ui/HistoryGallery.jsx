@@ -18,12 +18,10 @@ export default function HistoryGallery({ onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm" onClick={onClose}
     >
       <div
-        className="relative bg-white dark:bg-[#161616] rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 dark:border-white/10 max-w-[560px] w-full mx-4 max-h-[80vh] flex flex-col animate-slide-up"
-        onClick={(e) => e.stopPropagation()}
+        className="relative bg-white dark:bg-[#161616] rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 dark:border-white/10 max-w-[560px] w-full mx-4 max-h-[80vh] flex flex-col animate-slide-up" onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-white/10 shrink-0">
           <div>
@@ -38,8 +36,7 @@ export default function HistoryGallery({ onClose }) {
             {history.length > 0 && (
               <button
                 onClick={() => setConfirmClear(true)}
-                className="flex items-center gap-1.5 px-2 py-1.5 text-[12px] font-medium text-gray-500 dark:text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors"
-                title="Clear history"
+                className="flex items-center gap-1.5 px-2 py-1.5 text-[12px] font-medium text-gray-500 dark:text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg" title="Clear history"
               >
                 <Trash2 size={13} />
                 Clear
@@ -47,8 +44,7 @@ export default function HistoryGallery({ onClose }) {
             )}
             <button
               onClick={onClose}
-              className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-              aria-label="Close history"
+              className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-white/10" aria-label="Close history"
             >
               <X size={16} />
             </button>
@@ -56,8 +52,7 @@ export default function HistoryGallery({ onClose }) {
         </div>
 
         <div
-          className="flex-1 overflow-y-auto p-3 space-y-1.5"
-          style={{ scrollbarWidth: "thin" }}
+          className="flex-1 overflow-y-auto p-3 space-y-1.5" style={{ scrollbarWidth: "thin" }}
         >
           {history.length === 0 ? (
             <div className="px-4 py-10 text-center">
@@ -99,24 +94,15 @@ export default function HistoryGallery({ onClose }) {
 
         {pendingEntry && (
           <ConfirmDialog
-            title="Restore this version?"
-            description={`Loading "${pendingEntry.title}" will replace all your current fields. This cannot be undone.`}
-            confirmLabel="Restore"
-            titleId="history-confirm-title"
-            descId="history-confirm-desc"
-            onConfirm={handleConfirm}
+            title="Restore this version?" description={`Loading "${pendingEntry.title}" will replace all your current fields. This cannot be undone.`}
+            confirmLabel="Restore" titleId="history-confirm-title" descId="history-confirm-desc" onConfirm={handleConfirm}
             onCancel={() => setPendingEntry(null)}
           />
         )}
 
         {confirmClear && (
           <ConfirmDialog
-            title="Clear all history?"
-            description="This permanently removes every saved version. This cannot be undone."
-            confirmLabel="Clear"
-            titleId="history-clear-title"
-            descId="history-clear-desc"
-            onConfirm={() => {
+            title="Clear all history?" description="This permanently removes every saved version. This cannot be undone." confirmLabel="Clear" titleId="history-clear-title" descId="history-clear-desc" onConfirm={() => {
               clearHistory();
               setConfirmClear(false);
             }}

@@ -33,8 +33,7 @@ export default function ContributingBlock({ content, setContent }) {
         {content.steps.map((step, i) => (
           <div key={i} className="flex items-center gap-2">
             <input
-              type="text"
-              value={step}
+              type="text" value={step}
               onChange={(e) =>
                 handleArrayChange("steps", i, "0", e.target.value)
               }
@@ -42,8 +41,7 @@ export default function ContributingBlock({ content, setContent }) {
             />
             <button
               onClick={() => handleArrayRemove("steps", i)}
-              className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
-              title="Remove"
+              className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded" title="Remove"
             >
               <X size={13} />
             </button>

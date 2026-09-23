@@ -71,7 +71,7 @@ export default function TemplatesSection() {
             return (
               <div
                 key={template.name}
-                className="border border-gray-200 dark:border-white/10 p-5 transition-colors hover:border-gray-300 hover:bg-gray-50 dark:hover:border-white/20 dark:hover:bg-white/5"
+                className="border border-gray-200 dark:border-white/10 p-5 hover:border-gray-300 hover:bg-gray-50 dark:hover:border-white/20 dark:hover:bg-white/5"
               >
                 <div className="mb-4 flex h-9 w-9 items-center justify-center bg-gray-100 dark:bg-white/10">
                   <Icon size={17} className="text-gray-600 dark:text-gray-300" strokeWidth={2} />

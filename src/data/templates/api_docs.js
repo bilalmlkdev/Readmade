@@ -82,10 +82,7 @@ export const TPL_API_DOCS = {
         type: "contributing",
         content: {
           text: "Found a bug? Open an issue with reproduction steps.",
-          steps: [
-            "Check existing issues",
-            "Open a new issue",
-            "Include API version and request/response",
+          steps: [ "Check existing issues", "Open a new issue", "Include API version and request/response",
           ],
         },
       },

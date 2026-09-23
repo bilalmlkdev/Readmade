@@ -18,29 +18,19 @@ export default function HeroSection() {
 
         <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           <Link
-            to="/app"
-            className="group inline-flex min-w-[200px] items-center justify-between gap-2 bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-black/90"
+            to="/app" className="group inline-flex min-w-[200px] items-center justify-between gap-2 bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-black/90"
           >
             Start Readmade
             <svg
-              className="h-4 w-4 transition group-hover:translate-x-0.5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="1.5"
+              className="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
           </Link>
           <a
-            href="https://github.com/bilalmlkdev/readmade"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-sm text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
+            href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 text-sm text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
           >
             View on GitHub
             <span className="text-xs text-gray-400 dark:text-gray-500">MIT License</span>
@@ -50,8 +40,7 @@ export default function HeroSection() {
         <div className="mt-16">
           <div className="overflow-hidden border border-gray-200 dark:border-white/10">
             <video
-              src="/landing.mp4"
-              autoPlay
+              src="/landing.mp4" autoPlay
               loop
               muted
               playsInline

@@ -35,8 +35,7 @@ export default function ScreenshotsBlock({ content, setContent }) {
                 Image URL
               </label>
               <input
-                type="text"
-                value={item.url}
+                type="text" value={item.url}
                 onChange={(e) =>
                   handleArrayChange("items", i, "url", e.target.value)
                 }
@@ -49,8 +48,7 @@ export default function ScreenshotsBlock({ content, setContent }) {
                 Alt Text
               </label>
               <input
-                type="text"
-                value={item.alt}
+                type="text" value={item.alt}
                 onChange={(e) =>
                   handleArrayChange("items", i, "alt", e.target.value)
                 }
@@ -63,8 +61,7 @@ export default function ScreenshotsBlock({ content, setContent }) {
                 Caption (optional)
               </label>
               <input
-                type="text"
-                value={item.caption}
+                type="text" value={item.caption}
                 onChange={(e) =>
                   handleArrayChange("items", i, "caption", e.target.value)
                 }

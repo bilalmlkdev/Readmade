@@ -64,8 +64,7 @@ export default function UserAccountPreview({ avatarOnly = false }) {
         />
       ) : (
         <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
+          type="button" onClick={() => setOpen((v) => !v)}
           className="flex-1 min-w-0 flex items-center gap-1.5 text-left hover:opacity-80 transition-opacity"
         >
           <span className="text-[13px] font-medium text-gray-800 dark:text-white truncate mt-1">

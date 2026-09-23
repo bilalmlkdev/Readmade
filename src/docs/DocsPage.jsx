@@ -29,13 +29,11 @@ export default function DocsPage() {
 
         <div className="flex min-w-0 flex-1">
           <div
-            id="docs-scroll"
-            className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto"
+            id="docs-scroll" className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto"
           >
             <div className="mx-auto max-w-[1100px] px-4 py-8 md:px-8">
               <nav
-                className="mb-4 flex flex-wrap items-center gap-1.5 text-[13px] text-gray-400 dark:text-gray-500"
-                aria-label="Breadcrumb"
+                className="mb-4 flex flex-wrap items-center gap-1.5 text-[13px] text-gray-400 dark:text-gray-500" aria-label="Breadcrumb"
               >
                 <span>Docs</span>
                 <span aria-hidden="true">/</span>
