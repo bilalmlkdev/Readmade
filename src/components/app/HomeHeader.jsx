@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ArrowLeft, Trash2, History, Undo2, Redo2 } from "lucide-react";
 import { REPO_URL } from "../../lib/repo.js";
 import { formatStars } from "../../lib/formatStars.js";
@@ -19,13 +20,13 @@ export default function HomeHeader({
   return (
     <header className="relative hidden app:flex items-center justify-between h-15 px-4 shrink-0 bg-white dark:bg-[#111] border-b border-gray-200 dark:border-white/10">
       <div className="flex items-center gap-4">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center gap-1.5 text-[13.5px] font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
         >
           <ArrowLeft size={16} />
           Back
-        </a>
+        </Link>
         <div className="w-px h-6 bg-gray-200 dark:bg-white/10" />
         <div className="flex items-center gap-2.5">
           <div className="leading-tight">
