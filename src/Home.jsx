@@ -7,6 +7,7 @@ import MobileDrawer from "./components/app/MobileDrawer.jsx";
 import MobileNavbar from "./components/app/MobileNavbar.jsx";
 import PreviewFallback from "./components/app/PreviewFallback.jsx";
 import HomeHeader from "./components/app/HomeHeader.jsx";
+import BlockSearchPopup from "./components/editor/BlockSearchPopup.jsx";
 import { useKeyboardShortcuts } from "./hooks/useKeyboardShortcuts.js";
 import { useRepoStars } from "./hooks/useRepoStars.js";
 import { useAutosaveHistory } from "./hooks/useAutosaveHistory.js";
@@ -36,6 +37,8 @@ export default function Home() {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showTemplates, setShowTemplates] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const panels = useWorkspacePanels();
 
   const handleOpenTemplates = useCallback(() => setShowTemplates(true), []);
@@ -58,6 +61,12 @@ export default function Home() {
     resetToInitialTemplate();
   };
 
+  const handleSearchSelect = (type) => {
+    useReadme.getState().addBlock(type);
+    setShowSearch(false);
+    setSearchQuery("");
+  };
+
   return (
     <div
       className="flex flex-col h-screen overflow-hidden" style={{ background: "var(--bg)" }}
@@ -72,6 +81,7 @@ export default function Home() {
         onUndo={undo}
         onRedo={redo}
         onClear={clearAllData}
+        onSearch={() => setShowSearch(true)}
       />
 
       <div className="flex flex-1 min-h-0 overflow-hidden gap-1 p-1 bg-white dark:bg-[#0c0c0c]">
@@ -130,6 +140,14 @@ export default function Home() {
       {showTemplates && <TemplateGallery onClose={handleCloseTemplates} />}
 
       {showHistory && <HistoryGallery onClose={() => setShowHistory(false)} />}
+
+      <BlockSearchPopup
+        open={showSearch}
+        query={searchQuery}
+        onQueryChange={setSearchQuery}
+        onClose={() => setShowSearch(false)}
+        onSelect={handleSearchSelect}
+      />
 
       <Suspense fallback={null}>
         <OnboardingTour />

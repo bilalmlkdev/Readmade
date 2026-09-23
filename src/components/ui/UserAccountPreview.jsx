@@ -45,7 +45,7 @@ export default function UserAccountPreview({ avatarOnly = false }) {
       }`}
     >
       <BrandMark
-        size={26}
+        size={28}
         browserId={browserId}
         onClick={() => setOpen((v) => !v)}
       />

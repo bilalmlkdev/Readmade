@@ -19,7 +19,7 @@ export default function UserMenu({ open, onClose, name, onRename }) {
   if (!open) return null;
 
   return (
-    <div className="absolute bottom-full left-0 mb-2 w-52 overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#1a1a1a] shadow-xl shadow-black/5 z-50">
+    <div className="absolute top-full right-0 mt-2 w-52 overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#1a1a1a] shadow-xl shadow-black/5 z-50">
       <div className="px-3 py-2.5 border-b border-gray-100 dark:border-white/10">
         <p className="text-[13px] font-medium text-gray-800 dark:text-white">
           {name}
