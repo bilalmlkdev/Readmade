@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function GetStartedSection() {
   const [copied, setCopied] = useState(false);
@@ -126,10 +127,8 @@ export default function GetStartedSection() {
                 />
               </svg>
             </a>
-            <a
-              href="https://github.com/bilalmlkdev/readmade/blob/main/README.md"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/docs"
               className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
             >
               Read the docs
@@ -146,7 +145,7 @@ export default function GetStartedSection() {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

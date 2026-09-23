@@ -80,14 +80,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://github.com/bilalmlkdev/readmade/blob/main/README.md"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/docs"
                   className="text-sm text-gray-500 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white"
                 >
                   Documentation
-                </a>
+                </Link>
               </li>
               <li>
                 <a

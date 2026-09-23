@@ -7,6 +7,7 @@ import { migrateLegacyStorage } from "./lib/migrateStorage.js";
 
 const Home = lazy(() => import("./Home"));
 const LandingPage = lazy(() => import("./components/landing/LandingPage"));
+const DocsPage = lazy(() => import("./docs/DocsPage"));
 
 migrateLegacyStorage();
 
@@ -30,6 +31,8 @@ function AppRoutes() {
           <Routes location={location}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/app" element={<Home />} />
+            <Route path="/docs" element={<DocsPage />} />
+            <Route path="/docs/:slug" element={<DocsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

@@ -68,6 +68,8 @@ Code style rules for this repo:
 
 ## Docs
 
+Full documentation lives at `/docs` in the app (or https://readmade.vercel.app/docs).
+
 - [Contributing](CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 - [Security Policy](SECURITY.md)

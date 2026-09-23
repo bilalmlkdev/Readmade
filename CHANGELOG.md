@@ -10,7 +10,8 @@ All notable changes to this project are documented here.
 - History gallery with autosave, restore, and clear actions.
 - Shared nested confirmation dialogs.
 - Reusable dismiss-on-outside-click hook.
-- License, contributing, security, and code of conduct docs.
+- License, contributing, security, and code of conduct docs
+- Documentation site at `/docs` with sidebar, search, breadcrumbs, and full guides.
 
 ### Changed
 

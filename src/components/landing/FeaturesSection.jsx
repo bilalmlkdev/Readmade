@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function FeaturesSection() {
   return (
     <section className="px-15 py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
@@ -16,17 +18,12 @@ export default function FeaturesSection() {
               contributing, license, or custom Markdown. Data stays exactly
               where it belongs: in your browser.
             </p>
-            <a
-              href="https://github.com/bilalmlkdev/readmade"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="arrow-link mt-6 inline-flex"
-            >
+            <Link to="/docs" className="arrow-link mt-6 inline-flex">
               Documentation
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
           </div>
           <div>
             <div className="mb-4 section-label">Built for speed</div>

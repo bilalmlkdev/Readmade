@@ -25,14 +25,12 @@ export default function LandingHeader() {
           >
             GitHub
           </a>
-          <a
-            href="https://github.com/bilalmlkdev/readmade/blob/main/README.md"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/docs"
             className="px-3 py-1.5 text-[13px] text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
           >
             Docs
-          </a>
+          </Link>
           <div className="mx-1.5 h-4 w-px bg-gray-200 dark:bg-white/10" />
           <a
             href="https://ko-fi.com/bilalmlkdev"
