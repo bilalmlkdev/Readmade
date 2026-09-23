@@ -186,7 +186,7 @@ export default function Home() {
           </a>
           <button
             onClick={() => setShowResetConfirm(true)}
-            className="flex items-center gap-1.5 px-2 py-1.5 text-[13px] font-medium text-white bg-black hover:bg-black/90 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-2 py-1.5 text-[13px] font-medium text-black bg-gray-200 hover:bg-gray-200/80 rounded-lg transition-colors"
           >
             <Trash2 size={14.5} />
             Reset Canvas
