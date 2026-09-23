@@ -14,7 +14,7 @@ function MenuItem({ label, onClick }) {
   );
 }
 
-export default function UserMenu({ open, onClose, name, onRename }) {
+export default function UserMenu({ open, onClose, name }) {
   const navigate = useNavigate();
   if (!open) return null;
 
@@ -29,7 +29,6 @@ export default function UserMenu({ open, onClose, name, onRename }) {
         </p>
       </div>
       <div className="py-1">
-        <MenuItem label="Edit name" onClick={onRename} />
         <MenuItem
           label="Source code" onClick={() => {
             window.open(GITHUB_URL, "_blank");

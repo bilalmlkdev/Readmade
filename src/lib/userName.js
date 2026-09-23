@@ -40,14 +40,6 @@ function getStoredName() {
   }
 }
 
-export function setStoredName(name) {
-  try {
-    localStorage.setItem("readmade_user_name", name);
-  } catch {
-    // storage unavailable
-  }
-}
-
 function generateName(browserId) {
   const pool = NAME_POOL.length ? NAME_POOL : FALLBACK_NAMES;
   return pool[hashString(browserId) % pool.length];
