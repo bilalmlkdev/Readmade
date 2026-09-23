@@ -1,60 +1,99 @@
-import { useState, useMemo } from "react";
-import { useParams, Navigate } from "react-router-dom";
-import DocsHeader from "./DocsHeader.jsx";
-import DocsSidebar from "./DocsSidebar.jsx";
-import DocsContent from "./DocsContent.jsx";
-import DocsToc from "./DocsToc.jsx";
-import DocsPager from "./DocsPager.jsx";
-import DocsFooter from "./DocsFooter.jsx";
-import { getPage, DEFAULT_SLUG } from "./data/pages.js";
-import { getSectionFor } from "./data/nav.js";
-import { extractHeadings } from "./data/headings.js";
+import { Link } from "react-router-dom";
+import logo from "/logo.svg";
+import { parseMarkdown } from "../lib/parseMarkdown.js";
+import { PAGES, DEFAULT_SLUG } from "./data/pages.js";
+import { SECTIONS } from "./data/nav.js";
+import DocsViewerRoute from "./viewer/DocsViewerRoute.jsx";
+
+const brand = {
+  name: "Readmade",
+  badge: "Docs",
+  logo,
+  homeTo: "/",
+  homeLabel: "Home",
+  cta: { to: "/app", label: "Open App" },
+  links: [
+    { to: "/#templates", label: "Templates" },
+    {
+      href: "https://github.com/bilalmlkdev/readmade",
+      label: "GitHub",
+      external: true,
+    },
+  ],
+};
+
+const footer = {
+  blurb:
+    "Local-first README editor. Compose, preview, and export GitHub-ready Markdown.",
+  copyright: "© 2026 Readmade. MIT License.",
+  columns: [
+    {
+      title: "Docs",
+      links: [
+        { to: "intro", label: "Introduction" },
+        { to: "quick-start", label: "Quick Start" },
+        { to: "editor", label: "Editor Guide" },
+        { to: "architecture", label: "Architecture" },
+        { to: "contributing", label: "Contributing" },
+      ],
+    },
+    {
+      title: "Reference",
+      links: [
+        { to: "blocks", label: "Block Reference" },
+        { to: "templates", label: "Templates" },
+        { to: "shortcuts", label: "Shortcuts" },
+        { to: "security", label: "Security" },
+        { to: "license", label: "License" },
+      ],
+    },
+    {
+      title: "More",
+      links: [
+        { href: "https://github.com/bilalmlkdev/readmade", label: "GitHub" },
+        {
+          href: "https://github.com/bilalmlkdev/readmade/issues",
+          label: "Issues",
+        },
+        {
+          href: "https://github.com/bilalmlkdev/readmade/blob/main/CHANGELOG.md",
+          label: "Release Notes",
+        },
+        { href: "https://ko-fi.com/bilalmlkdev", label: "Support" },
+      ],
+    },
+  ],
+  metaLinks: [
+    { to: "security", label: "Security" },
+    { to: "license", label: "License" },
+    { to: "faq", label: "FAQ" },
+  ],
+};
 
 export default function DocsPage() {
-  const { slug } = useParams();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const invalid = Boolean(slug && !getPage(slug));
-  const page = getPage(slug || DEFAULT_SLUG) || getPage(DEFAULT_SLUG);
-  const section = getSectionFor(page.slug);
-  const headings = useMemo(() => extractHeadings(page.body), [page.body]);
-
-  if (invalid) return <Navigate to={`/docs/${DEFAULT_SLUG}`} replace />;
-
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-[#FAFAFA] text-gray-900 dark:bg-[#0c0c0c] dark:text-gray-100">
-      <DocsHeader onMenu={() => setSidebarOpen(true)} />
-
-      <div className="flex min-h-0 flex-1">
-        <DocsSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-
-        <div className="flex min-w-0 flex-1">
-          <div
-            id="docs-scroll" className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto"
-          >
-            <div className="mx-auto max-w-[1100px] px-4 py-8 md:px-8">
-              <nav
-                className="mb-4 flex flex-wrap items-center gap-1.5 text-[13px] text-gray-400 dark:text-gray-500" aria-label="Breadcrumb"
-              >
-                <span>Docs</span>
-                <span aria-hidden="true">/</span>
-                {section && (
-                  <>
-                    <span>{section.title}</span>
-                    <span aria-hidden="true">/</span>
-                  </>
-                )}
-                <span className="text-gray-700 dark:text-gray-200">{page.title}</span>
-              </nav>
-
-              <DocsContent key={page.slug} page={page} />
-              <DocsPager slug={page.slug} />
-            </div>
-            <DocsFooter />
-          </div>
-
-          <DocsToc key={page.slug} headings={headings} />
-        </div>
+    <DocsViewerRoute
+      pages={PAGES}
+      sections={SECTIONS}
+      basePath="/docs"
+      defaultSlug={DEFAULT_SLUG}
+      brand={brand}
+      footer={footer}
+      breadcrumbLabel="Docs"
+      parseMarkdown={parseMarkdown}
+      notFoundFallback={
+<div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#FAFAFA] p-8 text-center dark:bg-[#0c0c0c]">
+        <p className="text-lg font-semibold text-gray-900 dark:text-white">
+          Page not found
+        </p>
+        <Link
+          to="/docs/intro"
+          className="rounded-lg bg-gray-950 px-4 py-2 text-sm text-white dark:bg-white dark:text-gray-950"
+        >
+          Back to docs
+        </Link>
       </div>
-    </div>
+      }
+    />
   );
 }

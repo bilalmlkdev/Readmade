@@ -1,0 +1,313 @@
+/* DocsViewer - Space Grotesk only, light + dark via .dark */
+
+@keyframes dv-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dv-root {
+  --dv-bg: #fafafa;
+  --dv-panel: #ffffff;
+  --dv-border: #e5e7eb;
+  --dv-border-strong: #d1d5db;
+  --dv-text: #111827;
+  --dv-muted: #6b7280;
+  --dv-muted-2: #9ca3af;
+  --dv-accent: #111111;
+  --dv-hover: rgba(0, 0, 0, 0.04);
+  --dv-active: rgba(0, 0, 0, 0.06);
+  --dv-code-bg: #f6f8fa;
+  --dv-font: "Space Grotesk", sans-serif;
+
+  color: var(--dv-text);
+  background: var(--dv-bg);
+  font-family: var(--dv-font);
+}
+
+.dark .dv-root {
+  --dv-bg: #0c0c0c;
+  --dv-panel: #141414;
+  --dv-border: rgba(255, 255, 255, 0.1);
+  --dv-border-strong: rgba(255, 255, 255, 0.18);
+  --dv-text: #f5f5f5;
+  --dv-muted: #9ca3af;
+  --dv-muted-2: #737373;
+  --dv-accent: #fafafa;
+  --dv-hover: rgba(255, 255, 255, 0.06);
+  --dv-active: rgba(255, 255, 255, 0.1);
+  --dv-code-bg: #161616;
+  color: var(--dv-text);
+  background: var(--dv-bg);
+}
+
+.dv-root .dv-markdown {
+  color: var(--dv-text);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  word-wrap: break-word;
+  max-width: 820px;
+}
+
+.dv-root .dv-markdown > *:first-child {
+  margin-top: 0 !important;
+}
+
+.dv-root .dv-markdown > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.dv-root .dv-markdown h1,
+.dv-root .dv-markdown h2 {
+  font-weight: 700;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--dv-border);
+  color: var(--dv-text);
+  letter-spacing: -0.02em;
+}
+
+.dv-root .dv-markdown h1 {
+  font-size: 2rem;
+  margin: 0.4em 0 0.75em;
+}
+
+.dv-root .dv-markdown h2 {
+  font-size: 1.4rem;
+  margin: 1.75em 0 0.75em;
+}
+
+.dv-root .dv-markdown h3 {
+  font-size: 1.15em;
+  margin: 1.4em 0 0.6em;
+  font-weight: 650;
+  color: var(--dv-text);
+}
+
+.dv-root .dv-markdown h4 {
+  font-size: 1em;
+  margin: 1.25em 0 0.5em;
+  font-weight: 650;
+}
+
+.dv-root .dv-markdown p {
+  margin: 0 0 1em;
+}
+
+.dv-root .dv-markdown a {
+  color: var(--dv-accent);
+  text-decoration: underline;
+  text-decoration-color: #d1d5db;
+  text-underline-offset: 2px;
+}
+
+.dv-root .dv-markdown a:hover {
+  text-decoration-color: var(--dv-accent);
+}
+
+.dv-root .dv-markdown ul,
+.dv-root .dv-markdown ol {
+  margin: 0 0 1em;
+  padding-left: 1.5em;
+}
+
+.dv-root .dv-markdown li {
+  margin: 0.25em 0;
+}
+
+.dv-root .dv-markdown li > p {
+  margin-bottom: 0.35em;
+}
+
+.dv-root .dv-markdown strong {
+  font-weight: 700;
+  color: var(--dv-text);
+}
+
+.dv-root .dv-markdown hr {
+  height: 1px;
+  margin: 1.75em 0;
+  background: var(--dv-border);
+  border: 0;
+}
+
+.dv-root .dv-markdown blockquote {
+  margin: 0 0 1em;
+  padding: 0.15em 1em;
+  color: var(--dv-muted);
+  border-left: 3px solid var(--dv-border-strong);
+}
+
+.dv-root .dv-markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  background: var(--dv-code-bg);
+  border: 1px solid var(--dv-border);
+  border-radius: 6px;
+  color: var(--dv-text);
+}
+
+.dv-root .dv-markdown pre {
+  margin: 0 0 1em;
+  padding: 14px 16px;
+  overflow-x: auto;
+  background: var(--dv-code-bg);
+  border: 1px solid var(--dv-border);
+  border-radius: 8px;
+}
+
+.dv-root .dv-markdown pre code {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.dv-root .dv-markdown .code-block {
+  position: relative;
+  margin-bottom: 1em;
+  background: var(--dv-code-bg);
+  border: 1px solid var(--dv-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dv-root .dv-markdown .code-block .code-lang {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--dv-muted);
+  background: #eef1f4;
+  border-bottom: 1px solid var(--dv-border);
+  border-left: 1px solid var(--dv-border);
+  text-transform: lowercase;
+}
+
+.dark .dv-root .dv-markdown .code-block .code-lang {
+  background: #1a1a1a;
+}
+
+.dv-root .dv-markdown .code-block pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.dv-root .dv-markdown table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  margin: 0 0 1.25em;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: var(--dv-panel);
+}
+
+.dv-root .dv-markdown th,
+.dv-root .dv-markdown td {
+  padding: 8px 12px;
+  border: 1px solid var(--dv-border);
+  text-align: left;
+  word-break: break-word;
+  vertical-align: top;
+}
+
+.dv-root .dv-markdown th {
+  font-weight: 650;
+  background: #f3f4f6;
+  color: var(--dv-text);
+}
+
+.dark .dv-root .dv-markdown th {
+  background: #1a1a1a;
+}
+
+.dv-root .dv-markdown tr:nth-child(2n) {
+  background: #f9fafb;
+}
+
+.dark .dv-root .dv-markdown tr:nth-child(2n) {
+  background: #111111;
+}
+
+.dv-root .dv-markdown kbd {
+  display: inline-block;
+  padding: 0.2em 0.4em;
+  font-size: 11px;
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1.2;
+  color: var(--dv-text);
+  background: var(--dv-panel);
+  border: 1px solid var(--dv-border-strong);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+}
+
+.dv-root .dv-markdown img {
+  max-width: 100%;
+}
+
+.dv-root .dv-markdown .heading-anchor {
+  opacity: 0;
+  margin-left: 8px;
+  color: var(--dv-muted-2);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+.dv-root .dv-markdown h1:hover .heading-anchor,
+.dv-root .dv-markdown h2:hover .heading-anchor,
+.dv-root .dv-markdown h3:hover .heading-anchor,
+.dv-root .dv-markdown h4:hover .heading-anchor {
+  opacity: 1;
+}
+
+.dv-root .dv-markdown .md-error {
+  color: #b91c1c;
+}
+
+.dark .dv-root .dv-markdown .md-error {
+  color: #f85149;
+}
+
+.dv-scroll {
+  background: var(--dv-bg, #fafafa);
+}
+
+.dark .dv-scroll {
+  background: var(--dv-bg, #0c0c0c);
+}
+
+.dv-root,
+.dv-root * {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.dv-root pre,
+.dv-root code {
+  font-family: "Space Grotesk", ui-monospace, monospace;
+}
+
+@media (max-width: 768px) {
+  .dv-root .dv-markdown {
+    font-size: 15px;
+  }
+
+  .dv-root .dv-markdown table {
+    display: block;
+    table-layout: auto;
+    overflow-x: auto;
+  }
+}
