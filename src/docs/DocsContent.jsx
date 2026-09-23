@@ -25,6 +25,11 @@ export default function DocsContent({ page }) {
   }, [body]);
 
   useEffect(() => {
+    const scroller = document.getElementById("docs-scroll");
+    if (scroller) scroller.scrollTo(0, 0);
+  }, [page?.slug]);
+
+  useEffect(() => {
     const root = document.getElementById("docs-markdown");
     if (!root) return undefined;
 
@@ -32,14 +37,41 @@ export default function DocsContent({ page }) {
       const a = e.target.closest?.("a");
       if (!a) return;
       const href = a.getAttribute("href") || "";
-      if (!href.startsWith("/") || a.target === "_blank") return;
+      if (a.target === "_blank") return;
+
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const id = href.slice(1);
+        const target = document.getElementById(id);
+        const scroller = document.getElementById("docs-scroll");
+        if (target && scroller) {
+          const top =
+            target.getBoundingClientRect().top -
+            scroller.getBoundingClientRect().top +
+            scroller.scrollTop -
+            16;
+          scroller.scrollTo({ top, behavior: "smooth" });
+        }
+        return;
+      }
+
+      if (!href.startsWith("/")) return;
       e.preventDefault();
       const [path, hash] = href.split("#");
       if (path.startsWith("/docs")) {
         navigate(path);
         if (hash) {
           requestAnimationFrame(() => {
-            document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+            const target = document.getElementById(hash);
+            const scroller = document.getElementById("docs-scroll");
+            if (target && scroller) {
+              const top =
+                target.getBoundingClientRect().top -
+                scroller.getBoundingClientRect().top +
+                scroller.scrollTop -
+                16;
+              scroller.scrollTo({ top, behavior: "smooth" });
+            }
           });
         }
       } else {

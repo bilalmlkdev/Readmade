@@ -9,6 +9,7 @@ export default function DocsToc({ headings }) {
 
   useEffect(() => {
     if (headings.length === 0) return undefined;
+    const root = document.getElementById("docs-scroll");
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -17,7 +18,11 @@ export default function DocsToc({ headings }) {
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         if (visible[0]?.target?.id) setActiveId(visible[0].target.id);
       },
-      { rootMargin: "-80px 0px -70% 0px", threshold: [0, 1] },
+      {
+        root,
+        rootMargin: "-80px 0px -70% 0px",
+        threshold: [0, 1],
+      },
     );
 
     const nodes = headings
@@ -27,10 +32,29 @@ export default function DocsToc({ headings }) {
     return () => observer.disconnect();
   }, [headings]);
 
-  if (headings.length === 0) return null;
+  function scrollToHeading(e, id) {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    const scroller = document.getElementById("docs-scroll");
+    if (!target || !scroller) return;
+    const top =
+      target.getBoundingClientRect().top -
+      scroller.getBoundingClientRect().top +
+      scroller.scrollTop -
+      16;
+    scroller.scrollTo({ top, behavior: "smooth" });
+    setActiveId(id);
+  }
+
+  if (headings.length === 0) {
+    return <div className="hidden w-52 shrink-0 xl:block" aria-hidden="true" />;
+  }
 
   return (
-    <nav className="sticky top-20 hidden w-52 shrink-0 xl:block" aria-label="On this page">
+    <nav
+      className="hidden w-52 shrink-0 overflow-x-hidden overflow-y-auto border-l border-gray-200 px-4 py-8 xl:block dark:border-white/10"
+      aria-label="On this page"
+    >
       <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
         On this page
       </div>
@@ -39,6 +63,7 @@ export default function DocsToc({ headings }) {
           <li key={h.id}>
             <a
               href={`#${h.id}`}
+              onClick={(e) => scrollToHeading(e, h.id)}
               className={[
                 "-ml-px block border-l py-1 text-[13px] transition",
                 h.depth === 3 ? "pl-6" : "pl-3",

@@ -93,7 +93,7 @@ export default function DocsHeader({ onMenu }) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-gray-200/80 bg-[#FAFAFA]/90 backdrop-blur-xl dark:border-white/10 dark:bg-[#0c0c0c]/90">
+      <header className="z-50 shrink-0 border-b border-gray-200/80 bg-[#FAFAFA]/90 backdrop-blur-xl dark:border-white/10 dark:bg-[#0c0c0c]/90">
         <div className="flex h-14 items-center gap-3 px-4 md:px-6">
           <button
             type="button"

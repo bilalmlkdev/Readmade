@@ -14,7 +14,8 @@ export default function DocsSidebar({ open, onClose }) {
       )}
       <aside
         className={[
-          "fixed top-14 bottom-0 left-0 z-40 w-72 overflow-y-auto border-r border-gray-200 bg-[#FAFAFA] px-4 py-6 transition-transform lg:sticky lg:top-14 lg:z-0 lg:h-[calc(100vh-3.5rem)] lg:translate-x-0 lg:bg-transparent dark:border-white/10 dark:bg-[#0c0c0c]",
+          "fixed top-14 bottom-0 left-0 z-40 w-72 overflow-x-hidden overflow-y-auto border-r border-gray-200 bg-[#FAFAFA] px-4 py-6 transition-transform",
+          "lg:static lg:z-auto lg:h-full lg:shrink-0 lg:translate-x-0 lg:transition-none lg:bg-transparent dark:border-white/10 dark:bg-[#0c0c0c] lg:dark:bg-transparent",
           open ? "translate-x-0" : "-translate-x-full",
         ].join(" ")}
         aria-label="Documentation navigation"

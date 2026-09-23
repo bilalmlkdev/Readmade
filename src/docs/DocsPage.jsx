@@ -21,13 +21,18 @@ export default function DocsPage() {
   if (invalid) return <Navigate to={`/docs/${DEFAULT_SLUG}`} replace />;
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-gray-900 dark:bg-[#0c0c0c] dark:text-gray-100">
+    <div className="flex h-screen flex-col overflow-hidden bg-[#FAFAFA] text-gray-900 dark:bg-[#0c0c0c] dark:text-gray-100">
       <DocsHeader onMenu={() => setSidebarOpen(true)} />
-      <div className="flex">
+
+      <div className="flex min-h-0 flex-1">
         <DocsSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <div className="min-w-0 flex-1">
-          <div className="mx-auto flex max-w-[1400px] gap-10 px-4 py-8 md:px-8 lg:px-10">
-            <main className="min-w-0 flex-1">
+
+        <div className="flex min-w-0 flex-1">
+          <div
+            id="docs-scroll"
+            className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto"
+          >
+            <div className="mx-auto max-w-[1100px] px-4 py-8 md:px-8">
               <nav
                 className="mb-4 flex flex-wrap items-center gap-1.5 text-[13px] text-gray-400 dark:text-gray-500"
                 aria-label="Breadcrumb"
@@ -45,11 +50,11 @@ export default function DocsPage() {
 
               <DocsContent key={page.slug} page={page} />
               <DocsPager slug={page.slug} />
-            </main>
-
-            <DocsToc key={page.slug} headings={headings} />
+            </div>
+            <DocsFooter />
           </div>
-          <DocsFooter />
+
+          <DocsToc key={page.slug} headings={headings} />
         </div>
       </div>
     </div>

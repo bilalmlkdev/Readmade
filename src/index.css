@@ -264,7 +264,7 @@ body,
 
 .docs-content .markdown-body h2,
 .docs-content .markdown-body h3 {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 1.25rem;
 }
 
 @media (max-width: 768px) {
