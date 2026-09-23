@@ -225,7 +225,7 @@ export default function BlockArranger({ onOpenTemplates }) {
             <p className="text-base text-black font-medium">
               {search ? "No blocks match" : "No blocks yet"}
             </p>
-            <p className="text-sm text-gray-600 mt-1 max-w-[80%] mx-auto">
+            <p className="text-[13px] text-gray-600 mt-1 max-w-[75%] mx-auto">
               {search
                 ? "Try a different search"
                 : "Click a block type on the left, or use Templates to start from a ready-made form."}
@@ -328,9 +328,7 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
       ref={setNodeRef}
       style={style}
       className={`rounded-xl transition-all group bg-white border border-gray-200 shadow-xs overflow-hidden ${
-        isActive || isExpanded
-          ? "bg-white"
-          : "hover:bg-white/80"
+        isActive || isExpanded ? "bg-white" : "hover:bg-white/80"
       } ${isDragging ? "z-50 shadow-xs" : ""} ${isHidden ? "opacity-55" : ""}`}
     >
       <div
@@ -370,12 +368,24 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
             {meta?.label}
           </span>
           <span className="text-[11px] text-black/60 font-medium block truncate">
-            {block.content?.name || block.content?.text?.slice(0, 30) || `Block ${index + 1}`}
+            {block.content?.name ||
+              block.content?.text?.slice(0, 30) ||
+              `Block ${index + 1}`}
           </span>
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-0.5 shrink-0">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit();
+            }}
+            className="p-1.5 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
+            title="Open in popup"
+          >
+            <Maximize2 size={13} />
+          </button>
           <button
             onClick={handleToggleHidden}
             className={`p-1.5 rounded-lg transition-colors ${
@@ -389,13 +399,7 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
           >
             {isHidden ? <EyeOff size={13} /> : <Eye size={13} />}
           </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); onEdit(); }}
-            className="p-1.5 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
-            title="Open in popup"
-          >
-            <Maximize2 size={13} />
-          </button>
+
           <button
             onClick={handleDelete}
             className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
@@ -404,7 +408,10 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
             <Trash2 size={13} />
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); onToggleExpand(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleExpand();
+            }}
             className="p-1.5 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
             title={isExpanded ? "Collapse" : "Expand"}
           >
@@ -422,7 +429,11 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
           className="border-t border-gray-100 bg-white px-3 py-3"
           onClick={(e) => e.stopPropagation()}
         >
-          <InlineBlockEditor key={block.id} block={block} updateBlock={updateBlock} />
+          <InlineBlockEditor
+            key={block.id}
+            block={block}
+            updateBlock={updateBlock}
+          />
         </div>
       )}
     </div>

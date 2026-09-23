@@ -20,6 +20,11 @@ export default function ScreenshotsBlock({ content, setContent }) {
         </button>
       </div>
       <div className="space-y-3">
+        {content.items.length === 0 && (
+          <p className="text-[13px] text-gray-400 text-center py-4">
+            No screenshots yet. Click “+ Add Screenshot” to begin.
+          </p>
+        )}
         {content.items.map((item, i) => (
           <div
             key={i}

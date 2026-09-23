@@ -98,7 +98,7 @@ const DEFAULTS = {
     code: "import { init } from 'your-package-name'\n\ninit({\n  option: 'value',\n})",
   },
   screenshots: {
-    items: [],
+    items: [{ url: "", alt: "", caption: "" }],
   },
   api: {
     entries: [
