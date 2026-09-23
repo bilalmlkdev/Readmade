@@ -11,12 +11,29 @@ const ALL_BLOCKS = Object.values(BLOCK_TYPES).map((type) => ({
   icon: BLOCK_ICONS[type],
 }));
 
+const PALETTE_MIN_KEY = "readmade:paletteMinimized";
+
+function getStoredMinimized() {
+  try {
+    return localStorage.getItem(PALETTE_MIN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export default function BlockPalette() {
   const { addBlock } = useReadme();
-  const [minimized, setMinimized] = useState(false);
+  const [minimized, setMinimized] = useState(getStoredMinimized);
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState("");
   const searchInputRef = useRef(null);
+
+  function updateMinimized(value) {
+    setMinimized(value);
+    try {
+      localStorage.setItem(PALETTE_MIN_KEY, value ? "1" : "0");
+    } catch { /* storage unavailable */ }
+  }
 
   useEffect(() => {
     if (!showSearch) return;
@@ -57,7 +74,7 @@ export default function BlockPalette() {
         {minimized ? (
           <button
             type="button"
-            onClick={() => setMinimized(false)}
+            onClick={() => updateMinimized(false)}
             className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black hover:bg-gray-100 transition-colors"
             title="Expand palette"
             aria-label="Expand palette"
@@ -72,7 +89,7 @@ export default function BlockPalette() {
             </div>
             <button
               type="button"
-              onClick={() => setMinimized(true)}
+              onClick={() => updateMinimized(true)}
               className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black hover:bg-gray-100 transition-colors shrink-0"
               title="Minimize palette"
               aria-label="Minimize palette"
@@ -146,7 +163,7 @@ export default function BlockPalette() {
                 <button
                   type="button"
                   onClick={() => setShowSearch(true)}
-                  className="p-1.5 relative right-1.5 top-[3px] rounded-lg text-gray-500 hover:text-black hover:bg-gray-100 transition-colors"
+                  className="p-1.5 relative right-1.5 top-0.5 rounded-lg text-gray-500 hover:text-black hover:bg-gray-100 transition-colors"
                   title="Search blocks"
                   aria-label="Search blocks"
                 >

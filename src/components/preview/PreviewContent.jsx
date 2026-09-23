@@ -57,7 +57,7 @@ export default function PreviewContent({
   }
 
   return (
-    <div className="flex-1 h-full m-1 flex flex-col overflow-hidden bg-white rounded-tl-2xl rounded-tr-2xl rounded-bl-lg rounded-br-lg border border-gray-200 relative">
+    <div className="flex-1 h-full mx-1 mb-1 flex flex-col overflow-hidden bg-white rounded-tl-2xl rounded-tr-2xl rounded-bl-lg rounded-br-lg border border-gray-200 relative">
       <div
         ref={scrollRef}
         className="flex-1 h-full overflow-y-auto overflow-x-hidden"
