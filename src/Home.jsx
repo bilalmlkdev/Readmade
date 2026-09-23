@@ -30,7 +30,7 @@ export default function Home() {
     redo,
   } = useReadme();
   useDocumentTitle("Readmade - Build your README");
-  useAutosaveHistory();
+  const saveStatus = useAutosaveHistory();
   const repoStars = useRepoStars();
 
   const [showResetConfirm, setShowResetConfirm] = useState(false);
@@ -64,6 +64,7 @@ export default function Home() {
     >
       <HomeHeader
         repoStars={repoStars}
+        saveStatus={saveStatus}
         onHistory={() => setShowHistory(true)}
         onReset={() => setShowResetConfirm(true)}
         canUndo={past.length > 0}

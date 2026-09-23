@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Trash2, History, Undo2, Redo2 } from "lucide-react";
+import {
+  ArrowLeft,
+  Trash2,
+  History,
+  Undo2,
+  Redo2,
+  Check,
+  Loader2,
+} from "lucide-react";
 import { REPO_URL } from "../../lib/repo.js";
 import { formatStars } from "../../lib/formatStars.js";
 import ThemeToggle from "../ui/ThemeToggle.jsx";
@@ -7,8 +15,27 @@ import ThemeToggle from "../ui/ThemeToggle.jsx";
 const iconBtn =
   "flex items-center justify-center p-1.5 rounded-lg text-gray-500 hover:text-black hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/10 disabled:opacity-35 disabled:pointer-events-none";
 
+function SaveStatus({ status }) {
+  const saving = status === "saving";
+  return (
+    <span
+      className="flex items-center gap-1 text-[12px] font-normal text-gray-400 dark:text-gray-500"
+      title={saving ? "Saving" : "Saved"}
+      aria-live="polite"
+    >
+      {saving ? (
+        <Loader2 size={12} className="animate-spin" aria-hidden="true" />
+      ) : (
+        <Check size={12} aria-hidden="true" />
+      )}
+      {saving ? "Saving" : "Saved"}
+    </span>
+  );
+}
+
 export default function HomeHeader({
   repoStars,
+  saveStatus = "saved",
   onHistory,
   onReset,
   canUndo,
@@ -28,12 +55,13 @@ export default function HomeHeader({
           Back
         </Link>
         <div className="w-px h-6 bg-gray-200 dark:bg-white/10" />
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-4">
           <div className="leading-tight">
             <p className="text-[14.5px] font-medium text-black dark:text-white mt-0.5">
               Readmade
             </p>
           </div>
+          <SaveStatus status={saveStatus} />
         </div>
       </div>
 
