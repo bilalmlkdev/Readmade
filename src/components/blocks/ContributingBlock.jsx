@@ -8,7 +8,7 @@ export default function ContributingBlock({ content, setContent }) {
   return (
     <div className="space-y-3">
       <div>
-        <label className="block text-[12px] font-medium text-gray-700 mb-1">
+        <label className="block text-[12px] font-medium text-gray-700 dark:text-gray-300 mb-1">
           Intro Text
         </label>
         <textarea
@@ -19,12 +19,12 @@ export default function ContributingBlock({ content, setContent }) {
         />
       </div>
       <div className="flex items-center justify-between">
-        <label className="block text-[12px] font-medium text-gray-700">
+        <label className="block text-[12px] font-medium text-gray-700 dark:text-gray-300">
           Steps
         </label>
         <button
           onClick={() => handleArrayAdd("steps", "New step")}
-          className="text-[12px] font-medium text-black hover:text-black/80"
+          className="text-[12px] font-medium text-black dark:text-white hover:text-black/80 dark:hover:text-white/80"
         >
           + Add Step
         </button>

@@ -53,7 +53,7 @@ const TEMPLATES = [
 
 export default function TemplatesSection() {
   return (
-    <section id="templates" className="px-15 py-24 bg-[#FAFAFA]">
+    <section id="templates" className="px-15 py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
       <div className="mx-auto max-w-full">
         <div className="mb-3 section-label">Templates</div>
         <h3 className="m-0 mb-6 max-w-2xl section-heading">
@@ -71,12 +71,12 @@ export default function TemplatesSection() {
             return (
               <div
                 key={template.name}
-                className="border border-gray-200 p-5 transition-colors hover:border-gray-300 hover:bg-gray-50"
+                className="border border-gray-200 dark:border-white/10 p-5 transition-colors hover:border-gray-300 hover:bg-gray-50 dark:hover:border-white/20 dark:hover:bg-white/5"
               >
-                <div className="mb-4 flex h-9 w-9 items-center justify-center bg-gray-100">
-                  <Icon size={17} className="text-gray-600" strokeWidth={2} />
+                <div className="mb-4 flex h-9 w-9 items-center justify-center bg-gray-100 dark:bg-white/10">
+                  <Icon size={17} className="text-gray-600 dark:text-gray-300" strokeWidth={2} />
                 </div>
-                <h4 className="m-0 text-sm font-medium text-black">
+                <h4 className="m-0 text-sm font-medium text-black dark:text-white">
                   {template.name}
                 </h4>
                 <p className="m-0 mt-1.5 text-[13px] leading-5 text-gray-500">
@@ -86,13 +86,13 @@ export default function TemplatesSection() {
                   {template.blocks.slice(0, 4).map((b) => (
                     <span
                       key={b}
-                      className="text-[10px] px-1.5 py-0.5 bg-gray-100 text-gray-600 font-medium"
+                      className="text-[10px] px-1.5 py-0.5 bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 font-medium"
                     >
                       {b}
                     </span>
                   ))}
                   {template.blocks.length > 4 && (
-                    <span className="text-[10px] px-1.5 py-0.5 bg-gray-100 text-gray-400">
+                    <span className="text-[10px] px-1.5 py-0.5 bg-gray-100 dark:bg-white/10 text-gray-400 dark:text-gray-500">
                       +{template.blocks.length - 4}
                     </span>
                   )}

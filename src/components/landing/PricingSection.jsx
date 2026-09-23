@@ -55,7 +55,7 @@ const PLANS = [
 
 export default function PricingSection() {
   return (
-    <section className="px-15 pb-34 pt-14 bg-[#FAFAFA]">
+    <section className="px-15 pb-34 pt-14 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
       <div className="mx-auto max-w-full">
         <div className="text-center mb-16">
           <div className="mb-3 section-label">Pricing</div>
@@ -75,8 +75,8 @@ export default function PricingSection() {
                 plan.highlighted
                   ? "bg-black text-white scale-[1.02] shadow-2xl shadow-black/10"
                   : plan.active
-                    ? "bg-white border border-gray-200"
-                    : "bg-white border border-gray-100"
+                    ? "bg-white border border-gray-200 dark:border-white/10"
+                    : "bg-white border border-gray-100 dark:border-white/10"
               }`}
             >
               {plan.highlighted && (
@@ -94,7 +94,7 @@ export default function PricingSection() {
 
                 <div className="mt-4 flex items-baseline gap-1">
                   <span className={`text-[48px] font-light tracking-tight leading-none ${
-                    plan.highlighted ? "text-white" : "text-black"
+                    plan.highlighted ? "text-white" : "text-black dark:text-white"
                   }`}>
                     {plan.price}
                   </span>
@@ -106,7 +106,7 @@ export default function PricingSection() {
                 </div>
 
                 <p className={`mt-4 text-[13px] leading-relaxed ${
-                  plan.highlighted ? "text-gray-400" : "text-gray-500"
+                  plan.highlighted ? "text-gray-400" : "text-gray-500 dark:text-gray-400"
                 }`}>
                   {plan.desc}
                 </p>
@@ -114,7 +114,7 @@ export default function PricingSection() {
 
               <div className="px-8 pb-8 pt-2 flex-1 flex flex-col">
                 <div className={`w-full h-px mb-6 ${
-                  plan.highlighted ? "bg-white/10" : "bg-gray-100"
+                  plan.highlighted ? "bg-white/10" : "bg-gray-100 dark:bg-white/10"
                 }`} />
 
                 <ul className="flex-1 space-y-3.5 mb-8">
@@ -122,7 +122,7 @@ export default function PricingSection() {
                     <li
                       key={feature}
                       className={`flex items-center gap-3 text-[13px] ${
-                        plan.highlighted ? "text-gray-300" : "text-gray-600"
+                        plan.highlighted ? "text-gray-300" : "text-gray-600 dark:text-gray-300"
                       }`}
                     >
                       <svg className={`w-4 h-4 flex-shrink-0 ${
@@ -147,7 +147,7 @@ export default function PricingSection() {
                     {plan.cta}
                   </div>
                 ) : (
-                  <div className="inline-flex items-center justify-center w-full py-3 border border-gray-200 text-gray-400 text-[13px] font-medium cursor-not-allowed">
+                  <div className="inline-flex items-center justify-center w-full py-3 border border-gray-200 dark:border-white/10 text-gray-400 dark:text-gray-500 text-[13px] font-medium cursor-not-allowed">
                     {plan.cta}
                   </div>
                 )}

@@ -34,20 +34,20 @@ export default function MobileDrawer({ open, onClose, title, children }) {
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="app:hidden fixed top-0 right-0 z-50 h-full w-[85vw] max-w-[400px] bg-white border-l border-gray-200 flex flex-col overflow-hidden transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        className="app:hidden fixed top-0 right-0 z-50 h-full w-[85vw] max-w-[400px] bg-white dark:bg-[#111] border-l border-gray-200 dark:border-white/10 flex flex-col overflow-hidden transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
         style={{ transform: open ? "translateX(0)" : "translateX(100%)" }}
       >
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 shrink-0">
-          <span className="text-[13px] font-medium text-gray-700">{title}</span>
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-white/10 shrink-0">
+          <span className="text-[13px] font-medium text-gray-700 dark:text-gray-200">{title}</span>
           <button
             onClick={onClose}
             aria-label="Close"
-            className="flex items-center justify-center w-7 h-7 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+            className="flex items-center justify-center w-7 h-7 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
           >
             <X size={16} strokeWidth={1.5} />
           </button>
         </div>
-        <div className="flex-1 min-h-0 overflow-hidden flex flex-col bg-white">
+        <div className="flex-1 min-h-0 overflow-hidden flex flex-col bg-white dark:bg-[#111]">
           {children}
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function ToolkitSection() {
   ];
 
   return (
-    <section className="px-15 py-24 bg-[#FAFAFA]">
+    <section className="px-15 py-24 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
       <div className="mx-auto max-w-full">
         <div className="mb-3 section-label">Full toolkit</div>
         <h3 className="m-0 mb-6 max-w-2xl section-heading">
@@ -21,8 +21,8 @@ export default function ToolkitSection() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature) => (
             <div key={feature.title} className="feature-item">
-              <div className="text-sm font-medium text-black">{feature.title}</div>
-              <div className="mt-2 text-[13px] leading-6 text-gray-500">
+              <div className="text-sm font-medium text-black dark:text-white">{feature.title}</div>
+              <div className="mt-2 text-[13px] leading-6 text-gray-500 dark:text-gray-400">
                 {feature.description}
               </div>
             </div>

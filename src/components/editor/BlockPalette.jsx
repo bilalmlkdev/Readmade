@@ -62,12 +62,12 @@ export default function BlockPalette() {
 
   return (
     <div
-      className={`w-full ${minimized ? "app:w-[60px]" : "app:w-[240px]"} flex flex-col bg-[#FAFAFB] h-full border border-gray-200 rounded-lg transition-[width] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]`}
+      className={`w-full ${minimized ? "app:w-[60px]" : "app:w-[240px]"} flex flex-col bg-[#FAFAFB] dark:bg-[#111] h-full border border-gray-200 dark:border-white/10 rounded-lg transition-[width] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]`}
       data-tour="sidebar"
     >
       {/* Header */}
       <div
-        className={`shrink-0 border-b border-gray-200 ${
+        className={`shrink-0 border-b border-gray-200 dark:border-white/10 ${
           minimized ? "flex flex-col items-center gap-1 px-1.5 pt-3 pb-2" : "flex items-start justify-between gap-2 px-3 pt-3 pb-2"
         }`}
       >
@@ -75,7 +75,7 @@ export default function BlockPalette() {
           <button
             type="button"
             onClick={() => updateMinimized(false)}
-            className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black hover:bg-gray-100 transition-colors"
+            className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
             title="Expand palette"
             aria-label="Expand palette"
           >
@@ -84,13 +84,13 @@ export default function BlockPalette() {
         ) : (
           <>
             <div className="min-w-0">
-              <h2 className="text-[14px] font-semibold text-black">Field Types</h2>
-              <p className="text-[11px] text-black/ mt-0.5">Click to add a field</p>
+              <h2 className="text-[14px] font-semibold text-black dark:text-white">Field Types</h2>
+              <p className="text-[11px] text-black/50 dark:text-white/50 mt-0.5">Click to add a field</p>
             </div>
             <button
               type="button"
               onClick={() => updateMinimized(true)}
-              className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black hover:bg-gray-100 transition-colors shrink-0"
+              className="hidden app:flex p-1.5 rounded-lg text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors shrink-0"
               title="Minimize palette"
               aria-label="Minimize palette"
             >
@@ -104,7 +104,7 @@ export default function BlockPalette() {
       <div className={`shrink-0 mt-3 ${minimized ? "px-1.5" : "px-1"}`}>
         {!minimized && (
           <div className="px-3 pb-1 shrink-0">
-            <span className="text-[11.5px] font-medium text-gray-400">
+            <span className="text-[11.5px] font-medium text-gray-400 dark:text-gray-500">
              Select Blocks
             </span>
           </div>
@@ -117,7 +117,7 @@ export default function BlockPalette() {
                 <button
                   key={block.type}
                   onClick={() => addBlock(block.type)}
-                  className="w-9 h-9 flex items-center justify-center text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-colors"
+                  className="w-9 h-9 flex items-center justify-center text-gray-600 dark:text-gray-300 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-white/10 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-colors"
                   title={`Add ${block.label}`}
                   aria-label={`Add ${block.label}`}
                 >
@@ -129,7 +129,7 @@ export default function BlockPalette() {
               <button
                 key={block.type}
                 onClick={() => addBlock(block.type)}
-                className="w-full flex items-center gap-2.5 px-3 py-2 text-[13.5px] text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2 text-[13.5px] text-gray-700 dark:text-gray-300 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-white/10 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-colors"
               >
                 <Icon size={16} className="shrink-0" />
                 <span className="flex-1 text-left truncate">{block.label}</span>
@@ -146,7 +146,7 @@ export default function BlockPalette() {
       <div className="flex-1 min-h-0" />
 
       {/* Bottom bar - user + search */}
-      <div className="border-t border-gray-200 bg-white shrink-0">
+      <div className="border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#151515] shrink-0">
         <div
           className={
             minimized
@@ -163,7 +163,7 @@ export default function BlockPalette() {
                 <button
                   type="button"
                   onClick={() => setShowSearch(true)}
-                  className="p-1.5 relative right-1.5 top-0.5 rounded-lg text-gray-500 hover:text-black hover:bg-gray-100 transition-colors"
+                  className="p-1.5 relative right-1.5 top-0.5 rounded-lg text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
                   title="Search blocks"
                   aria-label="Search blocks"
                 >
@@ -178,14 +178,14 @@ export default function BlockPalette() {
       {/* Search blocks popup */}
       {showSearch && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-black/40 animate-fade-in"
+          className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-black/40 dark:bg-black/60 animate-fade-in"
           onClick={() => setShowSearch(false)}
         >
           <div
-            className="w-full max-w-[420px] bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden animate-slide-up"
+            className="w-full max-w-[420px] bg-white dark:bg-[#161616] rounded-xl shadow-xl border border-gray-200 dark:border-white/10 overflow-hidden animate-slide-up"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-2 px-3 py-2.5 border-b border-gray-100">
+            <div className="flex items-center gap-2 px-3 py-2.5 border-b border-gray-100 dark:border-white/10">
               <Search size={15} className="text-gray-400 shrink-0" />
               <input
                 ref={searchInputRef}
@@ -193,7 +193,7 @@ export default function BlockPalette() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search all blocks..."
-                className="flex-1 min-w-0 text-[13px] outline-none placeholder:text-gray-400"
+                className="flex-1 min-w-0 text-[13px] outline-none placeholder:text-gray-400 bg-transparent dark:text-white"
                 aria-label="Search blocks"
               />
               <button
@@ -225,7 +225,7 @@ export default function BlockPalette() {
                       className="w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-gray-50 transition-colors"
                     >
                       <span className="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 shrink-0">
-                        <Icon size={14} className="text-gray-500" />
+                        <Icon size={14} className="text-gray-500 dark:text-gray-400" />
                       </span>
                       <span className="flex-1 min-w-0">
                         <span className="block text-[13px] font-medium text-gray-800 truncate">

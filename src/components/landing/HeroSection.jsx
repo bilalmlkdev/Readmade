@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <section className="px-15 pt-28 pb-10 lg:pt-38 lg:pb-12 bg-[#FAFAFA]">
+    <section className="px-15 pt-28 pb-10 lg:pt-38 lg:pb-12 bg-[#FAFAFA] dark:bg-[#0c0c0c]">
       <div className="mx-auto max-w-full">
         <div className="mb-5 section-label">Readmade</div>
 
@@ -10,7 +10,7 @@ export default function HeroSection() {
           The README stack.
         </h1>
 
-        <p className="m-0 mt-5 max-w-xl text-[15px] leading-relaxed text-gray-500 lg:text-base">
+        <p className="m-0 mt-5 max-w-xl text-[15px] leading-relaxed text-gray-500 dark:text-gray-400 lg:text-base">
           Build professional GitHub READMEs from ready-made blocks. See a
           live, GitHub-faithful preview and export clean markdown, without
           writing a line of it. Your data stays on your machine.
@@ -40,15 +40,15 @@ export default function HeroSection() {
             href="https://github.com/bilalmlkdev/readmade"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-sm text-gray-500 transition hover:text-black"
+            className="group inline-flex items-center gap-2 text-sm text-gray-500 transition hover:text-black dark:text-gray-400 dark:hover:text-white"
           >
             View on GitHub
-            <span className="text-xs text-gray-400">MIT License</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500">MIT License</span>
           </a>
         </div>
 
         <div className="mt-16">
-          <div className="overflow-hidden border border-gray-200">
+          <div className="overflow-hidden border border-gray-200 dark:border-white/10">
             <video
               src="/landing.mp4"
               autoPlay
@@ -58,7 +58,7 @@ export default function HeroSection() {
               className="block w-full"
             />
           </div>
-          <p className="m-0 mt-4 text-[13px] text-gray-400">
+          <p className="m-0 mt-4 text-[13px] text-gray-400 dark:text-gray-500">
             Freedom is local-first. Your README, built on your own machine,
             exactly how you want it.
           </p>

@@ -86,9 +86,9 @@ export default function PreviewToolbar({
   };
 
   return (
-    <div className="sticky top-0 z-10 flex-shrink-0 bg-[#FAFAFB] px-2.5 py-2 flex items-center justify-between">
+    <div className="sticky top-0 z-10 flex-shrink-0 bg-[#FAFAFB] dark:bg-[#161616] px-2.5 py-2 flex items-center justify-between border-b border-transparent dark:border-white/5">
       <div className="flex items-center gap-4 min-w-0">
-        <div className="flex items-center gap-0.5 rounded-[10px] border border-gray-200 bg-gray-100">
+        <div className="flex items-center gap-0.5 rounded-[10px] border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5">
           {TABS.map((tab) => (
             <button
               key={tab.id}
@@ -101,8 +101,8 @@ export default function PreviewToolbar({
               aria-pressed={activeTab === tab.id}
               className={`px-3 py-1.5 rounded-[10px] text-[12px] font-medium transition-all duration-200 flex items-center gap-1.5 ${
                 activeTab === tab.id
-                  ? "bg-white text-gray-900 shadow-sm"
-                  : "text-gray-500 hover:text-gray-700"
+                  ? "bg-white dark:bg-[#1a1a1a] text-gray-900 dark:text-white shadow-sm"
+                  : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
               }`}
             >
               <tab.icon size={13} />
@@ -110,14 +110,14 @@ export default function PreviewToolbar({
             </button>
           ))}
         </div>
-        <span className="text-[13px] text-gray-400 hidden sm:block truncate max-w-[140px]">
-          {baseName} <span className="text-gray-300">·</span>{" "}
+        <span className="text-[13px] text-gray-400 dark:text-gray-500 hidden sm:block truncate max-w-[140px]">
+          {baseName} <span className="text-gray-300 dark:text-gray-600">·</span>{" "}
           {activeTab === "preview" ? "Preview" : "Code"}
         </span>
       </div>
 
       <div className="flex items-center gap-2 min-w-0">
-        <div className="hidden app:flex items-center gap-3 text-[11px] text-gray-500 font-medium mr-1">
+        <div className="hidden app:flex items-center gap-3 text-[11px] text-gray-500 dark:text-gray-400 font-medium mr-1">
           <span className="flex items-center gap-1">
             <svg
               width="12"
@@ -160,7 +160,7 @@ export default function PreviewToolbar({
           </span>
         </div>
 
-        <div className="w-px h-4 bg-gray-200 hidden app:block" />
+        <div className="w-px h-4 bg-gray-200 dark:bg-white/10 hidden app:block" />
 
         <div className="relative" ref={rootRef}>
           <button
@@ -168,7 +168,7 @@ export default function PreviewToolbar({
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-haspopup="menu"
-            className="px-3 py-1.5 text-[12px] font-medium rounded-lg transition-all flex items-center gap-1.5 border border-gray-200 bg-white"
+            className="px-3 py-1.5 text-[12px] font-medium rounded-lg transition-all flex items-center gap-1.5 border border-gray-200 dark:border-white/10 bg-white dark:bg-[#1a1a1a] dark:text-white hover:bg-gray-50 dark:hover:bg-white/10"
           >
             Download
             <svg
@@ -187,7 +187,7 @@ export default function PreviewToolbar({
           {open && (
             <div
               role="menu"
-              className="absolute right-0 top-full mt-1 p-1 w-[120px] origin-top-right rounded-xl border border-gray-200 bg-white shadow-xl shadow-black/10 overflow-hidden animate-slide-down"
+              className="absolute right-0 top-full mt-1 p-1 w-[120px] origin-top-right rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#1a1a1a] shadow-xl shadow-black/10 overflow-hidden animate-slide-down"
             >
               {EXPORT_OPTIONS.map((opt) => (
                 <button
@@ -195,11 +195,11 @@ export default function PreviewToolbar({
                   type="button"
                   role="menuitem"
                   onClick={() => handleExport(opt.id)}
-                  className="group w-full flex items-start gap-3 px-2.5 py-1.5 rounded-lg text-left transition-colors hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
-                >
-                  <span className="flex-1 min-w-0">
-                    <span className="flex items-center gap-1.5">
-                      <span className="text-[13px] font-medium text-gray-900">
+className="group w-full flex items-start gap-3 px-2.5 py-1.5 rounded-lg text-left transition-colors hover:bg-gray-50 dark:hover:bg-white/10 focus:bg-gray-50 dark:focus:bg-white/10 focus:outline-none"
+              >
+                <span className="flex-1 min-w-0">
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[13px] font-medium text-gray-900 dark:text-white">
                         {opt.label}
                       </span>
                     </span>

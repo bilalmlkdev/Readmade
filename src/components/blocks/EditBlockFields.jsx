@@ -29,7 +29,7 @@ export default function EditBlockFields({ block, content, setContent }) {
   const Editor = BLOCK_EDITORS[block.type];
   if (!Editor) {
     return (
-      <p className="text-gray-500 text-[13px]">
+      <p className="text-gray-500 dark:text-gray-400 text-[13px]">
         No editable fields for this block type.
       </p>
     );

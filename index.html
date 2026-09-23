@@ -117,6 +117,19 @@
     JS bundle or external CSS has loaded. This is what actually kills the
     white-flash-on-reload - nothing in React/localStorage can fix a flash
     that happens before React mounts.  -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("readmade:theme");
+        if (t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = "dark";
+        } else {
+          document.documentElement.style.colorScheme = "light";
+        }
+      } catch (e) {}
+    })();
+  </script>
   <style>
     html,
     body,
@@ -127,11 +140,11 @@
       color: #1a1a1a;
     }
 
-    @media (prefers-color-scheme: dark) {
-      html, body, #root {
-        background: #1a1a1a;
-        color: #FAFAFA;
-      }
+    html.dark,
+    html.dark body,
+    html.dark #root {
+      background: #0c0c0c;
+      color: #f5f5f5;
     }
   </style>
 

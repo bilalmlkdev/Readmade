@@ -114,22 +114,22 @@ function UserMenu({ open, onClose, name, onRename }) {
   if (!open) return null;
 
   return (
-    <div className="absolute bottom-full left-0 mb-2 w-52 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl shadow-black/5 z-50">
-      <div className="px-3 py-2.5 border-b border-gray-100">
-        <p className="text-[13px] font-medium text-gray-800">{name}</p>
-        <p className="text-[11px] text-gray-400">{USER_PLAN} plan</p>
+    <div className="absolute bottom-full left-0 mb-2 w-52 overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#1a1a1a] shadow-xl shadow-black/5 z-50">
+      <div className="px-3 py-2.5 border-b border-gray-100 dark:border-white/10">
+        <p className="text-[13px] font-medium text-gray-800 dark:text-white">{name}</p>
+        <p className="text-[11px] text-gray-400 dark:text-gray-500">{USER_PLAN} plan</p>
       </div>
       <div className="py-1">
         <button
           type="button"
           onClick={onRename}
-          className="w-full flex items-center justify-between px-3 py-2 text-[13px] text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+          className="w-full flex items-center justify-between px-3 py-2 text-[13px] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white transition-colors"
         >
           <span className="flex items-center gap-2.5">
 
             Edit name
           </span>
-          <ChevronRight size={12} className="text-gray-300" />
+          <ChevronRight size={12} className="text-gray-300 dark:text-gray-600" />
         </button>
         <button
           type="button"
@@ -137,13 +137,13 @@ function UserMenu({ open, onClose, name, onRename }) {
             window.open(GITHUB_URL, "_blank");
             onClose();
           }}
-          className="w-full flex items-center justify-between px-3 py-2 text-[13px] text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+          className="w-full flex items-center justify-between px-3 py-2 text-[13px] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white transition-colors"
         >
           <span className="flex items-center gap-2.5">
 
             Source code
           </span>
-          <ChevronRight size={12} className="text-gray-300" />
+          <ChevronRight size={12} className="text-gray-300 dark:text-gray-600" />
         </button>
         <button
           type="button"
@@ -151,12 +151,12 @@ function UserMenu({ open, onClose, name, onRename }) {
             onClose();
             navigate("/");
           }}
-          className="w-full flex items-center justify-between px-3 py-2 text-[13px] text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+          className="w-full flex items-center justify-between px-3 py-2 text-[13px] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white transition-colors"
         >
           <span className="flex items-center gap-2.5">
             Close workspace
           </span>
-          <ChevronRight size={12} className="text-gray-300" />
+          <ChevronRight size={12} className="text-gray-300 dark:text-gray-600" />
         </button>
       </div>
     </div>
@@ -209,7 +209,7 @@ export default function UserAccountPreview({ avatarOnly = false }) {
   return (
     <div
       ref={ref}
-      className={`relative bg-white rounded-lg ${
+      className={`relative bg-white dark:bg-[#151515] rounded-lg ${
         avatarOnly ? "flex items-center" : "flex-1 min-w-0 px-2 flex items-center gap-2.5"
       }`}
     >
@@ -225,7 +225,7 @@ export default function UserAccountPreview({ avatarOnly = false }) {
             if (e.key === "Escape") setEditing(false);
           }}
           maxLength={32}
-          className="flex-1 min-w-0 text-[13px] font-medium text-gray-800 bg-transparent border-b border-gray-300 focus:border-black outline-none py-0.5"
+          className="flex-1 min-w-0 text-[13px] font-medium text-gray-800 dark:text-white bg-transparent border-b border-gray-300 dark:border-white/20 focus:border-black dark:focus:border-white outline-none py-0.5"
         />
       ) : (
         <button
@@ -233,14 +233,14 @@ export default function UserAccountPreview({ avatarOnly = false }) {
           onClick={() => setOpen((v) => !v)}
           className="flex-1 min-w-0 flex items-center gap-1.5 text-left hover:opacity-80 transition-opacity"
         >
-          <span className="text-[13px] font-medium text-gray-800 truncate mt-1">
+          <span className="text-[13px] font-medium text-gray-800 dark:text-white truncate mt-1">
             {name}
           </span>
-          <span className="text-[12px] text-gray-400 mt-1.5">·</span>
-          <span className="text-[12px] text-gray-400 mt-1.5">{USER_PLAN}</span>
+          <span className="text-[12px] text-gray-400 dark:text-gray-500 mt-1.5">·</span>
+          <span className="text-[12px] text-gray-400 dark:text-gray-500 mt-1.5">{USER_PLAN}</span>
           <ChevronDown
             size={13}
-            className={`text-gray-400 shrink-0 transition-transform mt-1.5 ${
+            className={`text-gray-400 dark:text-gray-500 shrink-0 transition-transform mt-1.5 ${
               open ? "rotate-180" : ""
             }`}
           />

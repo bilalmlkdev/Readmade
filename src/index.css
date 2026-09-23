@@ -30,6 +30,29 @@
   --accent-2-foreground: #1a1a1a;
 }
 
+.dark {
+  --bg: #0c0c0c;
+  --surface: #141414;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #f5f5f5;
+  --text-muted: #9ca3af;
+  --accent: #fafafa;
+  --accent-bg: rgba(255, 255, 255, 0.08);
+  --background: #0c0c0c;
+  --foreground: #f5f5f5;
+  --card: #141414;
+  --card-foreground: #f5f5f5;
+  --primary: #fafafa;
+  --primary-foreground: #0c0c0c;
+  --muted: #1a1a1a;
+  --muted-foreground: #9ca3af;
+  --accent-2: rgba(255, 255, 255, 0.08);
+  --accent-2-foreground: #f5f5f5;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -197,6 +220,35 @@ body,
   user-select: none;
   overflow: hidden;
   white-space: nowrap;
+}
+
+/* Landing page dark overrides */
+.dark .section-heading {
+  color: #f5f5f5;
+}
+
+.dark .section-body {
+  color: #9ca3af;
+}
+
+.dark .arrow-link {
+  color: #f5f5f5;
+}
+
+.dark .arrow-link:hover {
+  color: #ffffff;
+}
+
+.dark .feature-item {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .feature-item:hover {
+  border-top-color: rgba(255, 255, 255, 0.3);
+}
+
+.dark .footer-wordmark {
+  color: #fafafa;
 }
 
 /* Markdown preview — GitHub / VS Code style (.markdown-body) */
@@ -700,4 +752,97 @@ body,
 
 .animate-slide-down {
   animation: slide-down 0.15s var(--ease-out-quart);
+}
+
+/* Dark theme — markdown preview */
+.dark .markdown-body {
+  color: #e6edf3;
+}
+
+.dark .markdown-body h1,
+.dark .markdown-body h2,
+.dark .markdown-body h3,
+.dark .markdown-body h4,
+.dark .markdown-body h5,
+.dark .markdown-body h6 {
+  color: #f0f6fc;
+}
+
+.dark .markdown-body a {
+  color: #4493f8;
+}
+
+.dark .markdown-body a.heading-anchor {
+  color: #484f58;
+}
+
+.dark .markdown-body hr {
+  background-color: #3d444d;
+}
+
+.dark .markdown-body blockquote {
+  color: #8b949e;
+  border-left-color: #3d444d;
+}
+
+.dark .markdown-body code {
+  background-color: rgba(110, 118, 129, 0.4);
+  color: #e6edf3;
+}
+
+.dark .markdown-body pre {
+  background-color: #161b22;
+}
+
+.dark .markdown-body pre code {
+  color: #e6edf3;
+}
+
+.dark .markdown-body .code-block {
+  background-color: #161b22;
+  border-color: #30363d;
+}
+
+.dark .markdown-body .code-block .code-lang {
+  color: #8b949e;
+  background-color: #21262d;
+  border-color: #30363d;
+}
+
+.dark .markdown-body table {
+  border-color: #30363d;
+}
+
+.dark .markdown-body th,
+.dark .markdown-body td {
+  border-color: #30363d;
+}
+
+.dark .markdown-body tr:nth-child(2n) {
+  background-color: #161b22;
+}
+
+.dark .markdown-body th {
+  background-color: #161b22;
+  color: #f0f6fc;
+}
+
+.dark .markdown-body details {
+  border-color: #30363d;
+}
+
+.dark .markdown-body details summary {
+  color: #e6edf3;
+}
+
+.dark .markdown-body kbd {
+  color: #e6edf3;
+  background-color: #21262d;
+  border-color: #30363d;
+  border-bottom-color: #6e7681;
+  box-shadow: inset 0 -1px 0 #6e7681;
+}
+
+.dark .markdown-body .md-error {
+  color: #f85149;
 }

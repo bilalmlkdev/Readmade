@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Joyride, STATUS } from "react-joyride";
+import { THEME_EVENT } from "../../lib/theme.js";
 
 const STEPS = [
   {
@@ -48,6 +49,16 @@ const STEPS = [
 
 export default function OnboardingTour() {
   const [run, setRun] = useState(false);
+  const [dark, setDark] = useState(() =>
+    document.documentElement.classList.contains("dark")
+  );
+
+  useEffect(() => {
+    const onTheme = () =>
+      setDark(document.documentElement.classList.contains("dark"));
+    window.addEventListener(THEME_EVENT, onTheme);
+    return () => window.removeEventListener(THEME_EVENT, onTheme);
+  }, []);
 
   useEffect(() => {
     const hasSeen = localStorage.getItem("readmade:onboarded");
@@ -68,6 +79,10 @@ export default function OnboardingTour() {
     }
   };
 
+  const tipBg = dark ? "#161616" : "#ffffff";
+  const tipBorder = dark ? "rgba(255,255,255,0.1)" : "#e5e7eb";
+  const tipText = dark ? "#d1d5db" : "#374151";
+
   return (
     <Joyride
       steps={STEPS}
@@ -80,10 +95,10 @@ export default function OnboardingTour() {
       disableCloseOnEsc
       styles={{
         options: {
-          primaryColor: "#111111",
-          backgroundColor: "#ffffff",
-          textColor: "#374151",
-          arrowColor: "#ffffff",
+          primaryColor: dark ? "#fafafa" : "#111111",
+          backgroundColor: tipBg,
+          textColor: tipText,
+          arrowColor: tipBg,
           zIndex: 1000,
           overlayColor: "rgba(0, 0, 0, 0.15)",
           spotlightShadow: "0 0 0 1px rgba(0,0,0,0.08)",
@@ -94,12 +109,13 @@ export default function OnboardingTour() {
         tooltipContainer: {
           textAlign: "left",
           borderRadius: "12px",
-          border: "1px solid #e5e7eb",
+          border: `1px solid ${tipBorder}`,
           boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
           padding: "16px",
         },
         buttonNext: {
-          backgroundColor: "#111111",
+          backgroundColor: dark ? "#fafafa" : "#111111",
+          color: dark ? "#0c0c0c" : "#ffffff",
           borderRadius: "8px",
           fontSize: "13px",
           fontWeight: "500",

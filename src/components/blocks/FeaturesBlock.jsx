@@ -11,12 +11,12 @@ export default function FeaturesBlock({ content, setContent }) {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <label className="block text-[12px] font-medium text-gray-700">
+        <label className="block text-[12px] font-medium text-gray-700 dark:text-gray-300">
           Features
         </label>
         <button
           onClick={() => handleArrayAdd("items", "New feature")}
-          className="text-[12px] font-medium text-black hover:text-black/80"
+          className="text-[12px] font-medium text-black dark:text-white hover:text-black/80 dark:hover:text-white/80"
         >
           + Add Feature
         </button>
