@@ -72,10 +72,13 @@ export default function LandingPage() {
                   </div>
 
                   <h1 className="text-4xl leading-[1.15] font-light sm:text-5xl md:text-7xl lg:text-8xl">
-                    Design Your System
+                    Sketch the Blueprint
                   </h1>
                   <h2 className="mt-1 text-4xl leading-[1.05] sm:mt-2 sm:text-5xl md:mt-4 md:text-7xl lg:text-8xl">
-                    <span className="instrument-serif"> Before You Build It.</span>
+                    <span className="instrument-serif">
+                      {" "}
+                      Before You Ship It.
+                    </span>
                   </h2>
                 </div>
               </div>
@@ -92,7 +95,10 @@ export default function LandingPage() {
                     className="flex items-center gap-2 text-base font-light text-foreground/80 sm:text-lg"
                   >
                     Start Building
-                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                    <ArrowRight
+                      className="group-hover:translate-x-1 transition-transform"
+                      size={20}
+                    />
                   </Link>
                   <p className="mt-2 text-[10px] leading-relaxed font-medium tracking-wide text-muted-foreground uppercase md:text-xs">
                     Open source & free forever
@@ -101,14 +107,20 @@ export default function LandingPage() {
                   </p>
                 </div>
 
-                <div className="flex -space-x-3 pl-0 sm:-space-x-4 sm:pl-4" data-hero="techstack">
+                <div
+                  className="flex -space-x-3 pl-0 sm:-space-x-4 sm:pl-4"
+                  data-hero="techstack"
+                >
                   {techStack.map((tech) => (
                     <div
                       key={tech.label}
                       title={tech.label}
                       className="relative z-0 flex size-10 cursor-default items-center justify-center rounded-full border-2 border-background bg-muted text-foreground hover:z-10 hover:scale-110 sm:size-12 transition-all"
                     >
-                      <tech.Icon className="size-4 sm:size-5" aria-hidden="true" />
+                      <tech.Icon
+                        className="size-4 sm:size-5"
+                        aria-hidden="true"
+                      />
                     </div>
                   ))}
                 </div>
@@ -121,9 +133,9 @@ export default function LandingPage() {
                 data-hero="description"
               >
                 The local-first README builder for developers. Drag ready-made
-                blocks, reorder sections, preview GitHub-faithful Markdown in real
-                time, and export clean output - without writing a line of it.
-                Everything stays on your machine.
+                blocks, reorder sections, preview GitHub-faithful Markdown in
+                real time, and export clean output - without writing a line of
+                it. Everything stays on your machine.
               </div>
             </section>
           </HeroAnimations>
@@ -131,7 +143,9 @@ export default function LandingPage() {
           <AnimatedGroup
             variants={{
               container: {
-                visible: { transition: { staggerChildren: 0.05, delayChildren: 0.75 } },
+                visible: {
+                  transition: { staggerChildren: 0.05, delayChildren: 0.75 },
+                },
               },
               ...transitionVariants,
             }}
@@ -159,8 +173,8 @@ export default function LandingPage() {
                 <span className="border-b border-border pb-0.5 text-foreground">
                   Readmade gives docs a canvas
                 </span>{" "}
-                - where your README becomes a first-class part of the project, not
-                an afterthought.
+                - where your README becomes a first-class part of the project,
+                not an afterthought.
               </p>
             </div>
           </section>
