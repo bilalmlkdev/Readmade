@@ -8,9 +8,10 @@ import MobileNavbar from "./components/app/MobileNavbar.jsx";
 import PreviewFallback from "./components/app/PreviewFallback.jsx";
 import { useKeyboardShortcuts } from "./hooks/useKeyboardShortcuts.js";
 import TemplateGallery from "./components/ui/TemplateGallery.jsx";
+import HistoryGallery from "./components/ui/HistoryGallery.jsx";
 import useReadme from "./store/useReadme.js";
 import { useDocumentTitle } from "./lib/utils.js";
-import { ArrowLeft, Trash2 } from "lucide-react";
+import { ArrowLeft, Trash2, History } from "lucide-react";
 import logoIcon from '/logo.svg';
 
 const MarkdownPreview = lazy(() => import("./components/preview/MarkdownPreview"));
@@ -41,6 +42,7 @@ export default function Home() {
   const [mobileActiveTab, setMobileActiveTab] = useState(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showTemplates, setShowTemplates] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
   const [repoStars, setRepoStars] = useState(null);
 
   useEffect(() => {
@@ -185,6 +187,14 @@ export default function Home() {
             </span>
           </a>
           <button
+            onClick={() => setShowHistory(true)}
+            className="flex items-center gap-1.5 px-2 py-1.5 text-[13px] font-medium text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
+            title="History"
+          >
+            <History size={14.5} />
+            History
+          </button>
+          <button
             onClick={() => setShowResetConfirm(true)}
             className="flex items-center gap-1.5 px-2 py-1.5 text-[13px] font-medium text-black bg-gray-200 hover:bg-gray-200/80 rounded-lg transition-colors"
           >
@@ -255,6 +265,8 @@ export default function Home() {
       />
 
       {showTemplates && <TemplateGallery onClose={handleCloseTemplates} />}
+
+      {showHistory && <HistoryGallery onClose={() => setShowHistory(false)} />}
 
       <Suspense fallback={null}>
         <OnboardingTour />

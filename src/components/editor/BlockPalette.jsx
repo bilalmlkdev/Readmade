@@ -3,7 +3,6 @@ import useReadme from "../../store/useReadme.js";
 import UserAccountPreview from "../ui/UserAccountPreview.jsx";
 import { BLOCK_TYPES, BLOCK_META, BLOCK_ICONS } from "../../lib/blocks.js";
 import {
-  FolderClosed,
   Command,
   Search,
   PanelLeftClose,
@@ -19,7 +18,7 @@ const ALL_BLOCKS = Object.values(BLOCK_TYPES).map((type) => ({
 }));
 
 export default function BlockPalette() {
-  const { history, loadFromHistory, addBlock } = useReadme();
+  const { addBlock } = useReadme();
   const [showCommandMenu, setShowCommandMenu] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -60,19 +59,6 @@ export default function BlockPalette() {
     setShowSearch(false);
     setQuery("");
   }
-
-  const formatTime = (iso) => {
-    const date = new Date(iso);
-    const now = new Date();
-    const diffMs = now - date;
-    const diffMins = Math.floor(diffMs / 60000);
-    const diffHours = Math.floor(diffMins / 60);
-    const diffDays = Math.floor(diffHours / 24);
-    if (diffMins < 1) return "Just now";
-    if (diffMins < 60) return `${diffMins}m ago`;
-    if (diffHours < 24) return `${diffHours}h ago`;
-    return `${diffDays}d ago`;
-  };
 
   return (
     <div
@@ -156,48 +142,8 @@ export default function BlockPalette() {
         </div>
       </div>
 
-      {/* History */}
-      {!minimized && (
-        <div className="flex-1 flex flex-col min-h-0">
-          <div className="px-3 pt-3 pb-1 shrink-0">
-            <span className="text-[11.5px] font-medium text-gray-400">
-              History
-            </span>
-          </div>
-
-          <div
-            className="flex-1 overflow-y-auto px-1 pb-2"
-            style={{ scrollbarWidth: "thin" }}
-          >
-            {history.length > 0 ? (
-              <div className="space-y-0.5">
-                {history.map((entry) => (
-                  <div
-                    key={entry.id}
-                    className="group flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                    onClick={() => loadFromHistory(entry.id)}
-                  >
-                    <FolderClosed size={16} className="text-gray-400 shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[13px] text-gray-700 truncate">
-                        {entry.title}
-                      </p>
-                      <p className="text-[10.5px] text-gray-400">
-                        {entry.blockCount} blocks · {formatTime(entry.timestamp)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="px-3 py-4 text-center">
-                <p className="text-[12px] text-gray-300">No history yet</p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-      {minimized && <div className="flex-1 min-h-0" />}
+      {/* Spacer */}
+      <div className="flex-1 min-h-0" />
 
       {/* Bottom bar - user + search + command */}
       <div className="border-t border-gray-200 bg-white shrink-0">
