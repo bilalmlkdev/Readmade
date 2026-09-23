@@ -14,19 +14,17 @@ migrateLegacyStorage();
 function AppRoutes() {
   const location = useLocation();
   const [prevPath, setPrevPath] = useState(location.pathname);
-  const [transitioning, setTransitioning] = useState(false);
-  const [hasNavigated, setHasNavigated] = useState(false);
+  const [transitioning, setTransitioning] = useState(true);
 
   if (location.pathname !== prevPath) {
     setTransitioning(true);
     setPrevPath(location.pathname);
-    setHasNavigated(true);
   }
 
   return (
     <>
       <ErrorBoundary key={location.pathname}>
-        <Suspense fallback={hasNavigated ? <LoadingSpinner /> : null}>
+        <Suspense fallback={<LoadingSpinner />}>
           <Routes location={location}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/app" element={<Home />} />

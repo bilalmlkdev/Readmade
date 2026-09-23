@@ -76,8 +76,9 @@ export default function Home() {
         saveStatus={saveStatus}
         onHistory={() => setShowHistory(true)}
         onReset={() => setShowResetConfirm(true)}
-        canUndo={past.length > 0}
-        canRedo={future.length > 0}
+        canUndo={blocks.length > 0 && past.length > 0}
+        canRedo={blocks.length > 0 && future.length > 0}
+        canClear={blocks.length > 0}
         onUndo={undo}
         onRedo={redo}
         onClear={clearAllData}

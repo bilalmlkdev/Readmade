@@ -45,6 +45,7 @@ export default function HomeHeader({
   onReset,
   canUndo,
   canRedo,
+  canClear,
   onUndo,
   onRedo,
   onClear,
@@ -95,6 +96,7 @@ export default function HomeHeader({
         <button
           type="button"
           onClick={onClear}
+          disabled={!canClear}
           className={iconBtn}
           title="Clear all blocks"
           aria-label="Clear all blocks"
