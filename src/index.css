@@ -13,7 +13,7 @@
   --border-strong: rgba(0, 0, 0, 0.14);
   --text: #1a1a1a;
   --text-muted: #6b7280;
-  --font-main: "Space Grotesk", sans-serif;
+  --font-main: "DM Sans", sans-serif;
   --accent: #111111;
   --accent-bg: rgba(0, 0, 0, 0.05);
   --radius: 6px;
@@ -54,7 +54,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --breakpoint-app: 1020px;
   --color-background: var(--background);
@@ -73,8 +73,13 @@
 .landing-container {
   margin-inline: auto;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1280px;
   padding-inline: 1.25rem;
+}
+
+.instrument-serif {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
 }
 
 @media (min-width: 1024px) {

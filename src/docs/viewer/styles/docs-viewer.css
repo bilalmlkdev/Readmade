@@ -1,4 +1,4 @@
-/* DocsViewer - Space Grotesk only, light + dark via .dark */
+/* DocsViewer - DM Sans only, light + dark via .dark */
 
 @keyframes dv-fade {
   from {
@@ -23,7 +23,7 @@
   --dv-hover: rgba(0, 0, 0, 0.04);
   --dv-active: rgba(0, 0, 0, 0.06);
   --dv-code-bg: #f6f8fa;
-  --dv-font: "Space Grotesk", sans-serif;
+  --dv-font: "DM Sans", sans-serif;
 
   color: var(--dv-text);
   background: var(--dv-bg);
@@ -48,7 +48,7 @@
 
 .dv-root .dv-markdown {
   color: var(--dv-text);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 16px;
   line-height: 1.65;
   word-wrap: break-word;
@@ -185,7 +185,7 @@
   right: 0;
   padding: 3px 10px;
   font-size: 11px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "DM Sans", sans-serif;
   color: var(--dv-muted);
   background: #eef1f4;
   border-bottom: 1px solid var(--dv-border);
@@ -245,7 +245,7 @@
   display: inline-block;
   padding: 0.2em 0.4em;
   font-size: 11px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.2;
   color: var(--dv-text);
   background: var(--dv-panel);
@@ -292,12 +292,12 @@
 
 .dv-root,
 .dv-root * {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .dv-root pre,
 .dv-root code {
-  font-family: "Space Grotesk", ui-monospace, monospace;
+  font-family: "DM Sans", ui-monospace, monospace;
 }
 
 @media (max-width: 768px) {

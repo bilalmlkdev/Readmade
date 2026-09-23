@@ -1,142 +1,78 @@
-import { Link } from "react-router-dom";
-import Logo from "../ui/Logo.tsx";
-import { LuGithub } from "react-icons/lu";
-import { BsTwitterX } from "react-icons/bs";
+import { ArrowUp } from "lucide-react";
+import { cn } from "../../lib/cn";
+import { TextureButton } from "../ui/TextureButton";
+import { BrandLogo } from "./BrandLogo";
 
-export default function Footer() {
+const socialLinks = [
+  {
+    title: "GitHub",
+    href: "https://github.com/bilalmlkdev/readmade",
+    label: "GitHub",
+  },
+  {
+    title: "Docs",
+    href: "/docs",
+    label: "Docs",
+  },
+];
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+export function Footer() {
   return (
-    <footer className="py-16 lg:py-20 bg-[#FAFAFA] dark:bg-[#0c0c0c] border-t border-gray-100 dark:border-white/10">
-      <div className="landing-container">
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-5 lg:gap-12">
-          <div className="col-span-2 md:col-span-1">
-            <div className="-mx-2 mb-8">
-              <Logo className="block size-10 text-black dark:text-white" title="Readmade" />
-            </div>
-            <div className="flex items-center gap-4">
+    <footer
+      className={cn(
+        "relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center rounded-t-4xl border-t border-border px-6 md:rounded-t-6xl md:px-8",
+        "dark:bg-[radial-gradient(35%_128px_at_50%_0%,rgba(255,255,255,0.1),transparent)]",
+      )}
+    >
+      <div className="absolute top-1/2 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/20 blur" />
+
+      <div className="flex w-full flex-col items-center gap-6 py-10 md:flex-row md:items-start md:justify-between md:py-12">
+        <div className="flex max-w-sm flex-col items-center gap-4 md:items-start">
+          <BrandLogo />
+          <p className="text-center text-sm leading-relaxed text-muted-foreground md:text-left">
+            Build stunning GitHub READMEs visually. Local-first, free, and open
+            source.
+          </p>
+
+          <div className="mt-1 flex items-center gap-3">
+            {socialLinks.map((link) => (
               <a
-                href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white" aria-label="GitHub"
+                key={link.title}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                aria-label={link.title}
+                className={cn(
+                  "flex size-9 items-center justify-center rounded-lg",
+                  "border border-border bg-muted/50",
+                  "text-muted-foreground transition-all duration-200",
+                  "hover:border-foreground/20 hover:bg-muted hover:text-foreground",
+                )}
               >
-                <LuGithub size={22} className="text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white" />
+                {link.label}
               </a>
-              <a
-                href="https://x.com/readmade" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white" aria-label="X"
-              >
-                <BsTwitterX size={22} className="text-gray-400 hover:text-black dark:text-gray-500 dark:hover:text-white" />
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-sm font-medium text-black dark:text-white">Product</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  to="/app" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  Open Editor
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="#features" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#get-started" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  Get Started
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-sm font-medium text-black dark:text-white">
-              Resources
-            </h4>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <Link
-                  to="/docs" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  Documentation
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/bilalmlkdev/readmade/issues" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  Report an Issue
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-sm font-medium text-black dark:text-white">
-              Community
-            </h4>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="https://github.com/bilalmlkdev/readmade" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  Contribute
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/bilalmlkdev/readmade/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  MIT License
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-sm font-medium text-black dark:text-white">Author</h4>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="https://github.com/bilalmlkdev" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                >
-                  Bilal Malik
-                </a>
-              </li>
-            </ul>
+            ))}
           </div>
         </div>
 
-        <div className="mt-18 mb-6 w-full overflow-hidden md:mb-12">
-          <div className="footer-wordmark text-center leading-none tracking-tighter text-black dark:text-white md:text-right">
-            readmade
-          </div>
+        <div className="flex flex-col items-center gap-2 md:items-end">
+          <TextureButton onClick={scrollToTop}>
+            <span className="text-sm font-medium">Back to top</span>
+            <ArrowUp className="size-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />
+          </TextureButton>
         </div>
+      </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="text-sm text-gray-400 dark:text-gray-500">
-            &copy; 2026 Readmade. MIT License.
-          </div>
-          <div className="flex items-center gap-6 text-sm text-gray-400 dark:text-gray-500">
-            <a href="#" className="hover:text-black dark:text-white">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-black dark:text-white">
-              Terms
-            </a>
-          </div>
-        </div>
+      <div className="h-px w-full bg-linear-to-r via-border" />
+
+      <div className="flex w-full items-center justify-center py-4">
+        <p className="text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} Readmade. All rights reserved
+        </p>
       </div>
     </footer>
   );
