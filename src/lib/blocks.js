@@ -56,38 +56,36 @@ export const BLOCK_ICONS = {
 
 const DEFAULTS = {
   title: {
-    name: "Project Name",
-    tagline: "A short description of what this project does",
+    name: "Untitled Project",
+    tagline: "One line that explains what this project does",
   },
   badges: {
     badges: [
       {
-        label: "Build",
+        label: "build",
         url: "https://img.shields.io/badge/build-passing-brightgreen",
-        link: "#",
+        link: "",
       },
       {
-        label: "Version",
+        label: "version",
         url: "https://img.shields.io/badge/version-1.0.0-blue",
-        link: "#",
+        link: "",
       },
       {
-        label: "License",
+        label: "license",
         url: "https://img.shields.io/badge/license-MIT-green",
-        link: "#",
+        link: "",
       },
     ],
   },
   description: {
-    text: "A brief overview of your project. Explain what it does, why it exists, and who it's for. Keep it concise — one or two paragraphs is ideal.",
+    text: "Describe your project in a sentence or two. What problem does it solve, and who is it for?",
   },
   features: {
     items: [
-      "Feature one — what it does",
-      "Feature two — what it does",
-      "Feature three — what it does",
-      "Feature four — what it does",
-      "Feature five — what it does",
+      "First feature — what it does",
+      "Second feature — what it does",
+      "Third feature — what it does",
     ],
   },
   installation: {
@@ -97,7 +95,7 @@ const DEFAULTS = {
   },
   usage: {
     language: "js",
-    code: "import { yourPackage } from 'your-package-name'\n\nconst result = yourPackage({\n  option: 'value',\n})\n\nconsole.log(result)",
+    code: "import { init } from 'your-package-name'\n\ninit({\n  option: 'value',\n})",
   },
   screenshots: {
     items: [],
@@ -105,14 +103,14 @@ const DEFAULTS = {
   api: {
     entries: [
       {
-        name: "functionName(options)",
-        description: "Describe what this function does and when to use it.",
-        params: "options — object with configuration",
+        name: "init(options)",
+        description: "Initialize the library with the given options.",
+        options: "options — configuration object",
       },
     ],
   },
   contributing: {
-    text: "Contributions are welcome. Please open an issue first to discuss what you would like to change.",
+    text: "Contributions are welcome. Open an issue first to discuss what you would like to change.",
     steps: [
       "Fork the repository",
       "Create your branch (`git checkout -b feature/amazing-feature`)",
@@ -127,7 +125,7 @@ const DEFAULTS = {
     author: "Your Name",
   },
   custom: {
-    markdown: "## Custom Section\n\nWrite any **markdown** content here.",
+    markdown: "## Custom Section\n\nWrite any **markdown** here.",
   },
 };
 

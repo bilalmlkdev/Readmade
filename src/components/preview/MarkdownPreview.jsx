@@ -5,42 +5,90 @@ import useReadme from "../../store/useReadme.js";
 import { blocksToMarkdown } from "../../lib/markdown.js";
 import PreviewToolbar from "./PreviewToolbar.jsx";
 import PreviewContent from "./PreviewContent.jsx";
-import PreviewFooter from "./PreviewFooter.jsx";
+
 marked.setOptions({ breaks: true, gfm: true });
+
+function escapeAttr(s) {
+  return String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function slugify(text) {
+  return String(text || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
+}
 
 function parseMarkdown(raw) {
   const renderer = new marked.Renderer();
-  renderer.image = (href, title, text) => {
-    let src = typeof href === "string" ? href : href?.url || href?.href || "";
-    src = src.trim();
+
+  renderer.heading = function ({ tokens, depth, text }) {
+    const id = slugify(text);
+    const inner = this.parser.parseInline(tokens);
+    return `<h${depth} id="${escapeAttr(id)}">${inner}<a class="heading-anchor" href="#${escapeAttr(id)}" aria-hidden="true" tabindex="-1">#</a></h${depth}>\n`;
+  };
+
+  renderer.code = function ({ text, lang }) {
+    const language = (lang || "").split(/\s+/)[0] || "";
+    const langClass = language ? ` class="language-${escapeAttr(language)}"` : "";
+    const langLabel = language
+      ? `<div class="code-lang">${escapeAttr(language)}</div>`
+      : "";
+    const escaped = text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+    return `<div class="code-block">${langLabel}<pre><code${langClass}>${escaped}\n</code></pre></div>\n`;
+  };
+
+  renderer.image = function ({ href, title, text }) {
+    let src = (typeof href === "string" ? href : "").trim();
     if (!src || src === "undefined" || src === "[object Object]") {
       return `<div class="img-error"><span>Invalid image URL</span></div>`;
     }
     const isBadge =
-      src.includes("img.shields.io") || text?.toLowerCase().includes("badge");
-    return `
-      <div class="img-wrap ${isBadge ? "badge-wrap" : ""}">
-        <img src="${src.replace(/"/g, "&quot;")}"
-             alt="${(text || "").replace(/"/g, "&quot;")}"
-             title="${(title || "").replace(/"/g, "&quot;")}"
-             loading="lazy"
-             class="md-img ${isBadge ? "badge-img" : ""}"
-             onclick="this.classList.toggle('zoomed')"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="img-err-msg">Failed to load image</div>
-        ${text && !isBadge ? `<div class="img-caption">${text.replace(/"/g, "&quot;")}</div>` : ""}
-      </div>`;
+      src.includes("img.shields.io") ||
+      (text || "").toLowerCase().includes("badge");
+    const safeSrc = escapeAttr(src);
+    const safeAlt = escapeAttr(text || "");
+    const safeTitle = title ? ` title="${escapeAttr(title)}"` : "";
+    if (isBadge) {
+      return `<img src="${safeSrc}" alt="${safeAlt}"${safeTitle} class="md-badge" loading="lazy" />`;
+    }
+    return `<figure class="md-figure">
+      <img src="${safeSrc}" alt="${safeAlt}"${safeTitle} loading="lazy" class="md-img" />
+      <div class="img-err-msg">Failed to load image</div>
+      ${text ? `<figcaption>${text}</figcaption>` : ""}
+    </figure>`;
   };
+
+  renderer.link = function ({ href, title, text, tokens }) {
+    const url = typeof href === "string" ? href : "";
+    const external = /^https?:\/\//i.test(url);
+    const titleAttr = title ? ` title="${escapeAttr(title)}"` : "";
+    const rel = external ? ' rel="noreferrer noopener" target="_blank"' : "";
+    const inner = tokens
+      ? this.parser.parseInline(tokens)
+      : text;
+    return `<a href="${escapeAttr(url)}"${titleAttr}${rel}>${inner}</a>`;
+  };
+
+  renderer.checkbox = (checked) =>
+    `<input type="checkbox" disabled${checked ? " checked" : ""} />`;
+
   marked.use({ renderer, mangle: false, headerIds: false });
+
   const result = marked.parse(raw);
-  // marked.parse() returns a string when parsing is synchronous (the
-  // normal case here) and a Promise only if an async extension is in
-  // use. The caller always calls .then() on this, so always hand back
-  // a real Promise - wrapping a plain string in Promise.resolve() is a
-  // no-op for the async case and fixes the "X.then is not a function"
-  // crash for the sync case (which is what tripped the preview's
-  // ErrorBoundary every time blocks changed, e.g. adding a block).
-  return Promise.resolve(result).then((res) => DOMPurify.sanitize(res));
+  return Promise.resolve(result).then((res) =>
+    DOMPurify.sanitize(res, {
+      ADD_ATTR: ["target", "rel", "aria-hidden", "tabindex"],
+    }),
+  );
 }
 
 export default function MarkdownPreview() {
@@ -48,8 +96,6 @@ export default function MarkdownPreview() {
   const settings = useReadme((s) => s.settings);
   const [activeTab, setActiveTab] = useState("preview");
   const [html, setHtml] = useState("");
-  const [copied, setCopied] = useState(false);
-  const [downloading, setDownloading] = useState(false);
 
   const raw = useMemo(() => blocksToMarkdown(blocks), [blocks]);
   const wordCount = useMemo(
@@ -62,7 +108,7 @@ export default function MarkdownPreview() {
   );
 
   useEffect(() => {
-    if (!raw?.trim() || activeTab !== "preview") return;
+    if (!raw?.trim()) return;
 
     let cancelled = false;
     parseMarkdown(raw)
@@ -76,25 +122,13 @@ export default function MarkdownPreview() {
     return () => {
       cancelled = true;
     };
-  }, [raw, activeTab]);
-
-  const effectiveHtml = useMemo(() => {
-    if (!raw?.trim() || activeTab !== "preview") return "";
-    return html;
-  }, [raw, activeTab, html]);
-
-  const copyMarkdown = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(raw);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      /* clipboard unavailable */
-    }
   }, [raw]);
 
+  const renderedHtml = raw?.trim() ? html : "";
+
   const downloadReadme = useCallback(() => {
-    const baseName = (settings?.name || "README").replace(/\.md$/i, "") || "README";
+    const baseName =
+      (settings?.name || "README").replace(/\.md$/i, "") || "README";
     const a = Object.assign(document.createElement("a"), {
       href: URL.createObjectURL(new Blob([raw], { type: "text/markdown" })),
       download: `${baseName}.md`,
@@ -102,51 +136,34 @@ export default function MarkdownPreview() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setDownloading(true);
-    setTimeout(() => setDownloading(false), 2000);
+    URL.revokeObjectURL(a.href);
   }, [raw, settings?.name]);
 
   useEffect(() => {
-    function handleDownload() { downloadReadme(); }
-    function handleCopy() { copyMarkdown(); }
+    function handleDownload() {
+      downloadReadme();
+    }
     window.addEventListener("readmade:download", handleDownload);
-    window.addEventListener("readmade:copy", handleCopy);
-    return () => {
-      window.removeEventListener("readmade:download", handleDownload);
-      window.removeEventListener("readmade:copy", handleCopy);
-    };
-  }, [copyMarkdown, downloadReadme]);
-
-  const screenshotsBlock = blocks.find((b) => b.type === "screenshots");
-  const validScreenshots =
-    screenshotsBlock?.content?.items?.filter((i) => i.url?.trim()) || [];
-  const screenshotsKey = validScreenshots.map((s) => s.url).join(",");
+    return () => window.removeEventListener("readmade:download", handleDownload);
+  }, [downloadReadme]);
 
   return (
     <div className="flex flex-col h-full">
       <PreviewToolbar
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        copied={copied}
-        downloading={downloading}
-        onCopy={copyMarkdown}
         onDownload={downloadReadme}
         raw={raw}
-        blocks={blocks}
         fileName={settings?.name || "README"}
+        kbSize={kbSize}
+        wordCount={wordCount}
       />
       <PreviewContent
-        blocks={blocks}
         activeTab={activeTab}
         raw={raw}
-        html={effectiveHtml}
-        validScreenshots={validScreenshots}
-        screenshotsKey={screenshotsKey}
-      />
-      <PreviewFooter
-        kbSize={kbSize}
-        validScreenshots={validScreenshots}
-        wordCount={wordCount}
+        html={renderedHtml}
+        htmlKey={`${blocks.length}-${raw.length}`}
+        fileName={settings?.name || "README"}
       />
     </div>
   );

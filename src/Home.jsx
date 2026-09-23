@@ -6,13 +6,11 @@ import ErrorBoundary from "./components/ui/ErrorBoundary.jsx";
 import MobileDrawer from "./components/app/MobileDrawer.jsx";
 import MobileNavbar from "./components/app/MobileNavbar.jsx";
 import PreviewFallback from "./components/app/PreviewFallback.jsx";
-import KeyboardShortcutsHelp from "./components/ui/KeyboardShortcuts.jsx";
 import { useKeyboardShortcuts } from "./hooks/useKeyboardShortcuts.js";
-import AutoSaveIndicator from "./components/ui/AutoSaveIndicator.jsx";
 import TemplateGallery from "./components/ui/TemplateGallery.jsx";
 import useReadme from "./store/useReadme.js";
 import { useDocumentTitle } from "./lib/utils.js";
-import { PanelLeftOpen, ArrowLeft, Trash2 } from "lucide-react";
+import { ArrowLeft, Trash2 } from "lucide-react";
 import logoIcon from '/logo.svg';
 
 const MarkdownPreview = lazy(() => import("./components/preview/MarkdownPreview"));
@@ -42,9 +40,7 @@ export default function Home() {
   const [arrangerOpen, setArrangerOpen] = useState(false);
   const [mobileActiveTab, setMobileActiveTab] = useState(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
-  const [showShortcuts, setShowShortcuts] = useState(false);
   const [showTemplates, setShowTemplates] = useState(false);
-  const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const [repoStars, setRepoStars] = useState(null);
 
   useEffect(() => {
@@ -127,27 +123,13 @@ export default function Home() {
     setShowTemplates(false);
   }, []);
 
-  const handleCloseShortcuts = useCallback(() => {
-    setShowShortcuts(false);
-  }, []);
-
   const handleDownload = useCallback(() => {
     const event = new CustomEvent("readmade:download");
     window.dispatchEvent(event);
   }, []);
 
-  const handleSearch = useCallback(() => {
-    const event = new CustomEvent("readmade:search");
-    window.dispatchEvent(event);
-  }, []);
-
   useKeyboardShortcuts({
     onDownload: () => handleDownload(),
-    onCopy: () => {
-      const event = new CustomEvent("readmade:copy");
-      window.dispatchEvent(event);
-    },
-    onSearch: () => handleSearch(),
     onPalette: () => handlePaletteClick(),
     onReset: () => setShowResetConfirm(true),
   });
@@ -158,7 +140,7 @@ export default function Home() {
       style={{ background: "var(--bg)" }}
     >
       {/* Top header bar */}
-      <header className="hidden md:flex items-center justify-between h-15 px-4 shrink-0 bg-white border-b border-gray-200">
+      <header className="hidden app:flex items-center justify-between h-15 px-4 shrink-0 bg-white border-b border-gray-200">
         <div className="flex items-center gap-4">
           <a
             href="/"
@@ -213,30 +195,15 @@ export default function Home() {
       </header>
 
       {/* Body - three columns */}
-      <div className="flex flex-1 min-h-0 overflow-hidden gap-2 p-1 bg-white">
+      <div className="flex flex-1 min-h-0 overflow-hidden gap-1 p-1 bg-white">
         {/* Left column - Block palette (Field Types) */}
-        {!sidebarMinimized && (
-          <aside className="hidden md:flex flex-shrink-0 h-full">
-            <BlockPalette onOpenTemplates={handleOpenTemplates} />
-          </aside>
-        )}
-
-        {/* Minimized sidebar expand button */}
-        {sidebarMinimized && (
-          <div className="hidden md:flex flex-shrink-0 items-start pt-4 px-2">
-            <button
-              onClick={() => setSidebarMinimized(false)}
-              className="p-2 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
-              title="Expand sidebar"
-            >
-              <PanelLeftOpen size={18} />
-            </button>
-          </div>
-        )}
+        <aside className="hidden app:flex flex-shrink-0 h-full">
+          <BlockPalette />
+        </aside>
 
         {/* Middle column - Settings / Fields (Block arrangement) */}
-        <aside className="hidden md:flex flex-shrink-0 h-full">
-          <BlockArranger />
+        <aside className="hidden app:flex flex-shrink-0 h-full">
+          <BlockArranger onOpenTemplates={handleOpenTemplates} />
         </aside>
 
         {/* Right column - big Preview/Code canvas */}
@@ -267,7 +234,7 @@ export default function Home() {
         title="Add blocks"
       >
         <div className="flex flex-col h-full overflow-y-auto">
-          <BlockPalette onOpenTemplates={handleOpenTemplates} />
+          <BlockPalette />
         </div>
       </MobileDrawer>
 
@@ -277,7 +244,7 @@ export default function Home() {
         title="Arrange blocks"
       >
         <div className="flex flex-col h-full overflow-y-auto">
-          <BlockArranger />
+          <BlockArranger onOpenTemplates={handleOpenTemplates} />
         </div>
       </MobileDrawer>
 
@@ -287,13 +254,7 @@ export default function Home() {
         onCancel={() => setShowResetConfirm(false)}
       />
 
-      {showShortcuts && (
-        <KeyboardShortcutsHelp onClose={handleCloseShortcuts} />
-      )}
-
       {showTemplates && <TemplateGallery onClose={handleCloseTemplates} />}
-
-      <AutoSaveIndicator />
 
       <Suspense fallback={null}>
         <OnboardingTour />

@@ -20,7 +20,6 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "dompurify": "^3.4.13",
-    "framer-motion": "^13.1.1",
     "lucide-react": "^1.14.0",
     "marked": "^18.0.3",
     "react": "^19.2.5",
@@ -28,7 +27,6 @@
     "react-icons": "^5.7.0",
     "react-joyride": "^3.2.0",
     "react-router-dom": "^7.18.2",
-    "react-syntax-highlighter": "^16.1.1",
     "zustand": "^5.0.13"
   },
   "devDependencies": {

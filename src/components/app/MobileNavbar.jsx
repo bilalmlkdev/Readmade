@@ -7,7 +7,7 @@ export default function MobileNavbar({
   activeTab,
 }) {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200">
+    <nav className="app:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200">
       <div className="flex items-center justify-around h-14 px-4 pb-safe">
         <button
           onClick={onBlocksClick}

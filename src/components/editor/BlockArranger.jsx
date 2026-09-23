@@ -18,9 +18,10 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { BLOCK_META, BLOCK_ICONS, BLOCK_TYPES } from "../../lib/blocks.js";
 import useReadme from "../../store/useReadme.js";
-import { Search, Trash2, GripVertical, Maximize2, ChevronDown, X } from "lucide-react";
+import { Search, Trash2, GripVertical, Maximize2, ChevronDown, X, Eye, EyeOff } from "lucide-react";
+import { CgTemplate } from "react-icons/cg";
 
-export default function BlockArranger() {
+export default function BlockArranger({ onOpenTemplates }) {
   const {
     blocks,
     reorderBlocks,
@@ -36,7 +37,7 @@ export default function BlockArranger() {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [editingBlock, setEditingBlock] = useState(null);
-  const [settingsOpen, setSettingsOpen] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const searchInputRef = useRef(null);
 
   const sensors = useSensors(
@@ -92,7 +93,7 @@ export default function BlockArranger() {
 
   return (
     <div
-      className="w-[380px] flex flex-col bg-[#FAFAFB] border border-gray-200 h-full rounded-lg overflow-hidden"
+      className="w-full app:w-[380px] flex flex-col bg-[#FAFAFB] border border-gray-200 h-full rounded-lg overflow-hidden"
       data-tour="blocks"
     >
       {/* README Settings */}
@@ -101,7 +102,9 @@ export default function BlockArranger() {
           onClick={() => setSettingsOpen(!settingsOpen)}
           className="w-full flex items-center justify-between px-3 py-3"
         >
-          <span className="text-[14px] font-medium text-black">README Settings</span>
+          <span className="text-[14px] font-medium text-black">
+            README Settings
+          </span>
           <ChevronDown
             size={15}
             className={`text-gray-400 transition-transform ${settingsOpen ? "rotate-180" : ""}`}
@@ -110,7 +113,9 @@ export default function BlockArranger() {
         {settingsOpen && (
           <div className="pb-3 space-y-2.5 animate-slide-down">
             <div className="grid grid-cols-[100px_1fr] gap-2 items-center">
-              <label className="text-[12px] text-gray-500 text-right">README Name</label>
+              <label className="text-[12px] text-gray-500 text-right">
+                README Name
+              </label>
               <input
                 type="text"
                 value={settings.name}
@@ -120,17 +125,23 @@ export default function BlockArranger() {
               />
             </div>
             <div className="grid grid-cols-[85px_1fr] gap-2 items-center">
-              <label className="text-[12px] text-gray-500 text-right">Description</label>
+              <label className="text-[12px] text-gray-500 text-right">
+                Description
+              </label>
               <input
                 type="text"
                 value={settings.description}
-                onChange={(e) => updateSettings({ description: e.target.value })}
+                onChange={(e) =>
+                  updateSettings({ description: e.target.value })
+                }
                 placeholder="Short summary"
                 className="w-full px-3 py-1.5 text-[13px] bg-white border border-gray-200 rounded-lg placeholder:text-gray-400 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-black"
               />
             </div>
             <div className="grid grid-cols-[60px_1fr] gap-2 items-center">
-              <label className="text-[12px] text-gray-500 text-right">Author</label>
+              <label className="text-[12px] text-gray-500 text-right">
+                Author
+              </label>
               <input
                 type="text"
                 value={settings.author}
@@ -157,13 +168,22 @@ export default function BlockArranger() {
             {/* Search toggle */}
             <button
               onClick={() => setShowSearch(!showSearch)}
-              className={`flex items-center gap-1 px-2 py-1.5 text-[12px] font-medium rounded-lg transition-colors ${
+              className={`flex items-center gap-1 px-2 py-1.5 text-[12px] font-medium rounded-lg transition-colors bg-white ${
                 showSearch
                   ? "text-black bg-gray-100"
                   : "text-gray-500 hover:text-black hover:bg-gray-100"
               }`}
             >
               <Search size={14} />
+            </button>
+            {/* Templates */}
+            <button
+              onClick={onOpenTemplates}
+              className="flex items-center gap-1 px-2 py-1 text-[12px] font-medium text-black bg-white border border-gray-200 rounded-lg hover:bg-gray-100 rounded-lg transition-colors"
+              title="Templates"
+            >
+              <CgTemplate size={15} />
+              Templates
             </button>
           </div>
         </div>
@@ -281,9 +301,10 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
     isDragging,
   } = useSortable({ id: block.id });
 
-  const { removeBlock, updateBlock } = useReadme();
+  const { removeBlock, updateBlock, toggleBlockHidden } = useReadme();
   const meta = BLOCK_META[block.type];
   const IconComponent = BLOCK_ICONS[block.type];
+  const isHidden = !!block.hidden;
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -296,15 +317,20 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
     removeBlock(block.id);
   }
 
+  function handleToggleHidden(e) {
+    e.stopPropagation();
+    toggleBlockHidden(block.id);
+  }
+
   return (
     <div
       ref={setNodeRef}
       style={style}
-      className={`rounded-lg transition-all group bg-white border border-gray-200 shadow-xs overflow-hidden ${
+      className={`rounded-xl transition-all group bg-white border border-gray-200 shadow-xs overflow-hidden ${
         isActive || isExpanded
           ? "bg-white"
           : "hover:bg-white/80"
-      } ${isDragging ? "z-50 shadow-xs" : ""}`}
+      } ${isDragging ? "z-50 shadow-xs" : ""} ${isHidden ? "opacity-55" : ""}`}
     >
       <div
         className="flex items-center gap-2 px-2 py-2.5 cursor-pointer"
@@ -342,6 +368,19 @@ function SortableBlockItem({ block, index, isActive, onActive, isExpanded, onTog
 
         {/* Actions */}
         <div className="flex items-center gap-0.5 shrink-0">
+          <button
+            onClick={handleToggleHidden}
+            className={`p-1.5 rounded-lg transition-colors ${
+              isHidden
+                ? "text-amber-500 hover:text-amber-600 hover:bg-amber-50"
+                : "text-gray-400 hover:text-black hover:bg-gray-100"
+            }`}
+            title={isHidden ? "Show in preview" : "Hide from preview"}
+            aria-label={isHidden ? "Show in preview" : "Hide from preview"}
+            aria-pressed={isHidden}
+          >
+            {isHidden ? <EyeOff size={13} /> : <Eye size={13} />}
+          </button>
           <button
             onClick={(e) => { e.stopPropagation(); onEdit(); }}
             className="p-1.5 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"

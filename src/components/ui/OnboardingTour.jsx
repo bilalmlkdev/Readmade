@@ -1,11 +1,4 @@
-import {
-  forwardRef,
-  useImperativeHandle,
-  useState,
-  useEffect,
-  useRef,
-} from "react";
-
+import { useState, useEffect } from "react";
 import { Joyride, STATUS } from "react-joyride";
 
 const STEPS = [
@@ -53,20 +46,14 @@ const STEPS = [
   },
 ];
 
-const OnboardingTour = forwardRef((props, ref) => {
+export default function OnboardingTour() {
   const [run, setRun] = useState(false);
-  const hasStartedRef = useRef(false);
-
-  useImperativeHandle(ref, () => ({
-    restart: () => {},
-  }));
 
   useEffect(() => {
     const hasSeen = localStorage.getItem("readmade:onboarded");
     if (!hasSeen) {
       const timer = setTimeout(() => {
         setRun(true);
-        hasStartedRef.current = true;
         localStorage.setItem("readmade:onboarded", "true");
       }, 800);
       return () => clearTimeout(timer);
@@ -137,6 +124,4 @@ const OnboardingTour = forwardRef((props, ref) => {
       }}
     />
   );
-});
-
-export default OnboardingTour;
+}

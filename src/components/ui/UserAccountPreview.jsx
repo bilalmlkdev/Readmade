@@ -163,7 +163,7 @@ function UserMenu({ open, onClose, name, onRename }) {
   );
 }
 
-export default function UserAccountPreview({ minimized = false }) {
+export default function UserAccountPreview({ avatarOnly = false }) {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState(false);
   const [draftName, setDraftName] = useState("");
@@ -206,35 +206,15 @@ export default function UserAccountPreview({ minimized = false }) {
     <BrandMark size={26} browserId={browserId} onClick={() => setOpen((v) => !v)} />
   );
 
-  if (minimized) {
-    return (
-      <div ref={ref} className="relative flex justify-center">
-        {trigger}
-        <UserMenu
-          open={open}
-          onClose={() => setOpen(false)}
-          name={name}
-          onRename={startRename}
-        />
-        {editing && (
-          <RenameDialog
-            value={draftName}
-            onChange={setDraftName}
-            onCancel={() => setEditing(false)}
-            onSave={commitRename}
-          />
-        )}
-      </div>
-    );
-  }
-
   return (
     <div
       ref={ref}
-      className="relative flex-1 min-w-0 bg-white rounded-lg px-2 py-1.5 flex items-center gap-2.5"
+      className={`relative bg-white rounded-lg ${
+        avatarOnly ? "flex items-center" : "flex-1 min-w-0 px-2 flex items-center gap-2.5"
+      }`}
     >
       {trigger}
-      {editing ? (
+      {avatarOnly ? null : editing ? (
         <input
           autoFocus
           value={draftName}
@@ -256,11 +236,11 @@ export default function UserAccountPreview({ minimized = false }) {
           <span className="text-[13px] font-medium text-gray-800 truncate mt-1">
             {name}
           </span>
-          <span className="text-[12px] text-gray-400 mt-1">·</span>
-          <span className="text-[12px] text-gray-400 mt-1">{USER_PLAN}</span>
+          <span className="text-[12px] text-gray-400 mt-1.5">·</span>
+          <span className="text-[12px] text-gray-400 mt-1.5">{USER_PLAN}</span>
           <ChevronDown
             size={13}
-            className={`text-gray-400 shrink-0 transition-transform mt-1 ${
+            className={`text-gray-400 shrink-0 transition-transform mt-1.5 ${
               open ? "rotate-180" : ""
             }`}
           />
@@ -272,34 +252,6 @@ export default function UserAccountPreview({ minimized = false }) {
         name={name}
         onRename={startRename}
       />
-    </div>
-  );
-}
-
-function RenameDialog({ value, onChange, onCancel, onSave }) {
-  return (
-    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/30 px-2">
-      <div className="w-full bg-white border border-gray-200 shadow-lg p-2 flex items-center gap-1.5">
-        <input
-          autoFocus
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") onSave();
-            if (e.key === "Escape") onCancel();
-          }}
-          maxLength={32}
-          placeholder="Your name"
-          className="flex-1 min-w-0 text-[13px] px-2 py-1.5 border border-gray-200 rounded-md focus:border-black outline-none"
-        />
-        <button
-          type="button"
-          onClick={onSave}
-          className="px-2.5 py-1.5 text-[12px] font-medium text-white bg-black rounded-md hover:bg-black/80"
-        >
-          Save
-        </button>
-      </div>
     </div>
   );
 }

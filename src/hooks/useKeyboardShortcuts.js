@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function useKeyboardShortcuts({ onDownload, onCopy, onSearch, onPalette, onReset }) {
+export function useKeyboardShortcuts({ onDownload, onPalette, onReset }) {
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.isContentEditable) {
@@ -13,12 +13,6 @@ export function useKeyboardShortcuts({ onDownload, onCopy, onSearch, onPalette, 
       if (mod && e.key === "s" && !e.shiftKey) {
         e.preventDefault();
         onDownload?.();
-      } else if (mod && e.shiftKey && e.key === "C") {
-        e.preventDefault();
-        onCopy?.();
-      } else if (mod && e.key === "/") {
-        e.preventDefault();
-        onSearch?.();
       } else if (mod && e.shiftKey && e.key === "P") {
         e.preventDefault();
         onPalette?.();
@@ -30,5 +24,5 @@ export function useKeyboardShortcuts({ onDownload, onCopy, onSearch, onPalette, 
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onDownload, onCopy, onSearch, onPalette, onReset]);
+  }, [onDownload, onPalette, onReset]);
 }

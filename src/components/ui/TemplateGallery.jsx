@@ -222,11 +222,12 @@ const TEMPLATES = [
   },
 ];
 
-export default function TemplateGallery({ onClose, onApplyTemplate }) {
+export default function TemplateGallery({ onClose }) {
   const { clearAllData, addBlock } = useReadme();
   const [activeId, setActiveId] = useState(null);
+  const [pendingTemplate, setPendingTemplate] = useState(null);
 
-  const handleApply = (template) => {
+  const applyTemplate = (template) => {
     setActiveId(template.id);
     clearAllData();
     template.blocks.forEach((block) => {
@@ -237,12 +238,26 @@ export default function TemplateGallery({ onClose, onApplyTemplate }) {
       }
     });
     onClose?.();
-    onApplyTemplate?.(template);
+  };
+
+  const handleSelect = (template) => {
+    setPendingTemplate(template);
+  };
+
+  const handleConfirm = () => {
+    if (!pendingTemplate) return;
+    applyTemplate(pendingTemplate);
+    setPendingTemplate(null);
+  };
+
+  const handleCancel = (e) => {
+    e?.stopPropagation?.();
+    setPendingTemplate(null);
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
-      <div className="bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 max-w-[560px] w-full mx-4 max-h-[80vh] flex flex-col animate-slide-up" onClick={(e) => e.stopPropagation()}>
+      <div className="relative bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 max-w-[560px] w-full mx-4 max-h-[80vh] flex flex-col animate-slide-up" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 shrink-0">
           <div>
             <h2 className="text-[15px] font-semibold text-black">Templates</h2>
@@ -259,7 +274,7 @@ export default function TemplateGallery({ onClose, onApplyTemplate }) {
             return (
               <button
                 key={template.id}
-                onClick={() => handleApply(template)}
+                onClick={() => handleSelect(template)}
                 className={`w-full px-4 py-3 rounded-xl border transition-all text-left flex items-center gap-3.5 ${
                   activeId === template.id
                     ? "border-black bg-gray-50"
@@ -290,12 +305,58 @@ export default function TemplateGallery({ onClose, onApplyTemplate }) {
 
         <div className="px-5 py-3 border-t border-gray-100 shrink-0">
           <button
-            onClick={() => { clearAllData(); onClose(); }}
+            onClick={() =>
+              setPendingTemplate({ id: "blank", name: "Blank Canvas", blocks: [] })
+            }
             className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-[13px] font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-colors"
           >
             Start with blank
           </button>
         </div>
+
+        {pendingTemplate && (
+          <div
+            className="absolute inset-0 z-10 flex items-center justify-center bg-black/40 backdrop-blur-[2px] rounded-2xl p-4"
+            onClick={handleCancel}
+          >
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="template-confirm-title"
+              aria-describedby="template-confirm-desc"
+              className="bg-white rounded-xl shadow-2xl shadow-black/10 border border-gray-200 max-w-[360px] w-full p-5"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3
+                id="template-confirm-title"
+                className="text-[15px] font-semibold text-gray-900 mb-1.5"
+              >
+                Replace current readme?
+              </h3>
+              <p
+                id="template-confirm-desc"
+                className="text-gray-500 text-[13px] leading-relaxed mb-5"
+              >
+                Loading “{pendingTemplate.name}” will replace all your current
+                fields. This cannot be undone.
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleCancel}
+                  className="flex-1 px-4 py-2 text-[13px] font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleConfirm}
+                  className="flex-1 px-4 py-2 text-[13px] font-medium text-white bg-gray-900 hover:bg-gray-800 rounded-lg transition-colors"
+                >
+                  Replace
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

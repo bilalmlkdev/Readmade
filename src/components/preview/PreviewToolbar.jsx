@@ -1,125 +1,70 @@
 import { useState, useRef, useEffect } from "react";
-import { Copy, Download, FileText, Code, Check } from "lucide-react";
+import { Eye, Code } from "lucide-react";
 
 const TABS = [
-  { id: "preview", label: "Preview" },
-  { id: "code", label: "Code" },
+  { id: "preview", label: "Preview", icon: Eye },
+  { id: "code", label: "Code", icon: Code },
 ];
 
 const EXPORT_OPTIONS = [
-  { id: "md", label: "Markdown (.md)", icon: FileText, desc: "Standard README.md file" },
-  { id: "txt", label: "Plain Text (.txt)", icon: FileText, desc: "Plain text without formatting" },
-  { id: "html", label: "HTML (.html)", icon: Code, desc: "Rendered HTML with styling" },
+  { id: "md", label: "Markdown" },
+  { id: "txt", label: "Plain Text" },
+  { id: "html", label: "HTML" },
 ];
 
-function ActionBtn({ onClick, done, doneLabel, idleLabel, children }) {
-  return (
-    <button
-      onClick={(e) => {
-        onClick(e);
-      }}
-      className="px-3 py-1.5 text-[12px] font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors flex items-center gap-1.5"
-    >
-      {children}
-      {done ? doneLabel : idleLabel}
-    </button>
-  );
-}
-
-function Dropdown({ trigger, children, align = "right" }) {
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
-  const triggerRef = useRef(null);
-
-  useEffect(() => {
-    function handleClickOutside(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target) &&
-          triggerRef.current && !triggerRef.current.contains(e.target)) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    if (open) {
-      const handleEscape = (e) => { if (e.key === "Escape") setOpen(false); };
-      document.addEventListener("keydown", handleEscape);
-      return () => document.removeEventListener("keydown", handleEscape);
-    }
-  }, [open]);
-
-  return (
-    <div className="relative" ref={dropdownRef}>
-      <div ref={triggerRef} onClick={(e) => { e.stopPropagation(); setOpen(!open); }}>
-        {trigger}
-      </div>
-      {open && (
-        <div
-          className={`absolute top-full mt-1.5 z-50 min-w-[180px] bg-white border border-gray-200 rounded-lg shadow-lg shadow-black/10 overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150`}
-          style={{ [align]: 0 }}
-        >
-          {children}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function DropdownItem({ onClick, icon: Icon, label, desc, shortcut, disabled, selected }) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`w-full px-3 py-2.5 text-left flex items-center gap-3 transition-colors ${
-        disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50"
-      } ${selected ? "bg-gray-50" : ""}`}
-    >
-      <Icon size={15} className={`text-gray-500 ${selected ? "text-gray-900" : ""}`} strokeWidth={2} />
-      <div className="flex-1 min-w-0 text-left">
-        <p className="text-[12px] font-medium text-gray-900 truncate">{label}</p>
-        {desc && <p className="text-[10px] text-gray-400 truncate">{desc}</p>}
-      </div>
-      {shortcut && <span className="text-[10px] text-gray-300 font-mono px-1.5 py-0.5 rounded bg-gray-100">{shortcut}</span>}
-      {selected && <Check size={14} className="text-gray-900" />}
-    </button>
-  );
+function downloadBlob(content, type, filename) {
+  const a = Object.assign(document.createElement("a"), {
+    href: URL.createObjectURL(new Blob([content], { type })),
+    download: filename,
+  });
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
 }
 
 export default function PreviewToolbar({
   activeTab,
   onTabChange,
-  copied,
-  downloading,
-  onCopy,
   onDownload,
   raw,
   fileName = "README",
+  kbSize,
+  wordCount,
 }) {
-  const [downloadFormat, setDownloadFormat] = useState("md");
-  const baseName = (fileName || "README").replace(/\.(md|txt|html)$/i, "") || "README";
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+  const baseName =
+    (fileName || "README").replace(/\.(md|txt|html)$/i, "") || "README";
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e) => {
+      if (rootRef.current && !rootRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   const handleExport = (format) => {
-    setDownloadFormat(format);
-    if (format === "md") onDownload();
-    else if (format === "txt") downloadAsTxt(raw);
-    else if (format === "html") downloadAsHtml(raw);
-    setTimeout(() => setDownloadFormat("md"), 2000);
-  };
-
-  const downloadAsTxt = (content) => {
-    const a = Object.assign(document.createElement("a"), {
-      href: URL.createObjectURL(new Blob([content], { type: "text/plain" })),
-      download: `${baseName}.txt`,
-    });
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-
-  const downloadAsHtml = (markdown) => {
-    // Simple HTML wrapper with basic styling
+    setOpen(false);
+    if (format === "md") {
+      onDownload();
+      return;
+    }
+    if (format === "txt") {
+      downloadBlob(raw, "text/plain", `${baseName}.txt`);
+      return;
+    }
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,21 +80,15 @@ export default function PreviewToolbar({
     blockquote { border-left: 4px solid #d4d4d4; padding-left: 1rem; color: #555; margin: 1rem 0; }
   </style>
 </head>
-<body>${markdown}</body>
+<body>${raw}</body>
 </html>`;
-    const a = Object.assign(document.createElement("a"), {
-      href: URL.createObjectURL(new Blob([html], { type: "text/html" })),
-      download: `${baseName}.html`,
-    });
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    downloadBlob(html, "text/html", `${baseName}.html`);
   };
 
   return (
-    <div className="sticky top-0 z-10 flex-shrink-0 border-b border-gray-200 bg-[#FAFAFB] px-4 py-2.5 flex items-center justify-between">
+    <div className="sticky top-0 z-10 flex-shrink-0 bg-[#FAFAFB] px-2.5 py-2 flex items-center justify-between">
       <div className="flex items-center gap-4 min-w-0">
-        <div className="flex items-center gap-0.5 rounded-lg border border-gray-200 bg-gray-50 p-0.5">
+        <div className="flex items-center gap-0.5 rounded-[10px] border border-gray-200 bg-gray-100">
           {TABS.map((tab) => (
             <button
               key={tab.id}
@@ -160,11 +99,13 @@ export default function PreviewToolbar({
               }}
               type="button"
               aria-pressed={activeTab === tab.id}
-              className={`
-                px-3 py-1.5 rounded-md text-[12px] font-medium transition-all duration-200
-                ${activeTab === tab.id ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"}
-              `}
+              className={`px-3 py-1.5 rounded-[10px] text-[12px] font-medium transition-all duration-200 flex items-center gap-1.5 ${
+                activeTab === tab.id
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
             >
+              <tab.icon size={13} />
               {tab.label}
             </button>
           ))}
@@ -175,35 +116,99 @@ export default function PreviewToolbar({
         </span>
       </div>
 
-      <div className="flex items-center gap-1.5">
-        <ActionBtn onClick={onCopy} done={copied} idleLabel="Copy" doneLabel="Copied!">
-          <Copy size={13} />
-        </ActionBtn>
-
-        <Dropdown
-          trigger={
-            <ActionBtn
-              onClick={() => {}}
-              done={downloading}
-              idleLabel="Download"
-              doneLabel="Saved!"
+      <div className="flex items-center gap-2 min-w-0">
+        <div className="hidden app:flex items-center gap-3 text-[11px] text-gray-500 font-medium mr-1">
+          <span className="flex items-center gap-1">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
             >
-              <Download size={13} />
-            </ActionBtn>
-          }
-          align="right"
-        >
-          {EXPORT_OPTIONS.map((opt) => (
-            <DropdownItem
-              key={opt.id}
-              icon={opt.icon}
-              label={opt.label}
-              desc={opt.desc}
-              selected={downloadFormat === opt.id}
-              onClick={() => handleExport(opt.id)}
-            />
-          ))}
-        </Dropdown>
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            Updated {new Date().toLocaleTimeString()}
+          </span>
+          <span className="flex items-center gap-1">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            >
+              <path d="M4 7h16M4 12h16M4 17h10" />
+            </svg>
+            ~{kbSize} KB
+          </span>
+          <span className="flex items-center gap-1">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            >
+              <path d="M4 7h16M4 12h16M4 17h10" />
+            </svg>
+            {wordCount} words
+          </span>
+        </div>
+
+        <div className="w-px h-4 bg-gray-200 hidden app:block" />
+
+        <div className="relative" ref={rootRef}>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-haspopup="menu"
+            className="px-3 py-1.5 text-[12px] font-medium rounded-lg transition-all flex items-center gap-1.5 border border-gray-200 bg-white"
+          >
+            Download
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+
+          {open && (
+            <div
+              role="menu"
+              className="absolute right-0 top-full mt-1 p-1 w-[120px] origin-top-right rounded-xl border border-gray-200 bg-white shadow-xl shadow-black/10 overflow-hidden animate-slide-down"
+            >
+              {EXPORT_OPTIONS.map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  role="menuitem"
+                  onClick={() => handleExport(opt.id)}
+                  className="group w-full flex items-start gap-3 px-2.5 py-1.5 rounded-lg text-left transition-colors hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
+                >
+                  <span className="flex-1 min-w-0">
+                    <span className="flex items-center gap-1.5">
+                      <span className="text-[13px] font-medium text-gray-900">
+                        {opt.label}
+                      </span>
+                    </span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
