@@ -20,7 +20,15 @@ const MarkdownPreview = lazy(() => import("./components/preview/MarkdownPreview"
 const OnboardingTour = lazy(() => import("./components/ui/OnboardingTour"));
 
 export default function Home() {
-  const { blocks, clearAllData, resetToInitialTemplate } = useReadme();
+  const {
+    blocks,
+    clearAllData,
+    resetToInitialTemplate,
+    past,
+    future,
+    undo,
+    redo,
+  } = useReadme();
   useDocumentTitle("Readmade - Build your README");
   useAutosaveHistory();
   const repoStars = useRepoStars();
@@ -40,6 +48,8 @@ export default function Home() {
     onDownload: handleDownload,
     onPalette: panels.handlePaletteClick,
     onReset: () => setShowResetConfirm(true),
+    onUndo: undo,
+    onRedo: redo,
   });
 
   const handleResetConfirmed = () => {
@@ -56,6 +66,11 @@ export default function Home() {
         repoStars={repoStars}
         onHistory={() => setShowHistory(true)}
         onReset={() => setShowResetConfirm(true)}
+        canUndo={past.length > 0}
+        canRedo={future.length > 0}
+        onUndo={undo}
+        onRedo={redo}
+        onClear={clearAllData}
       />
 
       <div className="flex flex-1 min-h-0 overflow-hidden gap-1 p-1 bg-white dark:bg-[#0c0c0c]">
