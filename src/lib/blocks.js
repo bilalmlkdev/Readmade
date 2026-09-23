@@ -27,17 +27,17 @@ export const BLOCK_TYPES = {
 };
 
 export const BLOCK_META = {
-  [BLOCK_TYPES.TITLE]: { label: "Title", color: "#111111", desc: "project heading" },
-  [BLOCK_TYPES.BADGES]: { label: "Badges", color: "#111111", desc: "status shields" },
-  [BLOCK_TYPES.DESCRIPTION]: { label: "Description", color: "#111111", desc: "overview text" },
-  [BLOCK_TYPES.FEATURES]: { label: "Features", color: "#111111", desc: "highlight list" },
-  [BLOCK_TYPES.INSTALLATION]: { label: "Installation", color: "#111111", desc: "install steps" },
-  [BLOCK_TYPES.USAGE]: { label: "Usage", color: "#111111", desc: "code examples" },
-  [BLOCK_TYPES.SCREENSHOTS]: { label: "Screenshots", color: "#111111", desc: "images" },
-  [BLOCK_TYPES.API]: { label: "API Docs", color: "#111111", desc: "method ref" },
-  [BLOCK_TYPES.CONTRIBUTING]: { label: "Contributing", color: "#111111", desc: "guidelines" },
-  [BLOCK_TYPES.LICENSE]: { label: "License", color: "#111111", desc: "MIT etc" },
-  [BLOCK_TYPES.CUSTOM]: { label: "Custom", color: "#111111", desc: "freeform md" },
+  [BLOCK_TYPES.TITLE]: { label: "Title", color: "#111111", desc: "project heading", group: "Header" },
+  [BLOCK_TYPES.BADGES]: { label: "Badges", color: "#111111", desc: "status shields", group: "Header" },
+  [BLOCK_TYPES.DESCRIPTION]: { label: "Description", color: "#111111", desc: "overview text", group: "Text" },
+  [BLOCK_TYPES.FEATURES]: { label: "Features", color: "#111111", desc: "highlight list", group: "Content" },
+  [BLOCK_TYPES.INSTALLATION]: { label: "Installation", color: "#111111", desc: "install steps", group: "Content" },
+  [BLOCK_TYPES.USAGE]: { label: "Usage", color: "#111111", desc: "code examples", group: "Content" },
+  [BLOCK_TYPES.SCREENSHOTS]: { label: "Screenshots", color: "#111111", desc: "images", group: "Media" },
+  [BLOCK_TYPES.API]: { label: "API Docs", color: "#111111", desc: "method ref", group: "Docs" },
+  [BLOCK_TYPES.CONTRIBUTING]: { label: "Contributing", color: "#111111", desc: "guidelines", group: "Docs" },
+  [BLOCK_TYPES.LICENSE]: { label: "License", color: "#111111", desc: "MIT etc", group: "Docs" },
+  [BLOCK_TYPES.CUSTOM]: { label: "Custom", color: "#111111", desc: "freeform md", group: "Extras" },
 };
 
 export const BLOCK_ICONS = {

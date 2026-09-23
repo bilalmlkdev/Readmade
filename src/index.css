@@ -134,6 +134,22 @@ body,
   border-radius: 2px;
 }
 
+.scroll-hide {
+  scrollbar-width: none;
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-hide.scroll-hide-show {
+  scrollbar-width: thin;
+}
+
+.scroll-hide.scroll-hide-show::-webkit-scrollbar {
+  display: block;
+}
+
 ::selection {
   background: var(--accent-bg);
   color: var(--accent);

@@ -16,6 +16,7 @@ import {
 } from "@dnd-kit/sortable";
 import { BLOCK_META, BLOCK_ICONS } from "../../lib/blocks.js";
 import useReadme from "../../store/useReadme.js";
+import useScrollVisible from "../../hooks/useScrollVisible.js";
 import { filterBlocksBySearch } from "./filterBlocks.js";
 import BlockSettings from "./BlockSettings.jsx";
 import BlockListHeader from "./BlockListHeader.jsx";
@@ -68,6 +69,8 @@ export default function BlockArranger({ onOpenTemplates }) {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [editingBlock, setEditingBlock] = useState(null);
+  const { showing: scrollbarVisible, onScroll: onScrollbarScroll } =
+    useScrollVisible();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -115,7 +118,10 @@ export default function BlockArranger({ onOpenTemplates }) {
       />
 
       <div
-        className="flex-1 overflow-y-auto relative py-3" style={{ scrollbarWidth: "thin" }}
+        onScroll={onScrollbarScroll}
+        className={`flex-1 overflow-y-auto relative py-3 scroll-hide ${
+          scrollbarVisible ? "scroll-hide-show" : ""
+        }`}
       >
         {filteredBlocks.length === 0 ? (
           <EmptyList search={search} />
