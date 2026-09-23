@@ -53,10 +53,6 @@ Each block can expose settings such as code language, package manager, or badge 
 
 Readmade keeps up to 8 autosaved snapshots in browser storage. Open the history gallery to restore an older state or clear history entirely.
 
-## Onboarding tour
-
-The first time you open the editor, a short tour highlights the palette, the block list, and the preview. You can dismiss it at any time - it will not show again.
-
 ## Reset
 
 Reset clears the current document back to the default starter blocks. A confirmation dialog prevents accidental wipes.

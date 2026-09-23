@@ -34,7 +34,6 @@ export default function BlockPalette() {
     return (
       <div
         className="w-full app:w-[60px] flex flex-col bg-[#FAFAFB] dark:bg-[#111] h-full border border-gray-200 dark:border-white/10 rounded-lg transition-[width] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
-        data-tour="sidebar"
       >
         <PaletteHeader
           minimized={minimized}
@@ -65,7 +64,6 @@ export default function BlockPalette() {
   return (
     <div
       className="w-full app:w-[240px] flex flex-col bg-[#FAFAFB] dark:bg-[#111] h-full border border-gray-200 dark:border-white/10 rounded-lg"
-      data-tour="sidebar"
     >
       <PaletteHeader
         minimized={minimized}

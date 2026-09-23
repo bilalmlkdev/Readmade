@@ -22,5 +22,4 @@ All notable changes to this project are documented here.
 
 ### Fixed
 
-- Onboarding tour theme import path.
 - Dark theme text contrast in user account and history gallery.

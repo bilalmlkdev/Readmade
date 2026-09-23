@@ -18,7 +18,6 @@ import useReadme from "./store/useReadme.js";
 import { useDocumentTitle } from "./lib/utils.js";
 
 const MarkdownPreview = lazy(() => import("./components/preview/MarkdownPreview"));
-const OnboardingTour = lazy(() => import("./components/ui/OnboardingTour"));
 
 export default function Home() {
   const {
@@ -95,7 +94,7 @@ export default function Home() {
         </aside>
 
         <main
-          className="flex-1 flex flex-col min-w-0 min-h-0 bg-[#FAFAFB] dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-lg overflow-hidden" data-tour="preview"
+          className="flex-1 flex flex-col min-w-0 min-h-0 bg-[#FAFAFB] dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-lg overflow-hidden"
         >
           <ErrorBoundary>
             <Suspense fallback={<PreviewFallback />}>
@@ -149,10 +148,6 @@ export default function Home() {
         onClose={() => setShowSearch(false)}
         onSelect={handleSearchSelect}
       />
-
-      <Suspense fallback={null}>
-        <OnboardingTour />
-      </Suspense>
     </div>
   );
 }

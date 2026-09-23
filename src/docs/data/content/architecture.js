@@ -20,7 +20,7 @@ Readmade is a Vite + React single-page app. Rendering, state, and export all hap
 | Path | Role |
 | --- | --- |
 | \`src/components\` | UI for app shell, editor, blocks, preview, landing, dialogs |
-| \`src/data\` | Static content: templates, plans, palette lists, tour steps |
+| \`src/data\` | Static content: templates, palette lists |
 | \`src/docs\` | This documentation route |
 | \`src/hooks\` | Shared hooks: shortcuts, autosave, focus trap, dismiss |
 | \`src/lib\` | Pure JavaScript: markdown, tokenizer, theme, export |

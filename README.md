@@ -148,7 +148,7 @@ Client-only single-page app. React renders the workspace, Zustand holds blocks, 
 | Path | Role |
 | --- | --- |
 | `src/components` | App shell, editor, blocks, preview, landing, dialogs |
-| `src/data` | Templates, palette lists, tour steps |
+| `src/data` | Templates, palette lists |
 | `src/docs` | In-app documentation route |
 | `src/hooks` | Shortcuts, autosave, focus trap, dismiss |
 | `src/lib` | Pure helpers: markdown, theme, export, blocks |
@@ -173,7 +173,6 @@ Readmade is local-first. Your document never leaves the browser unless you expor
 | `readmade:history` | Up to 8 autosaved snapshots |
 | `readmade:theme` | Light or dark preference |
 | `readmade:paletteMinimized` | Palette UI state |
-| `readmade:onboarded` | Whether the tour was seen |
 | `readmade_browser_id` | Anonymous local workspace id |
 | `readmade_user_name` | Display name for the workspace |
 

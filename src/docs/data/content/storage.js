@@ -14,7 +14,6 @@ You open a workspace with an email address for display only. There is no sign-up
 | \`readmade:history\` | Up to 8 autosaved snapshots |
 | \`readmade:theme\` | Light or dark theme preference |
 | \`readmade:paletteMinimized\` | Palette UI state |
-| \`readmade:onboarded\` | Whether the tour was seen |
 | \`readmade_browser_id\` | Anonymous local workspace id |
 | \`readmade_user_name\` | Display name for the workspace |
 

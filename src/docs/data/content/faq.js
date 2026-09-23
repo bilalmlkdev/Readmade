@@ -34,7 +34,7 @@ Up to 8. Older entries drop off as new autosaves arrive.
 
 ## Is there a free tier?
 
-The editor is free for local use. See [pricing on the landing page](/#pricing) if you are looking at hosted plans.
+Yes. The editor is free for local use.
 
 ## How do I report a bug?
 
